@@ -177,6 +177,18 @@
 	function lerp(a, b, t) { return a + (b - a) * t; }
 
 	function updateReelProgress() {
+		// sub-pages (services.html etc) share this script for the nav/
+		// Projects-panel logic but have none of the reel-grow intro
+		// markup — skip straight to a simple scroll-distance threshold
+		// for revealing the nav instead of touching reelCard/masonry,
+		// which would throw on the first null .style write otherwise
+		if (!reelCard) {
+			// nav is always visible on sub-pages (no intro to scroll
+			// through first) — add once, never remove, so it can't
+			// flicker off on the next scroll tick
+			document.body.classList.add('has-scrolled');
+			return;
+		}
 		fitColumnsToViewport();
 		lockCropBase();
 		lockMainImgBase();
@@ -446,7 +458,7 @@
 	document.addEventListener('keydown', (e) => {
 		if (e.key === 'Escape' && projectsPanel?.classList.contains('is-open')) closeProjectsPanel();
 	});
-	const projectsPanelCards = Array.from(document.querySelectorAll('.projects-panel-card'));
+	const projectsPanelCards = Array.from(document.querySelectorAll('#projectsPanel .projects-panel-card'));
 	const projectsPanelGrid = document.querySelector('.projects-panel-grid');
 	const projectsPanelTabs = Array.from(document.querySelectorAll('.projects-panel-tab'));
 	function filterProjectsPanel(tabName) {
@@ -530,5 +542,120 @@
 	/* ===== skip-intro hint: jump past the crossfade ===== */
 	document.getElementById('scrollHint')?.addEventListener('click', () => {
 		window.scrollTo({ top: window.innerHeight * 0.9, behavior: 'smooth' });
+	});
+
+	/* ===== services page: TOC active-section tracking ===== */
+	const svcToc = document.getElementById('svcTocList');
+	if (svcToc) {
+		const svcLinks = Array.from(svcToc.querySelectorAll('a'));
+		const svcSections = svcLinks
+			.map((a) => document.getElementById(a.getAttribute('href').slice(1)))
+			.filter(Boolean);
+		// root: .svc-main on desktop — the content column scrolls inside
+		// itself (a fixed-height card, matching the reference) rather
+		// than the document scrolling, so the observer has to watch that
+		// container instead of the default viewport or it never fires
+		const svcObserver = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (!entry.isIntersecting) return;
+					const id = entry.target.id;
+					svcLinks.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href') === `#${id}`));
+				});
+			},
+			{ root: document.querySelector('.svc-main'), rootMargin: '-10% 0px -70% 0px' }
+		);
+		svcSections.forEach((sec) => svcObserver.observe(sec));
+	}
+
+	/* ===== services page: scroll-linked overlay gradient ===== */
+	// --grad-end is the % down the page where .svc-scroll-gradient reaches
+	// full solid darkness (see style.css). Sits lower at rest (more of the
+	// fixed hero photo stays visible) and migrates upward as the user
+	// scrolls, so the darkening point itself transitions rather than
+	// staying pinned to a fixed percentage.
+	const svcMain = document.querySelector('.svc-main');
+	if (svcMain) {
+		const GRAD_START = 30;
+		const GRAD_END = 10;
+		const GRAD_SCROLL_RANGE = 1200;
+		const updateGradEnd = () => {
+			const progress = Math.min(1, svcMain.scrollTop / GRAD_SCROLL_RANGE);
+			const value = GRAD_START - (GRAD_START - GRAD_END) * progress;
+			svcMain.style.setProperty('--grad-end', `${value}%`);
+		};
+		updateGradEnd();
+		svcMain.addEventListener('scroll', updateGradEnd, { passive: true });
+	}
+
+	/* ===== projects page: sticky header background on scroll ===== */
+	// transparent over the hero at rest, so the hero media reads cleanly;
+	// solidifies gradually over HEADER_FADE_RANGE px of scroll (not a
+	// snap past a fixed threshold) via --header-progress, read by the
+	// header's own background/border/backdrop-filter in CSS
+	const projHeader = document.querySelector('.proj-hero-header');
+	if (projHeader && svcMain) {
+		const HEADER_FADE_RANGE = 200;
+		const HEADER_FADE_DEADZONE = .25;
+		const updateProjHeaderScrolled = () => {
+			const raw = Math.min(1, svcMain.scrollTop / HEADER_FADE_RANGE);
+			const progress = raw <= HEADER_FADE_DEADZONE ? 0 : (raw - HEADER_FADE_DEADZONE) / (1 - HEADER_FADE_DEADZONE);
+			projHeader.style.setProperty('--header-progress', progress);
+		};
+		updateProjHeaderScrolled();
+		svcMain.addEventListener('scroll', updateProjHeaderScrolled, { passive: true });
+	}
+
+	/* ===== services page: share/copy widget ===== */
+	const navCopy = document.getElementById('navCopy');
+	const navShare = document.getElementById('navShare');
+	const navShareMenu = document.getElementById('navShareMenu');
+
+	navCopy?.addEventListener('click', async () => {
+		try {
+			await navigator.clipboard.writeText(location.href);
+		} catch (e) {
+			/* clipboard API unavailable — tip still shows, just a no-op copy */
+		}
+		const tip = navCopy.querySelector('.svc-copy-tip');
+		if (tip) tip.innerHTML = '<svg class="svc-copy-tip-check" viewBox="0 0 16 16" fill="none"><path d="M3 8.5L6.5 12L13 4.5" stroke="#4ADE80" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Link copied!';
+		navCopy.classList.add('is-copied');
+		window.setTimeout(() => {
+			navCopy.classList.remove('is-copied');
+			if (tip) tip.textContent = 'Copy';
+		}, 2000);
+	});
+
+	navShare?.addEventListener('click', (e) => {
+		e.stopPropagation();
+		const isOpen = !navShareMenu.hidden;
+		navShareMenu.hidden = isOpen;
+		navShare.setAttribute('aria-expanded', String(!isOpen));
+	});
+	document.addEventListener('click', (e) => {
+		if (!navShareMenu || navShareMenu.hidden) return;
+		if (!navShareMenu.contains(e.target) && e.target !== navShare && !navShare?.contains(e.target)) {
+			navShareMenu.hidden = true;
+			navShare?.setAttribute('aria-expanded', 'false');
+		}
+	});
+	document.querySelectorAll('.svc-share-item').forEach((item) => {
+		item.addEventListener('click', (e) => {
+			e.preventDefault();
+			const url = encodeURIComponent(location.href);
+			const title = encodeURIComponent(document.title);
+			const targets = {
+				facebook: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+				linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
+				x: `https://twitter.com/intent/tweet?url=${url}&text=${title}`,
+				email: `mailto:?subject=${title}&body=${url}`,
+			};
+			const target = targets[item.dataset.share];
+			if (!target) return;
+			if (item.dataset.share === 'email') window.location.href = target;
+			else window.open(target, '_blank', 'noopener,noreferrer,width=600,height=600');
+			navShareMenu.hidden = true;
+			navShare?.setAttribute('aria-expanded', 'false');
+		});
 	});
 })();

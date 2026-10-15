@@ -44,10 +44,11 @@ html{font-size:56.25%} /* 9px */
 	--ease-soft: cubic-bezier(.215,.61,.355,1);
 	--font-main: 'PPNeue', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-	--bg-dark: linear-gradient(#303436,#242728);
+	--bg-dark: linear-gradient(#17181a,#0c0d0e);
 	--bg-light: #f2f2f2;
 
 	--nav-width: 12rem;
+	--nav-visual-width: 11rem;
 }
 
 /* the reference site's homepage is light throughout — no persistent dark hero */
@@ -92,7 +93,7 @@ body{
 }
 @media (min-width:800px){
 	.nav{
-		top:0;left:0;bottom:0;width:var(--nav-width);
+		top:0;left:0;bottom:0;width:var(--nav-visual-width);
 		flex-direction:column;justify-content:space-between;
 		padding:2.4rem 0;
 		opacity:0;
@@ -115,10 +116,12 @@ body[data-home="true"] .nav-foot{
 
 .nav-top{display:none}
 @media (min-width:800px){
-	.nav-top{display:flex;flex-direction:column;align-items:flex-start;gap:.2rem;padding:0 0 0 1.6rem}
+	/* centered within the sidebar's own width, not left-aligned with a
+	   fixed padding — requested for both this page and the homepage */
+	.nav-top{display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:0 .8rem;text-align:center}
 }
-.nav-top-name{font-size:1.2rem;font-weight:700;letter-spacing:.02em;color:var(--fg-default);white-space:nowrap}
-.nav-top-tagline{font-size:1rem;font-style:italic;letter-spacing:.02em;color:var(--fg-mute);line-height:1.2}
+.nav-top-name{font-size:1rem;font-weight:700;letter-spacing:.02em;color:var(--fg-default);white-space:nowrap}
+.nav-top-tagline{font-size:1rem;font-style:italic;font-weight:400;letter-spacing:.02em;color:var(--fg-mute);line-height:1.2}
 
 .nav-items{display:flex;flex-direction:row;gap:.8rem}
 @media (min-width:800px){
@@ -166,6 +169,57 @@ body[data-home="true"] .nav-foot{
 @media (min-width:800px){
 	.nav-foot{flex-direction:column;align-items:center;gap:.4rem}
 }
+
+/* share/copy widget (services.html only) — floats at the bottom-left
+   of the CONTENT area, not the sidebar; confirmed via the reference's
+   own button rects (x:136, just past its ~128px sidebar, stacked
+   vertically near the bottom of the viewport) */
+.svc-share-stack{display:none}
+@media (min-width:800px){
+	.svc-share-stack{
+		position:fixed;z-index:55;
+		left:calc(var(--nav-width) + 1.6rem);bottom:1.6rem;
+		display:flex;flex-direction:column;
+		transition:left .4s var(--ease);
+	}
+	body.projects-panel-open .svc-share-stack{left:calc(var(--nav-width) + 40rem + 1.6rem)}
+}
+.svc-share,.svc-copy{
+	position:relative;
+	display:flex;align-items:center;justify-content:center;
+	width:4rem;height:4rem;
+	color:rgba(255,255,255,.95);
+}
+.svc-share svg,.svc-copy svg{width:2.4rem;height:2.4rem}
+/* exact values confirmed against the reference's own "_tooltip-menu":
+   bg rgb(26,26,26), text rgb(229,229,229), 16px text (not 11px),
+   8px/12px padding (not 4px/8px), 8px radius (not 6px) */
+.svc-copy-tip{
+	position:absolute;left:calc(100% + .8rem);top:50%;transform:translateY(-50%);
+	display:flex;align-items:center;gap:.6rem;
+	padding:.8rem 1.2rem;border-radius:.8rem;
+	background:#1a1a1a;color:#e5e5e5;
+	font-size:1.6rem;font-weight:500;white-space:nowrap;
+	opacity:0;pointer-events:none;
+	transition:opacity .2s var(--ease);
+}
+.svc-copy-tip-check{width:1.6rem;height:1.6rem;flex-shrink:0}
+.svc-copy:hover .svc-copy-tip{opacity:1}
+.svc-copy.is-copied .svc-copy-tip{opacity:1}
+
+.svc-share-menu{
+	position:absolute;left:calc(100% + 1.2rem);bottom:0;
+	width:16rem;padding:1.2rem;border-radius:1.2rem;
+	background:rgba(20,20,20,.95);backdrop-filter:blur(1.2rem);
+	box-shadow:0 1rem 3rem rgba(0,0,0,.3);
+}
+.svc-share-menu-label{font-size:1.1rem;font-weight:600;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.8rem}
+.svc-share-item{
+	display:flex;align-items:center;gap:1rem;
+	padding:.8rem 0;
+	font-size:1.4rem;font-weight:500;color:#fff;
+}
+.svc-share-item svg{width:1.8rem;height:1.8rem;flex-shrink:0;color:rgba(255,255,255,.95)}
 
 /* ===== MAIN ===== */
 /* full-bleed, no reserved gutter — the nav is an overlay on the
@@ -715,7 +769,7 @@ body[data-home="true"] .nav-foot{
    reference itself has on these specific cards. For project cards
    the glow hugs only the image (not the logo/title row below it),
    with equal inset on all four sides. */
-.project-img::before,.service-card::before,.projects-panel-card-img::before{
+.project-img::before,.service-card::before,.projects-panel-card-img::before,.proj-coll-card-img::before{
 	content:'';
 	position:absolute;inset:-.8rem;
 	border-radius:1.6rem;background:#E6E6E6;
@@ -723,7 +777,7 @@ body[data-home="true"] .nav-foot{
 	transition:opacity .3s var(--ease),transform .3s var(--ease);
 	z-index:-1;pointer-events:none;
 }
-.project-img:hover::before,.service-card:hover::before,.projects-panel-card-img:hover::before{opacity:1;transform:scale(1)}
+.project-img:hover::before,.service-card:hover::before,.projects-panel-card-img:hover::before,.proj-coll-card-img:hover::before{opacity:1;transform:scale(1)}
 
 
 /* ===== PROJECTS PANEL ===== */
@@ -802,7 +856,9 @@ body[data-home="true"] .nav-foot{
 .projects-panel-sticky{
 	position:sticky;top:0;z-index:2;
 	background:rgba(255,255,255,.97);
-	padding-top:2rem;margin-top:-2rem;
+	border-radius:1.6rem 1.6rem 0 0;
+	margin:-2rem -2rem 0;
+	padding:2rem 2rem 1.6rem;
 }
 .projects-panel-head{
 	display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
@@ -853,6 +909,7 @@ body[data-home="true"] .nav-foot{
 .projects-panel-grid{
 	display:grid;grid-template-columns:1fr 1fr;
 	gap:1.6rem 0;
+	margin-top:2rem;
 	padding-bottom:2rem;
 	/* no permanent transition here on purpose — main.js applies one only
 	   for the duration of a tab switch (switchProjectsTab), so there's
@@ -884,5 +941,730 @@ body[data-home="true"] .nav-foot{
 .projects-panel-card-meta{display:flex;align-items:center;gap:.8rem;padding:.8rem .8rem 0}
 .projects-panel-card-meta img{width:3.2rem;height:3.2rem;border-radius:.8rem;object-fit:cover;flex-shrink:0}
 .projects-panel-card-text{overflow:hidden;font-size:1.2rem;line-height:1.15}
-.projects-panel-card-title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.projects-panel-card-title{color:var(--fg-default);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .projects-panel-card-cat{color:var(--fg-mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+
+/* ===== SERVICES PAGE ===== */
+/* cloned from deuxhuithuit.com/en/services, re-scanned pixel-by-pixel
+   after the first pass got the color scheme backwards: the whole page
+   (hero AND the TOC/accordion sections below it) sits on ONE
+   persistent dark background — confirmed by decoding the page's own
+   fixed background-image data URI and finding its ._default-background
+   layer uses the exact linear-gradient(#303436,#242728) already in
+   this file as --bg-dark. It isn't scoped to just the hero; there's no
+   light-themed section anywhere on this page. */
+/* overscroll-behavior:none stops the browser from rubber-banding the
+   outer page once .svc-main's own internal scroll hits its end — body
+   has nothing left to scroll (it's pinned to exactly one viewport),
+   so without this the bounce attempt visibly shifts .svc-shell's own
+   .8rem margin instead (top gap vanishes, bottom gap doubles) */
+body.svc-page{overscroll-behavior:none}
+/* transparent, not var(--bg-dark) — an opaque flat background here was
+   completely blocking the fixed .svc-bg (blurred ambient photo) from
+   ever showing through the content column, which is exactly why it
+   was rendering as flat neutral grey instead of the reference's warm
+   dark-brown tones. Confirmed by sampling actual rendered pixel
+   colors against the reference: ours was landing almost exactly on
+   --bg-dark's own RGB values (the fallback, not a blend with any
+   photo color at all). */
+.svc-main{min-height:100%;color:#fff}
+
+.svc-hero{
+	position:relative;
+	min-height:100svh;
+	display:flex;flex-direction:column;
+	overflow:hidden;
+}
+/* desktop: the reference's hero is NOT a full-viewport block — its
+   content row has an intrinsic height (660.8px / 66.4rem heading column
+   measured directly from the live page), so the next section (00.
+   Foreword) naturally peeks into the bottom of the first screen on
+   arrival instead of being hidden until you scroll. min-height:100svh
+   stays for mobile, where there's no peeking section by design. */
+@media (min-width:800px){
+	.svc-hero{min-height:0}
+}
+/* user feedback: this image was scrolling away with the hero section —
+   on the reference it stays fixed to the viewport the whole time, and
+   only the dark overlay (.svc-scroll-gradient, which DOES scroll with
+   content) passes over it, revealing progressively more darkness.
+   Switched from position:absolute (inset:0 relative to .svc-hero, moves
+   with scroll) to position:fixed, scoped to the same content-column
+   screen bounds .svc-content-tint used to occupy — no longer relies on
+   its own ::after tint since .svc-scroll-gradient (z-index -1, above
+   this at -2) already starts at the same calibrated .87 darkness at
+   scroll=0 and covers this image too now that it isn't buried under an
+   opaque in-flow layer anymore. */
+.svc-hero-bg{position:absolute;inset:0;z-index:-2}
+@media (min-width:800px){
+	.svc-hero-bg{
+		position:fixed;
+		top:.8rem;bottom:.8rem;left:calc(var(--nav-width) + .8rem);right:.8rem;
+		border-radius:1.2rem;overflow:hidden;
+		transition:left .4s var(--ease);
+	}
+	/* fixed positioning means this never moves on its own when the
+	   content column shifts right for the Projects panel (that's a
+	   real grid-column reflow, not something position:fixed tracks) —
+	   shifted explicitly to match, or the content ends up visually
+	   detached from its own background. */
+	body.projects-panel-open .svc-hero-bg{left:calc(var(--nav-width) + 40rem + .8rem)}
+}
+.svc-hero-bg img,.svc-hero-bg video{width:100%;height:100%;object-fit:cover}
+.svc-hero-header{
+	position:relative;z-index:1;
+	display:flex;align-items:center;justify-content:space-between;
+	height:5.6rem;
+	padding:0 2.4rem;
+	border-bottom:1px solid rgba(255,255,255,.1);
+	color:#fff;
+}
+/* margin, not padding — confirmed against the reference's own header:
+   the divider LINE itself (border-bottom) sits inset from the content
+   column's edge, not just the icon/text inside it. Padding only moves
+   the content, leaving the border spanning the full box; margin moves
+   the whole box (border included) to match. The hero image behind it
+   stays full-bleed with no inset either way. */
+@media (min-width:800px){.svc-hero-header{margin-left:5.6rem;margin-right:2.4rem;padding:0}}
+/* positioned independently of the header, 16px from the content
+   column's left edge and vertically centered in the 56px header row —
+   confirmed via the reference's own icon rect (x:144 vs content
+   column's x:128, y:24 inside an 8px-margin shell) */
+.svc-crumb-icon{
+	position:absolute;top:1.6rem;left:1.6rem;z-index:2;
+	display:none;
+	width:2.4rem;height:2.4rem;
+	color:rgba(255,255,255,.95);
+}
+@media (min-width:800px){.svc-crumb-icon{display:flex}}
+.svc-crumb-icon svg{width:100%;height:100%}
+.svc-hero-header h1{font-size:2rem;font-weight:500;color:rgba(255,255,255,.95)}
+.svc-hire-btn{
+	display:flex;align-items:center;gap:.8rem;
+	font-size:1.4rem;font-weight:600;color:rgba(255,255,255,.95);
+}
+@media (min-width:800px){.svc-hire-btn{font-size:1.6rem}}
+.svc-hire-plus{
+	display:grid;place-items:center;
+	width:1.8rem;height:2.8rem;border-radius:.4rem;
+	background:rgba(255,255,255,.1);
+}
+
+.svc-hero-content{
+	position:relative;z-index:1;flex:1;
+	display:grid;align-content:center;gap:2.4rem;
+	padding:4rem 2.4rem;
+}
+/* exact values measured off the live reference (grid-cols-[66.4rem_auto],
+   gap-24, row height 660.8px = 66rem) rather than guessed proportions */
+@media (min-width:800px){
+	.svc-hero-content{
+		flex:none;
+		height:83.6rem;
+		padding:0 2.4rem 0 5.6rem;
+		grid-template-columns:66.4rem auto;align-items:center;gap:2.4rem;
+	}
+	/* heading : marquee width ratio goes from 1:1 to 1:2 once the
+	   Projects panel narrows the content column, giving the marquee
+	   proportionally more of the remaining space instead of both
+	   columns shrinking by the same amount */
+	body.projects-panel-open .svc-hero-content{grid-template-columns:1fr 2fr}
+}
+/* every rule below only changes anything while the Projects panel is
+   open — the base/closed-state rules stay exactly as originally
+   authored, untouched, so nothing about the page's normal layout
+   shifts just because these exist. */
+@media (min-width:800px){
+	/* stacked into a single column instead of squeezing two text blocks
+	   side by side into an already-narrow third of the row — asked for
+	   explicitly: vertical rows here rather than forcing 3 columns.
+	   (shrink-safety for these tracks — min-width:0 via minmax(0,..) —
+	   now lives on the base rules themselves, since the same overflow
+	   happens at any narrow-enough viewport, panel open or not; only
+	   this stacking behavior is actually panel-specific.) */
+	body.projects-panel-open .svc-block-wrap{grid-template-columns:1fr}
+	body.projects-panel-open .svc-block-wrap > .svc-block:only-child{grid-column:1/-1}
+}
+.svc-hero-content h2{font-size:2.4rem;font-weight:500;line-height:1.1;max-width:32rem;color:rgba(255,255,255,.95)}
+@media (min-width:800px){.svc-hero-content h2{font-size:3.2rem}}
+
+/* two-column testimonial ticker — confirmed on the reference these
+   are plain text (no card background/radius/padding at all, that was
+   an invented embellishment in the first pass), 48px between items,
+   24px round avatars only on the first item of each repeating group */
+.svc-marquee{
+	display:none;
+	height:100%;
+	gap:2.4rem;
+	overflow:hidden;
+	-webkit-mask-image:linear-gradient(180deg,transparent,#000 25%,#000 75%,transparent);
+	mask-image:linear-gradient(180deg,transparent,#000 25%,#000 75%,transparent);
+}
+@media (min-width:800px){.svc-marquee{display:flex}}
+.svc-marquee-col{flex:1;overflow:hidden}
+.svc-marquee-track{
+	display:flex;flex-direction:column;gap:4.8rem;
+	animation:svc-marquee-up 16s linear infinite;
+}
+.svc-marquee-track-rev{animation-name:svc-marquee-down}
+@keyframes svc-marquee-up{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@keyframes svc-marquee-down{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+.svc-testi{display:flex;flex-direction:column;gap:.8rem}
+.svc-testi-with-avatar{flex-direction:row;align-items:flex-start;gap:.4rem}
+.svc-testi-with-avatar img{width:2.4rem;height:2.4rem;border-radius:999px;object-fit:cover;flex-shrink:0}
+.svc-testi-text p{font-size:1.4rem;line-height:1.4;color:rgba(255,255,255,.6)}
+@media (min-width:800px){.svc-testi-text p{font-size:2.6rem;line-height:1.15}}
+.svc-testi-text span{display:block;margin-top:.8rem;font-size:1.4rem;color:rgba(255,255,255,.95)}
+.svc-testi-text span b{font-weight:600}
+
+/* ===== TOC + accordion sections ===== */
+.svc-toc-section{
+	padding:4rem 2.4rem 8rem;
+}
+@media (min-width:800px){
+	.svc-toc-section{
+		padding-left:5.6rem;padding-right:2.4rem;padding-top:2.4rem;
+		margin-top:0;
+		border-top:1px solid rgba(255,255,255,.1);
+		display:grid;grid-template-columns:28rem minmax(0,1fr);gap:3.2rem;
+	}
+}
+.svc-toc{display:none}
+@media (min-width:800px){.svc-toc{display:block}}
+.svc-toc ul{position:sticky;top:4rem;display:flex;flex-direction:column;gap:1.2rem}
+.svc-toc a{
+	display:flex;gap:.8rem;
+	font-size:1.6rem;font-weight:500;color:rgba(255,255,255,.25);
+	transition:color .2s ease-in-out;
+}
+.svc-toc a:hover{color:rgba(255,255,255,.6)}
+.svc-toc a.is-active{color:rgba(255,255,255,.95)}
+.svc-toc a span{width:2em;flex-shrink:0}
+
+.svc-sections{display:flex;flex-direction:column}
+/* scroll-margin-top gives every TOC jump the same breathing room above
+   its heading — Foreword specifically has no padding-top of its own
+   (first-child override below), so without this its anchor landed
+   flush at the very top of the viewport with zero gap, unlike every
+   other section which gets that gap for free from its own padding */
+.svc-section{border-top:1px solid rgba(255,255,255,.1);padding:2.4rem 0;scroll-margin-top:2.4rem}
+.svc-section:first-child{border-top:0;padding-top:0}
+.svc-section-head{
+	display:flex;align-items:center;gap:1.2rem;width:100%;text-align:left;
+}
+.svc-section-num{font-size:2rem;font-weight:600;color:rgba(255,255,255,.95);width:4rem;flex-shrink:0}
+@media (min-width:800px){.svc-section-num{font-size:3.2rem}}
+.svc-section-head h2{font-size:2rem;font-weight:600;flex:1;color:rgba(255,255,255,.95)}
+@media (min-width:800px){.svc-section-head h2{font-size:3.2rem}}
+.svc-section-toggle{
+	display:grid;place-items:center;width:2rem;height:2rem;
+	font-size:1.8rem;color:rgba(255,255,255,.6);flex-shrink:0;
+}
+@media (min-width:800px){.svc-section-toggle{display:none}}
+
+.svc-section-body{padding-top:1.2rem}
+.svc-section-grid{display:flex;flex-direction:column;gap:2.4rem}
+@media (min-width:800px){
+	.svc-section-grid{display:grid;grid-template-columns:32rem minmax(0,1fr);gap:3.2rem;align-items:start}
+}
+.svc-block h3{font-size:1.8rem;font-weight:600;margin-bottom:1.2rem;color:rgba(255,255,255,.95)}
+.svc-block p{font-size:1.5rem;line-height:1.5;color:rgba(255,255,255,.6);margin-bottom:1.2rem}
+.svc-block p:last-child{margin-bottom:0}
+.svc-block p strong{color:rgba(255,255,255,.95);font-weight:600}
+.svc-block ul{margin:0 0 1.2rem;padding-left:1.8rem;list-style:disc}
+.svc-block ul li{font-size:1.5rem;line-height:1.5;color:rgba(255,255,255,.6);margin-bottom:.4rem}
+.svc-block-wrap{display:flex;flex-direction:column;gap:2.4rem}
+@media (min-width:800px){
+	.svc-block-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2.4rem}
+}
+.svc-block-pad{padding-top:0}
+@media (min-width:800px){.svc-block-pad{padding-top:6.4rem}}
+
+/* floating rounded-card shell — confirmed on the reference's own
+   services page (<main> gets padding:8px, the inner page wrapper gets
+   border-radius:12px;overflow:hidden), which is what reveals the dark
+   ambient gradient in a visible margin around the whole card. Scoped
+   to this page only (.svc-page) rather than applied site-wide, since
+   the homepage's own full-bleed nav behavior was already deliberately
+   matched to the reference earlier and shouldn't change.
+
+   Two corrections from the first pass:
+   1) the gradient was set as body{background}, which stretches across
+      the FULL scrollable document height — over a ~5000px page the
+      48,52,54 -> 36,39,40 transition is so gradual it reads as flat
+      grey. The reference pins this to a position:fixed, one-viewport
+      layer instead, so the gradient is always visible within a single
+      screen's height. Replicated here with .svc-bg.
+   2) the sidebar on the reference is a REAL grid column with its own
+      opaque background (reserving layout space), not an overlay with
+      the hero image running full-bleed underneath it — confirmed the
+      hero image sits only in the second grid column. .svc-shell is
+      now display:grid with the nav as a sticky first column instead
+      of position:fixed/absolute. */
+/* the reference's actual page-level background isn't the flat
+   #303436->#242728 gradient — that's a fallback layer sitting BEHIND
+   a second, visible one: the same hero photo, heavily blurred, used
+   as a warm ambient wash (confirmed by decoding the page's own
+   base64 LQIP data URI — olive/brown tones matching the hero image,
+   not grey). Layered here as the visible background with the flat
+   gradient as a fallback underneath. */
+.svc-bg{
+	position:fixed;inset:0;z-index:-3;
+	background:var(--bg-dark);
+}
+/* the margin/nav area's visible color comes from the ambient photo
+   itself (opaque, covers --bg-dark completely), not the CSS variable —
+   darkening that variable alone did nothing visible here. This overlay
+   sits directly on the photo instead. */
+.svc-bg::after{
+	content:'';position:absolute;inset:0;
+	background:rgba(0,0,0,.12);
+}
+/* no CSS filter — confirmed the reference applies none either
+   (filter:none on its own equivalent image); it's already soft purely
+   from stretching a tiny 48x64 source to full screen, and an extra
+   blur() on top of that was washing out the darker tones */
+.svc-bg img,.svc-bg video{width:100%;height:100%;object-fit:cover}
+
+/* the content-column darkening overlay, confirmed against the reference's
+   own DOM as a layer sitting over the ambient photo (._bg::after +
+   a separate fixed ._tile). User feedback: it should span the FULL
+   scrollable content height (not just one viewport) so it visibly gets
+   darker as you scroll deeper into the page, rather than staying static.
+   Implemented as a normal descendant of .svc-main (inside .svc-scroll-inner,
+   which has no explicit height so it naturally grows to the full content
+   height) instead of position:fixed — so it scrolls WITH the content while
+   the ambient photo (.svc-bg) stays pinned behind it. Top value (.87
+   effective) matches what was already pixel-verified against the live
+   reference at scroll=0 (ours vs reference: (21,15,13) vs (23,16,14),
+   (25,21,17) vs (27,22,18), (21,17,13) vs (23,18,15)); it deepens toward
+   the bottom of the page for the scroll-darkening effect.
+   Clipping: .svc-scroll-inner has no border-radius of its own — it relies
+   on .svc-main's own overflow-x:hidden/overflow-y:auto + border-radius
+   (1.2rem 0 0 1.2rem) to clip its descendants, so this gradient's corners
+   round in sync with the nav seam instead of showing sharp underneath it
+   (the old position:fixed div sat outside .svc-main and was never clipped
+   by its radius — that's what was missing). */
+/* flow-root so the first child's margin-top (.svc-crumb-icon's 1.6rem,
+   on proj-page) can't collapse through and push this element's own box
+   down — it was shifting .svc-scroll-gradient's top:0 start 16px below
+   .svc-main's actual top edge, leaving an un-overlaid strip at the very
+   top of the content column. */
+.svc-scroll-inner{position:relative;display:flow-root}
+.svc-scroll-gradient{display:none}
+@media (min-width:800px){
+	/* reference confirmed: by the time you've scrolled to where "00.
+	   Foreword" begins, the overlay has gone fully solid (image no longer
+	   visible at all) — not a gradual fade spread across the whole page.
+	   #foreword sits at ~12.5% of the total scroll height (1040px of
+	   8301px), so the gradient reaches full opacity there and stays
+	   solid for the rest of the page. */
+	/* --grad-end is the % down the page where the overlay reaches full
+	   solid darkness — set on .svc-main by JS as the user scrolls, so
+	   the transition point sits lower at rest (more of the fixed photo
+	   stays visible) and migrates upward the deeper you scroll. Default
+	   (no JS / before first scroll tick) sits lower than the old fixed
+	   18%. */
+	.svc-scroll-gradient{
+		display:block;
+		position:absolute;top:0;left:0;right:0;height:100%;z-index:-1;
+		pointer-events:none;
+		background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,rgba(26,18,13,1) var(--grad-end,30%),rgba(26,18,13,1) 100%);
+	}
+}
+
+/* the nav is transparent on this page (confirmed: background-color
+   rgba(0,0,0,0) on the reference's own sidebar), letting the warm
+   blurred ambient background show through behind it — on every other
+   page .nav is opaque white, so this is scoped to .svc-page only */
+body.svc-page .nav{background:transparent}
+body.svc-page .nav-top-name,
+body.svc-page .nav-item,
+body.svc-page .lang,
+body.svc-page .terms{color:rgba(255,255,255,.95)}
+body.svc-page .nav-top-tagline,
+body.svc-page .nav-foot{color:rgba(255,255,255,.6)}
+body.svc-page .nav-icon-bg{background:rgba(255,255,255,.15)}
+body.svc-page .svc-share,
+body.svc-page .svc-copy{color:rgba(255,255,255,.95)}
+
+/* Projects panel opened from the services page: dark/warm theme instead
+   of the homepage's white card — confirmed against the reference, which
+   keeps the panel in the same dark palette as the rest of the services
+   page rather than switching to light. Local --fg-* overrides cascade
+   to every descendant (tab labels, card titles/categories, close/all
+   icons) that already reads those variables, instead of re-touching
+   each rule individually. */
+body.svc-page .projects-panel-bg{background:rgba(26,18,13,.4)}
+body.svc-page .projects-panel{
+	--fg-default:rgba(255,255,255,.95);
+	--fg-mute:rgba(255,255,255,.6);
+	--fg-faint:rgba(255,255,255,.1);
+}
+body.svc-page .projects-panel-tab.is-active{color:#141400}
+body.svc-page .projects-panel-card-img:hover::before,
+body.proj-page .proj-coll-card-img:hover::before{opacity:.2}
+/* the inner scroll container's own .8rem top inset left a gap above
+   the sticky header even after the header's negative margin pulled it
+   back to the inner box's own edge — removing just the top inset
+   closes that gap, flush with the panel's rounded top edge, while
+   left/right/bottom keep their .8rem card margin */
+/* .projects-panel-inner's own padding-top:2rem (separate from the
+   inset:.8rem overridden above) was the real remaining source of the
+   gap — .projects-panel-sticky's margin-top:-2rem exists specifically
+   to cancel that padding out, so zeroing both together (rather than
+   just one) is what actually removes it. */
+body.svc-page .projects-panel-inner{top:0;left:0;right:1rem;padding-top:0}
+body.svc-page .projects-panel-sticky{
+	margin-top:0;padding:1.6rem 2rem;
+	background:rgba(26,18,13,.2);
+	backdrop-filter:blur(1.6rem);-webkit-backdrop-filter:blur(1.6rem);
+}
+/* sticky now provides its own 1.6rem bottom padding directly — without
+   this, the tabs' own margin-bottom (meant for spacing within normal
+   document flow elsewhere) was stacking with it for a doubled gap */
+body.svc-page .projects-panel-tabs{margin-bottom:0}
+/* the visible card (.projects-panel-bg) was vertically inset .8rem on
+   both top and bottom within the panel's own box — shorter than
+   .svc-main's card, which spans its box edge-to-edge since its
+   rounding comes straight from its own border-radius+overflow, not an
+   inset child. Matched here so both cards reach the same full height. */
+/* left:0, not .8rem — matches nav and .svc-main, both flush with their
+   own grid track's left edge (no inset card margin on that side) on
+   this page, so the panel's starting point lines up exactly with
+   where content itself starts once the panel closes. right:1rem left
+   as the visible gap before content, matching the ~10px nav-to-content
+   gap in the closed state. */
+body.svc-page .projects-panel-bg{top:0;bottom:0;left:0;right:1rem}
+.svc-shell{
+	position:relative;
+	margin:.8rem;
+	border-radius:1.2rem;
+	overflow:hidden;
+}
+@media (min-width:800px){
+	/* fixed to one viewport, not grown-to-content — the reference
+	   keeps the whole card (both columns) pinned at 100vh and scrolls
+	   the right column's own content INSIDE it, rather than the page
+	   itself scrolling past the card. */
+	.svc-shell{display:grid;grid-template-columns:var(--nav-width) 1fr;height:calc(100vh - 1.6rem)}
+	/* a real grid column, not fixed/absolute — reserves actual layout
+	   width so the hero image (in the second column) can never run
+	   underneath it. */
+	/* position:fixed, flush at the true viewport edge — matching the
+	   homepage's own nav exactly, rather than sitting inset by the
+	   shell's .8rem margin like a grid-column child would. The grid's
+	   first track still reserves --nav-width of space so content lines
+	   up correctly; nav just renders independently on top of it. */
+	body.svc-page .nav{position:fixed;top:0;left:0;bottom:0;height:auto;grid-column:1}
+	/* no margin-left compensation — nav's own width (--nav-visual-width)
+	   is already identical to the homepage, so letting nav-items center
+	   naturally within it keeps the gap from nav's OWN left edge to the
+	   icons consistent between pages. Absolute screen position still
+	   differs by the shell's .8rem outer margin, which is the correct,
+	   intended difference — not something to paper over. */
+	/* visibility:hidden, not display:none — .nav is a space-between flex
+	   column, so removing these from flow entirely would let nav-items
+	   drift to fill their spot instead of staying put. Only while the
+	   Projects panel is open; otherwise they stay visible as normal. */
+	body.projects-panel-open.svc-page .nav-top,
+	body.projects-panel-open.svc-page .nav-foot{visibility:hidden}
+	/* a REAL third grid track between nav and content, not an absolutely
+	   positioned overlay riding on top of a content column pushed over
+	   by a matching margin — confirmed against the reference, which
+	   genuinely reflows to nav | panel | content. The middle track is
+	   0 width when closed (panel clipped via overflow:hidden) and
+	   animates open to the panel's own 40rem width. */
+	body.svc-page .svc-shell{grid-template-columns:var(--nav-width) 0 1fr;transition:grid-template-columns .4s var(--ease)}
+	body.svc-page.projects-panel-open .svc-shell{grid-template-columns:var(--nav-width) 40rem 1fr}
+	body.svc-page .projects-panel{
+		position:relative;top:auto;bottom:auto;left:auto;
+		grid-column:2;width:auto;max-width:none;height:100%;overflow:hidden;
+	}
+	/* .svc-main is the content column's own internal scroll container —
+	   everything below the hero (TOC + all 6 sections) scrolls inside
+	   this box instead of the document itself scrolling */
+	/* the content column gets its own rounded top-left/bottom-left
+	   corners at the nav seam, confirmed directly against the
+	   reference's own screenshot — not just the outer shell's 4 outer
+	   corners */
+	.svc-main{height:100%;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;scrollbar-width:none;border-radius:1.2rem}
+	.svc-main::-webkit-scrollbar{display:none}
+}
+
+/* per-section demo video (sections 01-05 only) — confirmed on the
+   reference as a sibling of BOTH text blocks in the wrap column, not
+   nested inside the first one (which squeezed it to half-width the
+   first time around). grid-column:1/-1 spans the full 2-col wrap, and
+   square (1/1) not 4/3 — confirmed via the reference's own video
+   element rendering at 652x652, exactly matching its 652px-wide
+   column's full width, not half of it. */
+.svc-video{
+	grid-column:1/-1;
+	width:100%;aspect-ratio:1/1;object-fit:cover;
+	border-radius:1.2rem;margin-top:.8rem;
+}
+
+/* "Get started" — 3 yellow CTA cards per section (01-05), linking to
+   the hire page. Confirmed yellow (not themed to the dark page) is
+   the reference's own deliberate accent color here. */
+.svc-getstarted{
+	display:flex;flex-direction:column;gap:1.2rem;
+	padding-top:3.2rem;margin-top:3.2rem;
+	border-top:1px solid rgba(255,255,255,.1);
+}
+@media (min-width:800px){
+	.svc-getstarted{
+		display:grid;grid-template-columns:32rem minmax(0,1fr);gap:3.2rem;align-items:start;
+		padding-top:2.4rem;margin-top:0;border-top:0;
+	}
+}
+.svc-getstarted-label{font-size:1.5rem;font-weight:500;color:rgba(255,255,255,.6)}
+.svc-getstarted-cards{display:flex;flex-direction:column;gap:1.2rem}
+/* auto-fit with a real minimum, not a hardcoded repeat(3,..) — at the
+   1728px viewport this was designed against, 3 columns fit comfortably
+   on their own; at a real laptop width (1440/1366/1280px) three fixed
+   1fr tracks squeeze each card below a readable size and its text
+   overflows past .svc-main's own edge. auto-fit still renders 3 equal
+   columns whenever there's room for them, same look, but drops to 2
+   (or 1) once there genuinely isn't, at ANY viewport, not just when
+   the Projects panel is open. */
+@media (min-width:800px){.svc-getstarted-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1.6rem}}
+.svc-getstarted-card{
+	display:flex;flex-direction:column;justify-content:space-between;gap:2.4rem;
+	min-height:14rem;padding:1.6rem;border-radius:1.2rem;
+	background:rgb(255,248,81);color:#141400;
+	transition:transform .3s var(--ease);
+}
+.svc-getstarted-card:hover{transform:translateY(-.4rem)}
+.svc-getstarted-card p{font-size:1.6rem;font-weight:600;line-height:1.2}
+.svc-getstarted-card-foot{display:flex;align-items:center;justify-content:space-between;gap:.8rem}
+.svc-getstarted-card-foot span{font-size:1.3rem;font-weight:500}
+.svc-getstarted-card-foot svg{width:1.6rem;height:1.6rem}
+
+/* "Capabilities" block — appears after Get Started on 4 of the 5
+   sections (not on Design System, confirmed absent there on the
+   reference). Exact values pulled from the live reference's computed
+   styles rather than estimated. */
+.svc-capabilities{border-top:1px solid rgba(255,255,255,.1);padding-top:2rem;margin-top:2.4rem}
+@media (min-width:800px){
+	.svc-capabilities{display:grid;grid-template-columns:32rem minmax(0,82.4rem);gap:2.4rem;padding-top:0}
+}
+.svc-capabilities-label{padding-top:2rem;font-size:1.4rem;color:rgba(255,255,255,.95)}
+.svc-capabilities-content{max-width:65.2rem;font-size:1.4rem;color:rgba(255,255,255,.95)}
+.svc-cap-groups{display:grid;gap:3.2rem 2.4rem;padding:2rem 0}
+@media (min-width:800px){.svc-cap-groups{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.svc-cap-group{display:flex;flex-direction:column;gap:.8rem}
+.svc-cap-num{font-size:1.1rem;font-weight:600;color:rgba(255,255,255,.95)}
+.svc-cap-title{font-size:1.4rem;font-weight:600;color:rgba(255,255,255,.95)}
+.svc-cap-list{display:flex;flex-direction:column;gap:.8rem;font-size:1.4rem;color:rgba(255,255,255,.6)}
+
+/* ===== PROJECTS PAGE ===== */
+/* the category rows reuse .projects-panel-card, whose title/category
+   text reads color:var(--fg-default)/var(--fg-mute) — those are only
+   overridden to light values inside the actual slide-out panel
+   (body.svc-page .projects-panel{...}), so outside it here they fell
+   back to the light-theme (dark) defaults, nearly invisible against
+   this page's own dark background. */
+body.proj-page{
+	--fg-default:rgba(255,255,255,.95);
+	--fg-mute:rgba(255,255,255,.6);
+	--fg-faint:rgba(255,255,255,.1);
+}
+.proj-main{min-height:100%;color:#fff}
+/* this page's hero isn't a bright warm photo like Services — it's
+   already a muted flat grey with a softly-visible illustration, so the
+   heavy dark overlay calibrated for that photo over-darkens it here.
+   Much lighter touch, just enough to keep header text legible. */
+@media (min-width:800px){
+	/* same stops/opacities as the base (Services) rule above — only the
+	   solid color differs: darkest tone of this page's own ambient pink
+	   background photo (rgb(20,8,14)) instead of Services' dark brown. */
+	body.proj-page .svc-scroll-gradient{
+		background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,rgba(20,8,14,1) var(--grad-end,30%),rgba(20,8,14,1) 100%);
+	}
+}
+
+.proj-hero{
+	position:relative;z-index:1;
+	padding:4rem 2.4rem;
+}
+@media (min-width:800px){
+	.proj-hero{padding:0 2.4rem 4rem 5.6rem}
+}
+/* the crumb icon used to be position:absolute inside .proj-hero
+   (position:relative), but now sits as a sibling of the sticky header
+   at the top of .svc-scroll-inner — sticky instead of absolute so it
+   stays docked next to the header as it scrolls, instead of just
+   scrolling away with the rest of the page content */
+body.proj-page .svc-crumb-icon{
+	position:sticky;top:1.6rem;left:auto;
+	margin:1.6rem 0 -4rem 1.6rem;z-index:4;
+}
+.proj-hero-header{
+	display:flex;flex-direction:column;gap:1.6rem;
+	height:5.6rem;
+	padding:1.6rem 2.4rem;
+	position:sticky;top:0;z-index:3;
+	border-radius:1.2rem 1.2rem 0 0;
+	/* --header-progress (0-1) is set continuously by JS as a function of
+	   scroll position, not toggled as a class past a fixed threshold —
+	   so the header solidifies gradually in step with the scroll instead
+	   of snapping. Same solid color as .svc-scroll-gradient's end stop. */
+	background:rgba(20,8,14,var(--header-progress,0));
+	border-bottom:1px solid rgba(255,255,255,calc(var(--header-progress,0) * .1));
+	backdrop-filter:blur(calc(var(--header-progress,0) * 1.6rem));
+	-webkit-backdrop-filter:blur(calc(var(--header-progress,0) * 1.6rem));
+	transition:background .1s linear,border-color .1s linear,backdrop-filter .1s linear;
+}
+@media (min-width:800px){
+	.proj-hero-header{
+		flex-direction:row;align-items:center;justify-content:space-between;gap:2.4rem;
+		height:5.6rem;padding:0 2.4rem 0 5.6rem;
+	}
+}
+.proj-hero-header h1{font-size:2rem;font-weight:500;color:rgba(255,255,255,.95);flex-shrink:0}
+.proj-hero-desc{display:none}
+@media (min-width:800px){
+	.proj-hero-desc{display:flex;gap:2.4rem;flex:1;max-width:60rem}
+}
+.proj-hero-desc p{font-size:1.4rem;line-height:1.4;color:rgba(255,255,255,.6)}
+.proj-hero-update{display:none;flex-direction:column;text-align:right;flex-shrink:0}
+@media (min-width:800px){.proj-hero-update{display:flex}}
+.proj-hero-update-label{font-size:1.2rem;color:rgba(255,255,255,.5)}
+.proj-hero-update-date{font-size:1.4rem;color:rgba(255,255,255,.8)}
+
+.proj-hero-content{padding:6rem 0 2rem;max-width:56rem}
+@media (min-width:800px){.proj-hero-content{padding:9rem 0 4rem}}
+.proj-hero-content h2{font-size:2rem;font-weight:500;line-height:1.3;color:rgba(255,255,255,.95)}
+@media (min-width:800px){.proj-hero-content h2{font-size:2.8rem}}
+
+/* label in its own left column, grid to the right — same pattern as
+   .svc-toc-section on the services page (28rem label column) and the
+   .proj-category rows below, not stacked as a row header above the
+   grid like the first pass had it */
+.proj-collections{
+	position:relative;z-index:1;
+	padding:2.4rem 2.4rem 0;
+	border-top:1px solid rgba(255,255,255,.1);
+}
+@media (min-width:800px){
+	.proj-collections{
+		padding:2.4rem 2.4rem 0 5.6rem;
+		display:grid;grid-template-columns:23rem minmax(0,1fr);gap:3.2rem;
+	}
+}
+.proj-collections-head{margin-bottom:2rem}
+@media (min-width:800px){.proj-collections-head{margin-bottom:0}}
+.proj-collections-label{font-size:1.4rem;font-weight:500;color:rgba(255,255,255,.95)}
+.proj-collections-sub{font-size:1.3rem;color:rgba(255,255,255,.5);margin-top:.2rem}
+
+/* fixed-width tracks, not 1fr — confirmed against the reference, whose
+   grid doesn't stretch to fill the content column's full width (5
+   columns at a fixed 23.68rem each, leaving space unused on wide
+   screens, same on ours now). Exact values measured directly: 4px
+   column-gap, 16px row-gap. */
+.proj-collections-grid{
+	display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.6rem .4rem;
+	padding-bottom:3.2rem;
+}
+@media (min-width:640px){.proj-collections-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* auto-fill, not a literal repeat(5,..) — the reference shows 5
+   columns at a wide 1728px window, but that's a consequence of how
+   many 23.68rem tracks fit at that specific width, not a hardcoded
+   count. A real browser window narrower than that (or the Projects
+   panel open) fits fewer, and auto-fill reflows to match instead of
+   overflowing the content column. */
+/* same track sizing as .proj-category-row's project cards (18rem min),
+   not an independent fixed width — collection cards now match project
+   card width exactly at any viewport, with height following along
+   proportionally via the existing aspect-ratio:3/5 on the image box
+   rather than a separately computed height value */
+/* max-width caps auto-fill at 5 columns worth of space (5*18rem +
+   4*1.6rem gaps) — without it, a wider real monitor than this was
+   tested against just fits a 6th+ column instead of stopping at 5 */
+/* reverted to the collection cards' own real measurements — 236.8px
+   fixed width (not matched to project cards), 4px column-gap / 16px
+   row-gap (not the uniform 16px fetched from the panel). Re-confirmed
+   via a fresh direct re-measurement of the live reference. */
+@media (min-width:1000px){.proj-collections-grid{grid-template-columns:repeat(auto-fill,22rem);gap:2rem;max-width:118rem}}
+.proj-coll-card{display:flex;flex-direction:column;gap:1.2rem}
+/* no overflow:hidden on this element itself — matches the pattern
+   .projects-panel-card-img already uses (rounding/clipping lives on
+   the <img> instead). An overflow:hidden parent clips its own
+   ::before glow pseudo-element too, since that's what inset:-.8rem
+   needs to extend past, so the hover glow was rendering at the right
+   opacity but completely invisible, clipped before it ever showed. */
+/* explicit fixed height instead of aspect-ratio — width now changes
+   independently (grid track width) without scaling height along with
+   it, per explicit request to grow width only */
+.proj-coll-card-img{
+	position:relative;height:33.333rem;
+	background:#222;border-radius:1.6rem;
+}
+.proj-coll-card-img img{width:100%;height:100%;object-fit:cover;border-radius:1.6rem}
+.proj-coll-watermark{
+	position:absolute;top:1.2rem;left:0;right:0;
+	font-size:.9rem;font-weight:700;line-height:1.3;text-align:center;text-transform:uppercase;
+	color:rgba(255,255,255,.85);letter-spacing:.02em;
+	text-shadow:0 1px 4px rgba(0,0,0,.4);
+}
+.proj-coll-title{
+	position:absolute;left:1.6rem;right:1.6rem;top:58%;
+	font-size:2rem;font-weight:500;color:#fff;line-height:1.15;
+	text-shadow:0 1px 6px rgba(0,0,0,.3);
+}
+.proj-coll-caption{font-size:1.3rem;line-height:1.4;color:rgba(255,255,255,.6)}
+
+/* same left-label-column pattern as .proj-collections and the services
+   page's .svc-toc-section — the head sits in its own 28rem column
+   instead of stacked above the row */
+.proj-category{
+	position:relative;z-index:1;
+	padding:2.4rem 2.4rem;
+	border-top:1px solid rgba(255,255,255,.1);
+}
+@media (min-width:800px){
+	.proj-category{
+		padding:2.4rem 2.4rem 2.4rem 5.6rem;
+		display:grid;grid-template-columns:23rem minmax(0,1fr);gap:3.2rem;
+		align-items:start;
+	}
+}
+.proj-category-head{
+	display:inline-flex;align-items:center;gap:.4rem;
+	margin-bottom:2rem;color:rgba(255,255,255,.95);
+}
+@media (min-width:800px){.proj-category-head{margin-bottom:0}}
+.proj-category-head h3{font-size:1.6rem;font-weight:500}
+.proj-category-head svg{width:1.6rem;height:1.6rem}
+/* .projects-panel-card-img's own padding:.8rem (needed for the actual
+   slide-out panel's layout) was shrinking the VISIBLE photo to 204x204
+   inside a 220x220 box, while collection cards have zero padding so
+   their full box IS the photo — that's why project cards read smaller
+   despite an identical outer box width. Scoped to just this row so
+   neither Collections nor the real panel are touched. */
+.proj-category-row .projects-panel-card-img{padding:0}
+/* the base inset:0 on this glow exists specifically to compensate for
+   .projects-panel-card-img's own padding:.8rem (avoids doubling the
+   gap to 16px) — but padding is now 0 right above, in this context
+   only, so that compensation is stale here and was leaving the glow
+   flush with the edge instead of extending past it like collection
+   cards'. Restored to the same -.8rem collection cards use, scoped so
+   the actual panel (padding:.8rem still, unchanged) keeps its own
+   correct inset:0. */
+.proj-category-row .projects-panel-card-img::before{inset:-.8rem}
+/* 1.6rem gap — matches the homepage's own project-card spacing
+   (.project-img{margin:0 .8rem}, measured at 16px between cards) */
+.proj-category-row{
+	display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.6rem;
+}
+@media (min-width:640px){.proj-category-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* 236.8px fixed, matching .proj-collections-grid exactly — freshly
+   re-measured directly off the live reference's own category rows
+   (not the earlier assumed 18rem, which came from nowhere real).
+   Scoped to this grid container only — .projects-panel-card itself is
+   untouched, so the actual slide-out panel's own 2-column grid keeps
+   its separate, correct sizing. */
+@media (min-width:1000px){.proj-category-row{grid-template-columns:repeat(auto-fill,22rem);gap:2rem;max-width:118rem}}

@@ -1,0 +1,912 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1" />
+	<title>Services — Saket Raushan</title>
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-home="false" data-intro-done="true" data-theme="light" class="has-scrolled svc-page">
+
+	<!-- floating rounded card shell, inset from the viewport edges —
+	     confirmed on the reference's own services page (main{padding:8px},
+	     inner page wrapper border-radius:12px;overflow:hidden), revealing
+	     the dark ambient gradient background underneath in the margin -->
+	<div class="svc-bg"><img src="assets/images/svc-bg-blur.png" alt=""></div>
+	<div class="svc-shell">
+
+	<!-- ===== SIDEBAR / BOTTOM NAV ===== -->
+	<header class="nav">
+		<a class="nav-top" href="index.html" aria-label="Home">
+			<span class="nav-top-name">SAKET RAUSHAN</span>
+			<span class="nav-top-tagline">DESIGN FOUNDER OFFICE™</span>
+		</a>
+
+		<nav class="nav-items">
+			<a class="nav-item" href="index.html">
+				<span class="nav-icon"><span class="nav-icon-bg"></span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1.5 9.11411C1.5 8.42148 1.85837 7.77815 2.44729 7.41358L10.9473 2.15168C11.5923 1.75238 12.4077 1.75238 13.0527 2.15168L21.5527 7.41358C22.1416 7.77815 22.5 8.42148 22.5 9.11411V20C22.5 21.1046 21.6046 22 20.5 22H3.5C2.39543 22 1.5 21.1046 1.5 20V9.11411Z" fill="currentColor"/>
+					</svg>
+				</span>
+				<span class="nav-label">Home</span>
+			</a>
+			<button class="nav-item" id="navProjects" type="button" aria-expanded="false" aria-controls="projectsPanel">
+				<span class="nav-icon"><span class="nav-icon-bg"></span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M2 12C2 10.3431 3.34315 9 5 9H19C20.6569 9 22 10.3431 22 12V20C22 21.6569 20.6569 23 19 23H5C3.34315 23 2 21.6569 2 20V12Z" fill="currentColor"/>
+						<path d="M4 6C4 5.44772 4.44772 5 5 5H19C19.5523 5 20 5.44772 20 6C20 6.55228 19.5523 7 19 7H5C4.44772 7 4 6.55228 4 6Z" fill="currentColor"/>
+						<path d="M6 2C6 1.44772 6.44772 1 7 1H17C17.5523 1 18 1.44772 18 2C18 2.55228 17.5523 3 17 3H7C6.44772 3 6 2.55228 6 2Z" fill="currentColor"/>
+					</svg>
+				</span>
+				<span class="nav-label">Projects</span>
+			</button>
+			<a class="nav-item" href="index.html#collections">
+				<span class="nav-icon"><span class="nav-icon-bg"></span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M4.54433 15.7603C4.03858 15.5464 3.46536 15.5464 2.95962 15.7603L1.34204 16.4443C0.885985 16.6371 0.885986 17.441 1.34204 17.6339L11.3523 21.8668C11.7723 22.0444 12.2277 22.0444 12.6477 21.8668L22.658 17.6339C23.114 17.441 23.114 16.6371 22.658 16.4443L21.0409 15.7605C20.5351 15.5466 19.9619 15.5466 19.4562 15.7605L12.8859 18.5388C12.3117 18.7816 11.6892 18.7816 11.115 18.5388L4.54433 15.7603Z" fill="currentColor"/>
+						<path d="M4.54425 10.206C4.0385 9.99211 3.46528 9.99211 2.95954 10.206L1.34204 10.8899C0.885985 11.0828 0.885986 11.8867 1.34204 12.0795L11.3523 16.3124C11.7723 16.4901 12.2277 16.4901 12.6477 16.3124L22.658 12.0795C23.114 11.8867 23.114 11.0828 22.658 10.8899L21.0408 10.2061C20.535 9.99225 19.9618 9.99225 19.4561 10.2061L12.8858 12.9844C12.3116 13.2272 11.6891 13.2272 11.1149 12.9844L4.54425 10.206Z" fill="currentColor"/>
+						<path d="M11.1822 1.18588C11.7585 0.938041 12.3833 0.938041 12.9597 1.18588L22.1635 5.14361C22.7893 5.41269 22.7893 6.53431 22.1635 6.80339L12.9597 10.7611C12.3833 11.009 11.7585 11.009 11.1822 10.7611L1.9783 6.80339C1.35255 6.53431 1.35255 5.41269 1.9783 5.14361L11.1822 1.18588Z" fill="currentColor"/>
+					</svg>
+				</span>
+				<span class="nav-label">Collections</span>
+			</a>
+			<a class="nav-item" href="services.html">
+				<span class="nav-icon"><span class="nav-icon-bg"></span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M19.4998 7.5H13.7578L15.7183 0.96525C15.7866 0.738 15.7431 0.49275 15.6013 0.30225C15.4603 0.11175 15.2368 0 14.9998 0H7.49981C7.16006 0 6.86231 0.22875 6.77531 0.5565L3.77531 11.8065C3.71531 12.0315 3.76331 12.2722 3.90506 12.4567C4.04681 12.6412 4.26656 12.75 4.49981 12.75H9.64331L8.25656 23.151C8.21081 23.4938 8.40506 23.823 8.72756 23.949C8.81606 23.9835 8.90831 24 8.99981 24C9.23906 24 9.47081 23.8852 9.61481 23.6797L20.1148 8.67975C20.2753 8.451 20.2948 8.15175 20.1658 7.9035C20.0361 7.656 19.7796 7.5 19.4998 7.5Z" fill="currentColor"/>
+					</svg>
+				</span>
+				<span class="nav-label">Services</span>
+			</a>
+			<a class="nav-item" href="index.html#contact">
+				<span class="nav-icon"><span class="nav-icon-bg"></span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M4.63636 1C2.62805 1 1 2.62805 1 4.63636V7.36364C1 7.86573 1.407 8.27273 1.90909 8.27273H11C11.5021 8.27273 11.9091 7.86573 11.9091 7.36364V1.90909C11.9091 1.407 11.5021 1 11 1H4.63636ZM14.6364 1C14.1343 1 13.7273 1.407 13.7273 1.90909V13C13.7273 13.5021 14.1343 13.9091 14.6364 13.9091H22.0909C22.593 13.9091 23 13.5021 23 13V4.63636C23 2.62805 21.372 1 19.3636 1H14.6364ZM13.7273 16.6364C13.7273 16.1343 14.1343 15.7273 14.6364 15.7273H22.0909C22.593 15.7273 23 16.1343 23 16.6364V19.3636C23 21.372 21.372 23 19.3636 23H14.6364C14.1343 23 13.7273 22.593 13.7273 22.0909V16.6364ZM1.90909 10.0909C1.407 10.0909 1 10.4979 1 11V19.3636C1 21.372 2.62805 23 4.63636 23H11C11.5021 23 11.9091 22.593 11.9091 22.0909V11C11.9091 10.4979 11.5021 10.0909 11 10.0909H1.90909Z" fill="currentColor"/>
+					</svg>
+				</span>
+				<span class="nav-label">Contact</span>
+			</a>
+			<a class="nav-item" href="hire.html">
+				<span class="nav-icon"><span class="nav-icon-bg"></span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M12 1C9.82441 1 7.69767 1.64514 5.88873 2.85383C4.07979 4.06253 2.66989 5.78049 1.83733 7.79048C1.00477 9.80047 0.786929 12.0122 1.21137 14.146C1.6358 16.2798 2.68345 18.2398 4.22183 19.7782C5.76021 21.3165 7.72022 22.3642 9.85401 22.7886C11.9878 23.2131 14.1995 22.9952 16.2095 22.1627C18.2195 21.3301 19.9375 19.9202 21.1462 18.1113C22.3549 16.3023 23 14.1756 23 12C23 9.08262 21.8411 6.28472 19.7782 4.22182C17.7153 2.15892 14.9174 1 12 1ZM5.58334 9.25C5.58334 8.52065 5.87307 7.82118 6.38879 7.30546C6.90452 6.78973 7.60399 6.5 8.33334 6.5C9.06268 6.5 9.76216 6.78973 10.2779 7.30546C10.7936 7.82118 11.0833 8.52065 11.0833 9.25V10.1667H9.25V9.25C9.25 9.00688 9.15343 8.77373 8.98152 8.60182C8.80961 8.42991 8.57645 8.33333 8.33334 8.33333C8.09022 8.33333 7.85706 8.42991 7.68516 8.60182C7.51325 8.77373 7.41667 9.00688 7.41667 9.25V10.1667H5.58334V9.25ZM18.4167 12.9167C18.4167 14.6185 17.7406 16.2506 16.5373 17.4539C15.3339 18.6573 13.7018 19.3333 12 19.3333C10.2982 19.3333 8.66609 18.6573 7.46273 17.4539C6.25938 16.2506 5.58334 14.6185 5.58334 12.9167V12H7.41667V12.9167C7.41667 14.1322 7.89956 15.298 8.7591 16.1576C9.61864 17.0171 10.7844 17.5 12 17.5C13.2156 17.5 14.3814 17.0171 15.2409 16.1576C16.1004 15.298 16.5833 14.1322 16.5833 12.9167V12H18.4167V12.9167ZM18.4167 10.1667H16.5833V9.25C16.5833 9.00688 16.4868 8.77373 16.3148 8.60182C16.1429 8.42991 15.9098 8.33333 15.6667 8.33333C15.4236 8.33333 15.1904 8.42991 15.0185 8.60182C14.8466 8.77373 14.75 9.00688 14.75 9.25V10.1667H12.9167V9.25C12.9167 8.52065 13.2064 7.82118 13.7221 7.30546C14.2379 6.78973 14.9373 6.5 15.6667 6.5C16.396 6.5 17.0955 6.78973 17.6112 7.30546C18.1269 7.82118 18.4167 8.52065 18.4167 9.25V10.1667Z" fill="currentColor"/>
+					</svg>
+				</span>
+				<span class="nav-label">Hire him</span>
+			</a>
+		</nav>
+
+		<div class="nav-foot">
+			<a href="#" class="lang">India</a>
+			<a href="#" class="terms">T&amp;C</a>
+		</div>
+	</header>
+
+	<!-- share/copy — floats at the bottom-left of the content area
+	     (not inside the sidebar), confirmed against the reference's
+	     own positioning -->
+	<div class="svc-share-stack">
+		<button class="svc-share" id="navShare" type="button" aria-label="Share" aria-haspopup="true" aria-expanded="false">
+			<svg viewBox="0 0 24 24" fill="none"><path d="M15.5674 21.1345L20.9822 4.77448C21.3111 3.78087 20.396 2.86578 19.4024 3.19465L3.04237 8.60953C2.12186 8.9142 1.81993 10.0762 2.48775 10.744C3.02938 11.2856 6.63089 12.3494 7.97257 12.7321C8.28733 12.8218 8.62114 12.7522 8.88034 12.5523C10.2782 11.4744 14.0139 8.77177 16.5307 6.95965C16.9897 6.62916 17.5519 7.19174 17.2211 7.65052C15.4075 10.1659 12.7027 13.8994 11.6247 15.2966C11.4247 15.5558 11.3551 15.8896 11.4448 16.2043C11.8275 17.546 12.8913 21.1475 13.4329 21.6891C14.1007 22.357 15.2627 22.055 15.5674 21.1345Z" fill="currentColor" fill-opacity="0.95"/></svg>
+		</button>
+		<button class="svc-copy" id="navCopy" type="button" aria-label="Copy link">
+			<svg viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M3 5C3 3.34315 4.34315 2 6 2H14C15.6569 2 17 3.34315 17 5V6H18C19.6569 6 21 7.34315 21 9V19C21 20.6569 19.6569 22 18 22H10C8.34315 22 7 20.6569 7 19V18H6C4.34315 18 3 16.6569 3 15V5ZM19 9C19 8.44772 18.5523 8 18 8H10C9.44772 8 9 8.44771 9 9V19C9 19.5523 9.44772 20 10 20H18C18.5523 20 19 19.5523 19 19V9Z" fill="currentColor" fill-opacity="0.95"/></svg>
+			<span class="svc-copy-tip">Copy</span>
+		</button>
+		<div class="svc-share-menu" id="navShareMenu" hidden>
+			<div class="svc-share-menu-label">Share</div>
+			<a href="#" class="svc-share-item" data-share="facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>Facebook</a>
+			<a href="#" class="svc-share-item" data-share="linkedin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.3 18.3V10H5.8v8.3h2.5zM7 8.9a1.4 1.4 0 1 0 0-2.9 1.4 1.4 0 0 0 0 2.9zm11.3 9.4v-4.6c0-2.5-1.3-3.6-3.1-3.6-1.4 0-2 .8-2.4 1.3V10h-2.5v8.3h2.5v-4.6c0-.3 0-.5.1-.7.2-.5.7-1.1 1.5-1.1 1.1 0 1.5.8 1.5 2v4.4h2.5z"/></svg>LinkedIn</a>
+			<a href="#" class="svc-share-item" data-share="x"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.6L23 22h-7l-5.5-6.7L4 22H1l8.1-9.2L1 2h7.2l5 6.1L18.9 2zm-1.2 18h1.7L7.4 4h-1.8l12.1 16z"/></svg>X</a>
+			<a href="#" class="svc-share-item" data-share="email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg>Email</a>
+		</div>
+	</div>
+
+	<!-- ===== PROJECTS PANEL (opens from the "Projects" sidebar item) ===== -->
+	<div class="projects-panel" id="projectsPanel" aria-hidden="true">
+		<div class="projects-panel-bg"></div>
+		<div class="projects-panel-inner">
+			<div class="projects-panel-sticky">
+				<div class="projects-panel-head">
+					<button class="projects-panel-close" id="projectsPanelClose" type="button" aria-label="Close">
+						<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.52794 12.4715C5.26759 12.2111 5.26759 11.789 5.52794 11.5287L9.05654 8.00008L5.52794 4.47149C5.26759 4.21114 5.26759 3.78903 5.52794 3.52868C5.78829 3.26833 6.2104 3.26833 6.47075 3.52868L10.4708 7.52868C10.7311 7.78903 10.7311 8.21114 10.4708 8.47149L6.47075 12.4715C6.2104 12.7319 5.78829 12.7319 5.52794 12.4715Z" fill="currentColor" transform="rotate(180 8 8)"/></svg>
+					</button>
+					<h2>Projects</h2>
+					<a href="projects.html" class="projects-panel-all">
+						All
+						<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg>
+					</a>
+				</div>
+				<div class="projects-panel-tabs">
+					<button class="projects-panel-tab is-active" type="button" data-filter="Branding">Branding</button>
+					<button class="projects-panel-tab" type="button" data-filter="Web">Design</button>
+					<button class="projects-panel-tab" type="button" data-filter="Content">Development</button>
+				</div>
+			</div>
+			<div class="projects-panel-grid">
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-chialove.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-chialove.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Chialove</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-clef-des-champs-2.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-clef-des-champs-2.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Clef des Champs</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-ditchfield.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-ditchfield.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Ditchfield</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-cinema-cinema.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-cinema-cinema.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Cinéma Cinéma</div><div class="projects-panel-card-cat">Entertainment</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-sovimage.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-sovimage.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Sovimage</div><div class="projects-panel-card-cat">Entertainment</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-quartier-molson.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-quartier-molson.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Quartier Molson</div><div class="projects-panel-card-cat">Construction and Real Estate</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-duceppe-2025-26.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-duceppe-2025-26.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Duceppe 2025-26</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-bonclub.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-bonclub.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Bonclub</div><div class="projects-panel-card-cat">Marketing &amp; Communication</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-modulor.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-modulor.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Modulor</div><div class="projects-panel-card-cat">Construction and Real Estate</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-palomosa.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-palomosa.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Palomosa</div><div class="projects-panel-card-cat">Music</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-grazy.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-grazy.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Grazy</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-potloc.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-potloc.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Potloc</div><div class="projects-panel-card-cat">Tech &amp; Innovation</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-laungani.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-laungani.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Dr Alexis Laungani</div><div class="projects-panel-card-cat">Health &amp; Wellness</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-miett.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-miett.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Miett</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-anais-maison-florale.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-anais-maison-florale.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Anaïs Maison Florale</div><div class="projects-panel-card-cat">Entertainment</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-fierte-montreal.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-fierte-montreal.jpg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Fierté Montréal</div><div class="projects-panel-card-cat">Nonprofit Organizations</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-cegep-marie-victorin.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-cegep-marie-victorin.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Cégep Marie-Victorin</div><div class="projects-panel-card-cat">Education</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-cantine-cotiere-branding.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-cantine-cotiere-branding.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Cantine Côtière</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-chez-saint-pierre-branding.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-chez-saint-pierre-branding.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Chez Saint-Pierre</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-montoni.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-montoni.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Montoni</div><div class="projects-panel-card-cat">Construction and Real Estate</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-jenaco.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-jenaco.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Jenaco</div><div class="projects-panel-card-cat">Construction and Real Estate</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-village-au-pied-du-courant.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-village-au-pied-du-courant.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Village au Pied-du-Courant</div><div class="projects-panel-card-cat">Music</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-piknic-electronik.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-piknic-electronik.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Piknic Électronik</div><div class="projects-panel-card-cat">Music</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-igloofest.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-igloofest.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Igloofest</div><div class="projects-panel-card-cat">Music</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-duceppe-campagne-2023-2024.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-duceppe-campagne-2023-2024.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Duceppe Season Campaign 23-24</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-equiterre.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-equiterre.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Équiterre</div><div class="projects-panel-card-cat">Nonprofit Organizations</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-gestisoft.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-gestisoft.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Gestisoft</div><div class="projects-panel-card-cat">Tech &amp; Innovation</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-duceppe-season-campaign-2022-2023.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-duceppe-season-campaign-2022-2023.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Duceppe Season Campaign 22-23</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-noba-solutions.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-noba-solutions.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Noba</div><div class="projects-panel-card-cat">Marketing &amp; Communication</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-ascension.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-ascension.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Ascension</div><div class="projects-panel-card-cat">Studios &amp; Agencies</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-gaspesien.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-gaspesien.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Gaspésien</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-softstart.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-softstart.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Softstart</div><div class="projects-panel-card-cat">Tech &amp; Innovation</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-gusta.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-gusta.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Gusta</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-lndmrk.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-lndmrk.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">LNDMRK</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-on-secoute.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-on-secoute.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">On s'écoute</div><div class="projects-panel-card-cat">Education</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-the-workshop.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-the-workshop.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">The Workshop</div><div class="projects-panel-card-cat">Studios &amp; Agencies</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-miralis.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-miralis.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Miralis</div><div class="projects-panel-card-cat">Industries and Manufacturing</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-gen-v.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-gen-v.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Gen V</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-musee-des-beaux-arts-de-montreal.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-musee-des-beaux-arts-de-montreal.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Montreal Museum of Fine Arts</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-intelcom.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-intelcom.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Intelcom</div><div class="projects-panel-card-cat">Transportation</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-phi.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-phi.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">PHI</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-23bis.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-23bis.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">23bis</div><div class="projects-panel-card-cat">Studios &amp; Agencies</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-consulat.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-consulat.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Consulat</div><div class="projects-panel-card-cat">Studios &amp; Agencies</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-maguire.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-maguire.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Maguire Shoes</div><div class="projects-panel-card-cat">Fashion and Beauty</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-cinematheque-quebecoise.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-cinematheque-quebecoise.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Cinémathèque québécoise</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-bravo-musique.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-bravo-musique.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Bravo musique</div><div class="projects-panel-card-cat">Music</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-duceppe-web.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-duceppe-web.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Duceppe</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-editions-bonsound.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-editions-bonsound.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Éditions Bonsound</div><div class="projects-panel-card-cat">Music</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-bonsound-label.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-bonsound-label.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Bonsound Label</div><div class="projects-panel-card-cat">Music</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-oenopole-refonte-2020.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-oenopole-refonte-2020.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Oenopole</div><div class="projects-panel-card-cat">Wines, Beers, and Spirits</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-duceppe-2024-25.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-duceppe-2024-25.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Duceppe 2024-25</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- ===== MAIN ===== -->
+	<main class="svc-main">
+		<div class="svc-scroll-inner">
+		<div class="svc-scroll-gradient"></div>
+		<section class="svc-hero">
+			<div class="svc-hero-bg"><img src="assets/images/svc-hero-bg.jpg" alt=""></div>
+			<!-- breadcrumb/current-page icon — a sibling of <header>, not a
+			     child: confirmed on the reference it sits independently to
+			     the left of where the header/divider actually starts (x:144
+			     vs the header's own x:184), not flush with "Services" -->
+			<a href="services.html" class="svc-crumb-icon" aria-label="Services">
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.4998 7.5H13.7578L15.7183 0.96525C15.7866 0.738 15.7431 0.49275 15.6013 0.30225C15.4603 0.11175 15.2368 0 14.9998 0H7.49981C7.16006 0 6.86231 0.22875 6.77531 0.5565L3.77531 11.8065C3.71531 12.0315 3.76331 12.2722 3.90506 12.4567C4.04681 12.6412 4.26656 12.75 4.49981 12.75H9.64331L8.25656 23.151C8.21081 23.4938 8.40506 23.823 8.72756 23.949C8.81606 23.9835 8.90831 24 8.99981 24C9.23906 24 9.47081 23.8852 9.61481 23.6797L20.1148 8.67975C20.2753 8.451 20.2948 8.15175 20.1658 7.9035C20.0361 7.656 19.7796 7.5 19.4998 7.5Z" fill="currentColor"/></svg>
+			</a>
+			<header class="svc-hero-header">
+				<h1>Services</h1>
+				<a href="hire.html" class="svc-hire-btn">Hire him <span class="svc-hire-plus">+</span></a>
+			</header>
+			<div class="svc-hero-content">
+				<h2>Making your brand sexy and smart.</h2>
+				<div class="svc-marquee">
+					<div class="svc-marquee-col">
+						<div class="svc-marquee-track">
+							<div class="svc-testi svc-testi-with-avatar"><img src="assets/images/svc-avatar-benjamin.jpg" alt="">
+								<div class="svc-testi-text"><p>Omg vous êtes des boss c'est de la frappe</p><span>Benjamin <b>@benjaminvermot</b></span></div></div>
+							<div class="svc-testi"><div class="svc-testi-text"><p>Gorgeous project! 🔥👏🏻</p><span>Lua</span></div></div>
+							<div class="svc-testi"><div class="svc-testi-text"><p>This is 🔥</p><span>Trust <b>@trustunfiltered</b></span></div></div>
+							<div class="svc-testi"><div class="svc-testi-text"><p>Magnifique!!!!😍😍😍😍😍😍😍</p><span><b>@polyakova__v</b></span></div></div>
+							<div class="svc-testi"><div class="svc-testi-text"><p>Love your work SO SO MUCH!🧡✨🫶🏻</p><span><b>@nabiistudio</b></span></div></div>
+							<div class="svc-testi svc-testi-with-avatar"><img src="assets/images/svc-avatar-benjamin.jpg" alt="">
+								<div class="svc-testi-text"><p>Omg vous êtes des boss c'est de la frappe</p><span>Benjamin <b>@benjaminvermot</b></span></div></div>
+							<div class="svc-testi"><div class="svc-testi-text"><p>Gorgeous project! 🔥👏🏻</p><span>Lua</span></div></div>
+							<div class="svc-testi"><div class="svc-testi-text"><p>This is 🔥</p><span>Trust <b>@trustunfiltered</b></span></div></div>
+							<div class="svc-testi"><div class="svc-testi-text"><p>Magnifique!!!!😍😍😍😍😍😍😍</p><span><b>@polyakova__v</b></span></div></div>
+							<div class="svc-testi"><div class="svc-testi-text"><p>Love your work SO SO MUCH!🧡✨🫶🏻</p><span><b>@nabiistudio</b></span></div></div>
+						</div>
+					</div>
+					<div class="svc-marquee-col svc-marquee-col-rev">
+						<div class="svc-marquee-track svc-marquee-track-rev">
+							<div class="svc-testi svc-testi-with-avatar"><img src="assets/images/svc-avatar-safa.jpg" alt="">
+								<div class="svc-testi-text"><p>So amazing so hot😍🔥</p><span>Safa <b>@safa.moein</b></span></div></div>
+							<div class="svc-testi"><div class="svc-testi-text"><p>This website is everything ! I love it ! Very professional yet fun and playful 😻</p><span>Mark <b>@mark_clennon</b></span></div></div>
+							<div class="svc-testi"><div class="svc-testi-text"><p>🔥🔥🔥</p><span>Felipe <b>@felipeelioenay</b></span></div></div>
+							<div class="svc-testi"><div class="svc-testi-text"><p>🔥🔥🔥</p><span>Beach <b>@beachesandsauce</b></span></div></div>
+							<div class="svc-testi svc-testi-with-avatar"><img src="assets/images/svc-avatar-safa.jpg" alt="">
+								<div class="svc-testi-text"><p>So amazing so hot😍🔥</p><span>Safa <b>@safa.moein</b></span></div></div>
+							<div class="svc-testi"><div class="svc-testi-text"><p>This website is everything ! I love it ! Very professional yet fun and playful 😻</p><span>Mark <b>@mark_clennon</b></span></div></div>
+							<div class="svc-testi"><div class="svc-testi-text"><p>🔥🔥🔥</p><span>Felipe <b>@felipeelioenay</b></span></div></div>
+							<div class="svc-testi"><div class="svc-testi-text"><p>🔥🔥🔥</p><span>Beach <b>@beachesandsauce</b></span></div></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="svc-toc-section">
+			<nav class="svc-toc">
+				<ul id="svcTocList">
+					<li><a href="#foreword" class="is-active"><span>00.</span>Foreword</a></li>
+					<li><a href="#brand-strategy"><span>01.</span>Brand Strategy</a></li>
+					<li><a href="#branding"><span>02.</span>Branding</a></li>
+					<li><a href="#website-platform"><span>03.</span>Website &amp; Platform</a></li>
+					<li><a href="#creative-content"><span>04.</span>Creative Content</a></li>
+					<li><a href="#design-system"><span>05.</span>Design System and Brand Guide</a></li>
+				</ul>
+			</nav>
+			<div class="svc-sections">
+
+				<section class="svc-section" id="foreword">
+					<button class="svc-section-head" type="button">
+						<span class="svc-section-num">00.</span>
+						<h2>Foreword</h2>
+						<span class="svc-section-toggle">+</span>
+					</button>
+					<div class="svc-section-body">
+						<div class="svc-section-grid">
+							<div class="svc-block"><h3>We apologize.</h3><p>Yes... I know you have a thousand and one things to do, and deciphering the jargon of "creative agencies" is probably not at the top of your list. However, this page is a necessary evil so that you can browse my offerings at your own pace and see exactly what working together would look like.</p></div>
+							<div class="svc-block-wrap">
+								<div class="svc-block"><h3>Let's go straight to the point.</h3><p>My desire is to make you a SMART AND SEXY brand — captivating so that your prospects can't ignore you and inspiring so that your current clients become your best ambassadors. I want you to be the star player, the instant favorite, the reason why, online or elsewhere, everyone swipes right.</p></div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="svc-section" id="brand-strategy">
+					<button class="svc-section-head" type="button">
+						<span class="svc-section-num">01.</span>
+						<h2>Brand Strategy</h2>
+						<span class="svc-section-toggle">+</span>
+					</button>
+					<div class="svc-section-body">
+						<div class="svc-section-grid">
+							<div class="svc-block">
+								<h3>Are You Easy to Love?</h3>
+								<p><strong>The opinion you have of yourself is far less important than the perception others have of you. Read that sentence again.</strong></p>
+								<p>The perception and opinion of your company form your reputation, and your reputation is your branding.</p>
+								<p>If you're here, it's because you want to be loved by your clients, your bosses, or your employees. And if you succeed, you know it will be extremely rewarding $$$. Good news, you're 100% right. Today, more than ever, people are drawn to products or services that meet their desires or convictions, and then they use logic to justify their choices.</p>
+								<p>Branding, or rather YOUR branding, is the planning and foundation of everything you do in your company to attract, retain, and even engage your clients. This is an important statement, and I stand by it because your brand plays a crucial role in delivering everything your clientele can see, read, hear, and buy. And this, before, during, and after their purchase.</p>
+							</div>
+							<div class="svc-block-wrap">
+								<div class="svc-block"><h3>Brand Therapy</h3><p><strong>During our collaboration, I study you in depth to think and reflect like you and, MOST IMPORTANTLY, like your clients.</strong></p><p>I call this brand therapy. This step allows me to identify opportunities, discover your big idea, and convey it clearly and understandably to your employees, partners, and MOST IMPORTANTLY: your clients.</p></div>
+								<div class="svc-block svc-block-pad"><p>It eliminates distractions, focusing on the essentials to bring clarity. This facilitates all the tough decisions you have to make, today and in the future, allowing you to move forward quickly and in a coordinated manner.</p></div>
+								<video class="svc-video" src="assets/video/svc-video-01.mp4" muted loop playsinline autoplay></video>
+							</div>
+						</div>
+						<div class="svc-getstarted">
+							<div class="svc-getstarted-label">Get started</div>
+							<div class="svc-getstarted-cards">
+								<a href="hire.html" class="svc-getstarted-card">
+									<p>Shift direction or grow into a new market?</p>
+									<div class="svc-getstarted-card-foot"><span>Brand Positioning</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+								</a>
+								<a href="hire.html" class="svc-getstarted-card">
+									<p>Launching a new project?</p>
+									<div class="svc-getstarted-card-foot"><span>Brand Strategy</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+								</a>
+								<a href="hire.html" class="svc-getstarted-card">
+									<p>Strengthen your team's commitment to your vision?</p>
+									<div class="svc-getstarted-card-foot"><span>Brand Strategy</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+								</a>
+							</div>
+						</div>
+						<div class="svc-capabilities">
+							<div class="svc-capabilities-label">Capabilities</div>
+							<div class="svc-capabilities-content">
+								<div class="svc-cap-groups">
+									<div class="svc-cap-group">
+										<div class="svc-cap-num">01</div>
+										<h3 class="svc-cap-title">Brand Strategy</h3>
+										<div class="svc-cap-list">
+											<div>Brand Positioning</div>
+											<div>Naming</div>
+											<div>Voice &amp; Tone</div>
+											<div>Consumer Journey Map</div>
+											<div>Brand Messaging</div>
+											<div>Employer Brand</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="svc-section" id="branding">
+					<button class="svc-section-head" type="button">
+						<span class="svc-section-num">02.</span>
+						<h2>Branding</h2>
+						<span class="svc-section-toggle">+</span>
+					</button>
+					<div class="svc-section-body">
+						<div class="svc-section-grid">
+							<div class="svc-block">
+								<h3>Approach</h3>
+								<p><strong>What are you really selling? A product? A service? Nah, you're selling hope to your clients. And that's the best strategy.</strong></p>
+								<p>Your clients buy hope.</p>
+								<ul>
+									<li>The hope of being attractive</li>
+									<li>The hope of excelling in their sport</li>
+									<li>The hope of finally solving that big problem that's been lingering for a while</li>
+									<li>The hope that it tastes great or of being healthier</li>
+									<li>The hope of impressing their guests when they invite them over for a good time</li>
+								</ul>
+								<p>My job is to help you help your clients visualize those magical moments you promise them, thanks to your products or services. I'll make you remarkable, irresistible, and most importantly: memorable.</p>
+								<p>But that's not all.</p>
+								<p>I believe that responsible design has the mission to foresee and shape your future. <strong>That's why I always put digital first.</strong> I love the romantic side of branding with posters and business cards, but I know we live in an age of screens. The brands I create are ready for the future with an advanced digital approach: favicons, logos adapted for phone screens, web-optimized typographies, social media avatars, Instagram templates, and more.</p>
+							</div>
+							<div class="svc-block-wrap">
+								<div class="svc-block"><h3>Strategic Creativity</h3><p><strong>My method targets the two crucial moments your clients experience, known by the fancy names of System 1 and System 2. Hang tight, I'll explain this simply.</strong></p><p>The first moment is the perception of your brand. Your clients judge you within 2 to 3 seconds. No pressure, right? I make sure this moment inspires trust, is impactful, surprising, and most importantly, unique to you.</p><p>I directly touch the hearts of your prospects.</p></div>
+								<div class="svc-block svc-block-pad"><p>The second moment speaks to the head and functional intelligence. I help educate your audience about your product or service with techniques like visual storytelling, videos, illustrations, diagrams, personalized iconography, and more. Yes, even diagrams can be sexy! Whether it's a campaign, a website, or social media content, there are always these two moments. I help you define them and make them effective.</p></div>
+								<video class="svc-video" src="assets/video/svc-video-02.mp4" muted loop playsinline autoplay></video>
+							</div>
+						</div>
+						<div class="svc-getstarted">
+							<div class="svc-getstarted-label">Get started</div>
+							<div class="svc-getstarted-cards">
+								<a href="hire.html" class="svc-getstarted-card">
+									<p>Enter the market with a bang?</p>
+									<div class="svc-getstarted-card-foot"><span>Branding</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+								</a>
+								<a href="hire.html" class="svc-getstarted-card">
+									<p>Re-energize your brand's appeal?</p>
+									<div class="svc-getstarted-card-foot"><span>Rebranding</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+								</a>
+								<a href="hire.html" class="svc-getstarted-card">
+									<p>Modernize your brand for the screen-centric world?</p>
+									<div class="svc-getstarted-card-foot"><span>Digital Branding</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+								</a>
+							</div>
+						</div>
+						<div class="svc-capabilities">
+							<div class="svc-capabilities-label">Capabilities</div>
+							<div class="svc-capabilities-content">
+								<div class="svc-cap-groups">
+									<div class="svc-cap-group">
+										<div class="svc-cap-num">01</div>
+										<h3 class="svc-cap-title">Branding</h3>
+										<div class="svc-cap-list">
+											<div>Brand Refresh</div>
+											<div>Logo Design</div>
+											<div>Design Systems</div>
+											<div>Brandbook</div>
+											<div>Print &amp; Digital Collateral</div>
+											<div>Collateral Design</div>
+											<div>Social Media Identity</div>
+											<div>Packaging Design</div>
+											<div>Campaign Identity</div>
+											<div>Signage &amp; Environment</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="svc-section" id="website-platform">
+					<button class="svc-section-head" type="button">
+						<span class="svc-section-num">03.</span>
+						<h2>Website &amp; Platform</h2>
+						<span class="svc-section-toggle">+</span>
+					</button>
+					<div class="svc-section-body">
+						<div class="svc-section-grid">
+							<div class="svc-block">
+								<h3>Approach</h3>
+								<p><strong>Admit it. With the power of social media and the rise of AI, one wonders: is it still necessary to invest in a customized website?</strong></p>
+								<p>You spend years accumulating followers on Instagram, TikTok, and Facebook. But you are at the mercy of the algorithms. Now, you have to pay to truly reach your audience, otherwise, your messages go unnoticed by the majority of your followers.</p>
+								<p>No, your followers don't really belong to you. Yes, the platforms have you by the balls or ovaries.</p>
+								<p>Your website is your own space, and I help you make it premium in every way. Like your shoes, your website says a lot about you. So, let's be clear: it has to look expensive, be infinitely sexy, and, above all, be a money-making machine.</p>
+								<p>I understand this, which is why I completely rethought my way of creating websites. This technique allows your investment to gain value over time, as you add content.</p>
+							</div>
+							<div class="svc-block-wrap">
+								<div class="svc-block"><h3>Module-Based Method</h3><p><strong>The key is modular design. Imagine Lego blocks that I assemble to create your pages. Each module is infinitely reusable, offering unparalleled flexibility and making your investment grow.</strong></p><p>With the modular approach, it becomes easy to create and add new modules as you need them in the future. No need for costly redesigns every 5 years, you just add modules to re-inject love into your site. Now is the time to understand that you and your team can become autonomous in the future, if you wish. Exactly!</p></div>
+								<div class="svc-block svc-block-pad"><p>No more calling an agency for every little modification or content strategy evolution. No more hefty bills for every tiny change to your content. Some competitors won't like it, but it's my little secret that I now share with you. Your site becomes the center of your marketing efforts — the destination where all roads lead. You are the boss of your platform, directing traffic, interacting with your audience at your own pace, and optimizing your content to dominate Google and shine in AI suggestions.</p></div>
+								<video class="svc-video" src="assets/video/svc-video-03.mp4" muted loop playsinline autoplay></video>
+							</div>
+						</div>
+						<div class="svc-getstarted">
+							<div class="svc-getstarted-label">Get started</div>
+							<div class="svc-getstarted-cards">
+								<a href="hire.html" class="svc-getstarted-card">
+									<p>A premium website that enhances your brand's glow?</p>
+									<div class="svc-getstarted-card-foot"><span>Website</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+								</a>
+								<a href="hire.html" class="svc-getstarted-card">
+									<p>Direct your strategies to a strong digital hub?</p>
+									<div class="svc-getstarted-card-foot"><span>Web Platform</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+								</a>
+								<a href="hire.html" class="svc-getstarted-card">
+									<p>Enhance your digital footprint?</p>
+									<div class="svc-getstarted-card-foot"><span>Website</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+								</a>
+							</div>
+						</div>
+						<div class="svc-capabilities">
+							<div class="svc-capabilities-label">Capabilities</div>
+							<div class="svc-capabilities-content">
+								<div class="svc-cap-groups">
+									<div class="svc-cap-group">
+										<div class="svc-cap-num">01</div>
+										<h3 class="svc-cap-title">Website &amp; Platform</h3>
+										<div class="svc-cap-list">
+											<div>SEO Strategy</div>
+											<div>Prototyping</div>
+											<div>Web Architecture</div>
+											<div>Content Storyboarding</div>
+											<div>UX Design</div>
+											<div>UI Design</div>
+											<div>Design Systems</div>
+											<div>Web Development</div>
+											<div>Technical Viability Analysis</div>
+											<div>Digital Ecosystem Study</div>
+											<div>Hosting</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="svc-section" id="creative-content">
+					<button class="svc-section-head" type="button">
+						<span class="svc-section-num">04.</span>
+						<h2>Creative Content</h2>
+						<span class="svc-section-toggle">+</span>
+					</button>
+					<div class="svc-section-body">
+						<div class="svc-section-grid">
+							<div class="svc-block">
+								<h3>Approach</h3>
+								<p><strong>Your competitors can copy your strategies and draw inspiration from your offerings, but they can never steal your content.</strong></p>
+								<p>Your creative content reflects your style, your soul, and that certain je-ne-sais-quoi that captivates your audience and makes all the difference. This is how you bring your big idea and your values to life. It's one of the most powerful ways to set yourself apart and make yourself unique.</p>
+								<p>For each client, I develop a strong artistic direction and a unique style that is difficult to replicate. When I don't have the precise talent needed, I tap into my network of international caliber talents to find the style that will best represent the DNA of your brand.</p>
+								<p>Your creative content makes you memorable and facilitates the transmission of your message, thanks to its visual impact, far more powerful than bullet points.</p>
+							</div>
+							<div class="svc-block-wrap">
+								<div class="svc-block"><h3>Formula</h3><p><strong>With my "Easy to Love" design formula, which uses the codes of what people consistently love, I transform your ideas into visual stories with a touch of familiarity, like a false memory.</strong></p><p>This highly strategic creative method ensures that even if your brand is new to them, it will feel familiar, as if it has always existed in their minds. This will resonate with your audience, no matter the context: website header, TV ad, Instagram post, TikTok recipes, etc.</p></div>
+								<div class="svc-block svc-block-pad"><p>I believe that every brand has a story to tell, and that this story has the potential to be captivating and original. Whether through videos, photos, illustrations, or 3D, I create content that captures attention, evokes emotion, awakens memory, and drives action. Always created with impeccable aesthetics. In short, "easy to love" material. I am your ally in building a strong and distinctive presence, both in the digital landscape and beyond the screens.</p></div>
+								<video class="svc-video" src="assets/video/svc-video-04.mp4" muted loop playsinline autoplay></video>
+							</div>
+						</div>
+						<div class="svc-getstarted">
+							<div class="svc-getstarted-label">Get started</div>
+							<div class="svc-getstarted-cards">
+								<a href="hire.html" class="svc-getstarted-card">
+									<p>Transform ideas into captivating visual stories?</p>
+									<div class="svc-getstarted-card-foot"><span>Creative Content</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+								</a>
+								<a href="hire.html" class="svc-getstarted-card">
+									<p>Create a bold and inimitable artistic vision?</p>
+									<div class="svc-getstarted-card-foot"><span>Creative Content</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+								</a>
+								<a href="hire.html" class="svc-getstarted-card">
+									<p>Invest in eye-catching visual content?</p>
+									<div class="svc-getstarted-card-foot"><span>Creative Content</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+								</a>
+							</div>
+						</div>
+						<div class="svc-capabilities">
+							<div class="svc-capabilities-label">Capabilities</div>
+							<div class="svc-capabilities-content">
+								<div class="svc-cap-groups">
+									<div class="svc-cap-group">
+										<div class="svc-cap-num">01</div>
+										<h3 class="svc-cap-title">Identité visuelle</h3>
+										<div class="svc-cap-list">
+											<div>Brand Refresh</div>
+											<div>Art Direction</div>
+											<div>Design Systems</div>
+											<div>Logo Design</div>
+											<div>Brand Graphic Guidelines</div>
+											<div>Emballage</div>
+											<div>Signalétique et environnement</div>
+											<div>Imprimé et adaptation numérique</div>
+											<div>Identité de campagne</div>
+										</div>
+									</div>
+									<div class="svc-cap-group">
+										<div class="svc-cap-num">02</div>
+										<h3 class="svc-cap-title">Contenu et expression de marque</h3>
+										<div class="svc-cap-list">
+											<div>Brand &ldquo;Coming out&rdquo; Video Reveal</div>
+											<div>Photography</div>
+											<div>Video</div>
+											<div>Iconography System</div>
+											<div>Illustrative Work</div>
+											<div>Animation &amp; Motion Design</div>
+											<div>English &amp; French Copywriting</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="svc-section" id="design-system">
+					<button class="svc-section-head" type="button">
+						<span class="svc-section-num">05.</span>
+						<h2>Design System and Brand Guide</h2>
+						<span class="svc-section-toggle">+</span>
+					</button>
+					<div class="svc-section-body">
+						<div class="svc-section-grid">
+							<div class="svc-block">
+								<h3>Approach</h3>
+								<p><strong>Constantly wondering if you're doing things right? It's not easy, is it?</strong></p>
+								<p>But there's something worse: investing in a stunning branding or website, only to see your colleagues joyfully massacre it in every publication and new brand element. With remote work and frequent staff turnover, information travels poorly and inconsistencies spread faster than office gossip.</p>
+								<p>To address these problems, mature brands equip themselves with tools and documentation to facilitate the evolution and maintenance of their brand. But beware, we're not talking about superficial PDFs that fit on 4 pages. We're talking about true brand bibles that document not just how your brand should look, but also how it should behave: what tone to use in your communications, the reading levels to prioritize based on usage contexts, useful templates for social media and your website, your logo variations and avatars adapted for your network, etc.</p>
+							</div>
+							<div class="svc-block-wrap">
+								<div class="svc-block"><h3>Method</h3><p><strong>While I can sometimes be described as "creative," I am above all a methodical designer who makes decisions based on a solid design system. This system spans your overall strategy, your brand image, your website, and your publications.</strong></p><p>My methodology ensures that your brand doesn't move from one isolated department to another, as it often happens in large agencies. On the contrary, I ensure continuous coherence, from A to Z, through an integrated and centralized approach.</p></div>
+								<div class="svc-block svc-block-pad"><p>The design system documents not only visual elements but also how your brand should behave: the tone to adopt in your communications, the reading levels based on usage contexts, useful templates like those for social media and your website, as well as logo and avatar variations adapted for each platform. It's this design system that allows your brand to remain consistent and recognizable, even in times of change and evolution. That's the power of a true design system. Isn't it beautiful?</p></div>
+								<video class="svc-video" src="assets/video/svc-video-05.mp4" muted loop playsinline autoplay></video>
+							</div>
+						</div>
+					<div class="svc-getstarted">
+						<div class="svc-getstarted-label">Get started</div>
+						<div class="svc-getstarted-cards">
+							<a href="hire.html" class="svc-getstarted-card">
+								<p>Maintain your brand's power and consistency over time?</p>
+								<div class="svc-getstarted-card-foot"><span>Brand Guidelines</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+							</a>
+							<a href="hire.html" class="svc-getstarted-card">
+								<p>Modules that evolve with your growth demands?</p>
+								<div class="svc-getstarted-card-foot"><span>UI Design System</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+							</a>
+							<a href="hire.html" class="svc-getstarted-card">
+								<p>Semantic markers to stop your partners from going off-brand?</p>
+								<div class="svc-getstarted-card-foot"><span>Design System</span><svg viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg></div>
+							</a>
+						</div>
+					</div>
+					</div>
+				</section>
+
+			</div>
+		</section>
+		</div>
+	</main>
+
+	</div><!-- /.svc-shell -->
+
+	<script src="js/main.js"></script>
+	<script>
+	if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+		const watched = [location.pathname, 'css/style.css', 'js/main.js'];
+		const lastModified = {};
+		setInterval(async () => {
+			try {
+				for (const path of watched) {
+					const res = await fetch(path, { method: 'HEAD', cache: 'no-store' });
+					const lm = res.headers.get('last-modified');
+					if (lastModified[path] && lm && lm !== lastModified[path]) { location.reload(); return; }
+					lastModified[path] = lm;
+				}
+			} catch (e) {}
+		}, 1000);
+	}
+	</script>
+</body>
+</html>
