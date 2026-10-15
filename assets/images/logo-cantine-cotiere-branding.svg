@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" height="48" viewBox="0 0 48 48" width="48">
+<g clip-path="url(#clip0_1901_13)">
+<rect fill="#F5F3E7" height="48" width="48"/>
+<rect fill="#FF511A" height="12.0103" width="12.0103" x="23.9795" y="12.0103"/>
+<rect fill="#FF511A" height="12.0103" width="12.0103" x="-0.0510254" y="12.0103"/>
+<rect fill="#FF511A" height="12.0103" width="12.0103" x="23.9795" y="35.9897"/>
+<rect fill="#FF511A" height="12.0103" width="12.0103" x="-0.0510254" y="35.9897"/>
+<rect fill="#FF511A" height="12.0103" width="12.0103" x="35.9897"/>
+<rect fill="#FF511A" height="12.0103" width="12.0103" x="35.9897" y="23.9794"/>
+<rect fill="#FF511A" height="12.0103" width="12.0103" x="35.9486"/>
+<rect fill="#FF511A" height="12.0103" width="12.0103" x="35.9486" y="23.9794"/>
+<rect fill="#FF511A" height="12.0103" width="12.0103" x="12.0104"/>
+<rect fill="#FF511A" height="12.0103" width="12.0103" x="12.0104" y="23.9794"/>
+</g>
+<defs>
+<clipPath id="clip0_1901_13">
+<rect fill="white" height="48" width="48"/>
+</clipPath>
+</defs>
+</svg>

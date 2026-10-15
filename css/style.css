@@ -1,0 +1,888 @@
+/* self-hosted — the reference's actual typeface (PP Neue Montreal), not
+   a lookalike. Confirmed via computed font-family/@font-face on the
+   live site and downloaded from its own font file. Variable weight
+   100-900, matching the reference's own @font-face declaration. */
+@font-face{
+	font-family:'PPNeue';
+	font-style:normal;
+	font-weight:100 900;
+	font-display:swap;
+	src:url('../assets/fonts/ppneuemontreal-variable.woff2') format('woff2-variations');
+}
+
+/* ===== reset ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border:0}
+img,video{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;cursor:pointer;-webkit-appearance:none}
+ul{list-style:none}
+
+/* ===== fluid type system (same mechanism as reference: clamp root size to viewport) ===== */
+:root{
+	--viewport-desktop:1600;
+	--factor-desktop:1vw;
+	--viewport-mobile:800;
+	--factor-mobile:2vw;
+	--viewport:var(--viewport-mobile);
+	--factor:var(--factor-mobile);
+	--viewport-ratio:calc(1000 / var(--viewport) * var(--factor));
+}
+@media (min-width:800px){
+	:root{--viewport:var(--viewport-desktop);--factor:var(--factor-desktop)}
+}
+html{font-size:56.25%} /* 9px */
+@media (min-width:360px){html{font-size:var(--viewport-ratio)}}
+@media (min-width:1600px){html{font-size:62.5%}} /* 10px */
+
+@media (prefers-reduced-motion:reduce){
+	*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+
+/* ===== tokens ===== */
+:root{
+	--ease: cubic-bezier(.19,1,.22,1);   /* signature easing used everywhere on the reference */
+	--ease-soft: cubic-bezier(.215,.61,.355,1);
+	--font-main: 'PPNeue', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+	--bg-dark: linear-gradient(#303436,#242728);
+	--bg-light: #f2f2f2;
+
+	--nav-width: 12rem;
+}
+
+/* the reference site's homepage is light throughout — no persistent dark hero */
+body{
+	--fg-default: rgba(0,0,0,.9);
+	--fg-mute: rgba(0,0,0,.6);
+	--fg-subtle: rgba(0,0,0,.25);
+	--fg-faint: rgba(0,0,0,.05);
+	--bg-current: var(--bg-light);
+}
+
+html,body{height:100%}
+body{
+	font-family:var(--font-main);
+	/* 1.6rem, not 1.5 — confirmed against the reference's actual computed
+	   body font-size (16px at this root scale, not 15px). Since every
+	   other size on the page is expressed in rem relative to this base,
+	   that one-notch error was cascading into every button/heading/label
+	   being ~6% off throughout the whole site. */
+	font-size:max(9px,1.6rem);
+	line-height:1.5;
+	color:var(--fg-default);
+	background:var(--bg-current);
+	-webkit-font-smoothing:antialiased;
+	transition:background .6s var(--ease), color .3s linear;
+	overflow-x:hidden;
+}
+
+/* ===== NAV ===== */
+.nav{
+	position:fixed;
+	left:0;bottom:0;
+	width:100%;
+	z-index:50;
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+	justify-content:space-between;
+	padding:1.2rem 1.6rem;
+	background:var(--bg-current);
+	transition:background .6s var(--ease);
+}
+@media (min-width:800px){
+	.nav{
+		top:0;left:0;bottom:0;width:var(--nav-width);
+		flex-direction:column;justify-content:space-between;
+		padding:2.4rem 0;
+		opacity:0;
+		pointer-events:none;
+		/* hard toggle, not a fade/slide-in — confirmed against the
+		   reference's actual behavior */
+	}
+	/* hidden until the user actually scrolls — matches the reference,
+	   which never shows the sidebar at scrollY=0 */
+	body.has-scrolled .nav{
+		opacity:1;
+		pointer-events:auto;
+	}
+}
+
+body[data-home="true"] .nav-items,
+body[data-home="true"] .nav-foot{
+	transition:opacity .2s var(--ease);
+}
+
+.nav-top{display:none}
+@media (min-width:800px){
+	.nav-top{display:flex;flex-direction:column;align-items:flex-start;gap:.2rem;padding:0 0 0 1.6rem}
+}
+.nav-top-name{font-size:1.2rem;font-weight:700;letter-spacing:.02em;color:var(--fg-default);white-space:nowrap}
+.nav-top-tagline{font-size:1rem;font-style:italic;letter-spacing:.02em;color:var(--fg-mute);line-height:1.2}
+
+.nav-items{display:flex;flex-direction:row;gap:.8rem}
+@media (min-width:800px){
+	.nav-items{flex-direction:column;align-items:center;gap:1.6rem}
+}
+/* icon box is a 44x44 square (matches reference), but the item itself
+   is NOT forced into that same square — it auto-sizes taller to fit
+   the label stacked below it (confirmed on the reference: 44 wide,
+   57 tall for the whole icon+label item, not a fixed 44x44) */
+.nav-item{
+	display:flex;flex-direction:column;align-items:center;gap:.4rem;
+	width:4.4rem;justify-content:center;
+	color:var(--fg-default);
+}
+/* no hover background at all — confirmed on the reference: nothing
+   changes (bg, icon fill, label opacity, all identical) when hovering
+   these nav items, so the highlight this used to have was invented,
+   not something to match */
+.nav-icon{
+	position:relative;
+	width:4.4rem;height:4.4rem;display:flex;align-items:center;justify-content:center;
+}
+/* same scale+fade backdrop mechanism as .hire-btn-bg, white instead
+   of the faint black used there — a deliberate addition, not
+   something the reference itself has on these icons */
+.nav-icon-bg{
+	position:absolute;inset:0;
+	border-radius:1.6rem;background:#fff;
+	opacity:0;transform:scale(.8);
+	transition:opacity .3s var(--ease),transform .3s var(--ease);
+}
+.nav-item:hover .nav-icon-bg{opacity:1;transform:scale(1)}
+.nav-icon svg{position:relative;width:2.4rem;height:2.4rem} /* 24px, confirmed exactly against the reference's own svg */
+/* 11px/600/line-height 1, letter-spacing .01em, NOT uppercase, full
+   opacity — every value confirmed via computed styles on the
+   reference's own nav labels (text-transform:uppercase and
+   opacity:.85 were wrong guesses, reference shows "Home" etc in
+   normal case at full opacity) */
+.nav-label{
+	font-size:1.1rem;font-weight:600;line-height:1;letter-spacing:.01em;
+}
+@media (max-width:799px){.nav-label{display:none}}
+
+.nav-foot{display:flex;gap:1rem;font-size:1rem;font-weight:600;text-transform:uppercase;color:var(--fg-mute)}
+@media (min-width:800px){
+	.nav-foot{flex-direction:column;align-items:center;gap:.4rem}
+}
+
+/* ===== MAIN ===== */
+/* full-bleed, no reserved gutter — the nav is an overlay on the
+   reference, it never pushes content over, even once visible. The
+   Projects panel is the one exception: when it's open it pushes
+   .main over by its own width, matching the reference. */
+.main{
+	min-height:100%;
+	width:100%;
+	transition:margin-left .5s var(--ease);
+}
+@media (min-width:800px){
+	/* explicit width:100% above matters here: .main would otherwise be
+	   width:auto, and margin-left on an auto-width block SHRINKS the box
+	   by 40rem instead of sliding it — anything inside centered with
+	   margin:0 auto (the pitch-grid/formula text columns) then only
+	   re-centers by HALF of that, drifting out of alignment with
+	   #reelCard below, which gets the full shift via its own transform.
+	   With width pinned to 100%, margin-left instead pushes the whole
+	   box right by the full 40rem (overflowing off the right edge,
+	   harmlessly clipped by body's overflow-x:hidden), so every child —
+	   centered or not — shifts by the exact same amount. (transform
+	   would do this more cleanly, but #reelCard is a *descendant* of
+	   .main and position:fixed, so a transform on .main would turn it
+	   into #reelCard's containing block and break its JS-driven
+	   viewport-relative left/top entirely — margin-left avoids that.) */
+	body.projects-panel-open .main{margin-left:24rem}
+	/* .reel-fixed is position:fixed with its left/top/width/height
+	   driven straight from JS every frame (see updateReelProgress), so
+	   .main's margin-left has zero effect on it — it needs its own
+	   transform to shift over in step with everything else, which
+	   layers on top of those JS-set offsets without fighting them.
+	   transform is added to its existing transition list (not
+	   replacing it) so the reel's own growth animation keeps its fast
+	   linear easing. */
+	body.projects-panel-open .reel-fixed{transform:translateX(24rem)}
+}
+
+/* ===== WORK / MASONRY ===== */
+/* .work-pin reserves exactly the scroll distance the reel's grow
+   needs (progress 0->1, i.e. vh*1.05 of real scroll) plus one more vh
+   so .work only starts actually scrolling away once growth is fully
+   done — matches completionY in updateReelProgress: (1.05 + 1)vh.
+   No fade-out buffer any more — the reel docks into the page instead
+   of fading, see the docking comment in main.js. */
+.work-pin{height:205vh;height:205svh}
+
+.work{
+	position:sticky;
+	top:0;
+	/* transparent on purpose, not var(--bg-light) — body sits directly
+	   behind it at the exact same color, so this is visually identical
+	   during the intro, but it removes any chance of .work's own box
+	   ever painting an opaque block over .pitch-grid/.team/.hire-cta
+	   if it still physically overlaps them after being released from
+	   sticky (the actual root cause of the "solid color over the grid"
+	   bug — z-index ordering alone doesn't help once two elements are
+	   genuinely tied and opaque). */
+	background:transparent;
+	color:rgba(0,0,0,.9);
+	border-radius:1.6rem 1.6rem 0 0;
+	/* same padding top and bottom — the last item in each column (col1's
+	   4th image, col4's scroll-hint) should sit flush against it,
+	   mirroring the top exactly */
+	padding:1.6rem 0;
+	/* clips both axes: the side columns already push far past the left/
+	   right edges by design, and now the scroll-hint also needs a clean
+	   bottom edge to disappear behind once it's pushed down */
+	overflow:hidden;
+	/* #reelCard used to live inside .work and briefly got its z-index:5
+	   bumped up to .work's own level to escape .work's sticky-induced
+	   stacking context — but that dragged .work's opaque background
+	   along too, hiding .pitch-grid's text instead of the video. Fixed
+	   properly now by moving #reelCard out of .work in the markup, so
+	   this can go back to a plain z-index:1 tie with the sections after
+	   it (which is fine — by the time they're visible, .work's own
+	   content here has already faded to nothing anyway). */
+	z-index:1;
+	/* sticky needs an explicit height (not min-height) to know how
+	   much of .work-pin's extra scroll room it's allowed to occupy
+	   while pinned — the per-column fit in main.js (fitColumnsToViewport)
+	   is what actually guarantees every column's cards land flush
+	   against this box's own top/bottom padding, so there's no
+	   mismatch between this and the real content height. */
+	height:100vh;
+	height:100svh;
+}
+/* 7 explicit columns (confirmed from the live reference's DOM: a CSS
+   Grid of fixed column tracks, each holding a manually-ordered vertical
+   stack — not CSS multicol auto-balancing). Column width is uniform;
+   only each card's own image aspect ratio drives its height.
+   Measured directly on the reference at 1700px viewport: 255px columns,
+   16px gaps -> 7 cols + 6 gaps = 1881px, ~90px wider than the viewport
+   on each side -> genuinely edge-cropped by design, not padded. */
+:root{--reel-progress:0}
+.masonry{
+	display:grid;
+	grid-template-columns:repeat(3,1fr);
+	gap:1rem;
+	width:calc(100% + 14rem);
+	margin-left:-7rem;
+	justify-content:center;
+	/* gap itself stays fixed at the base value always — the spreading
+	   motion instead comes from a translateX on the side .gcol columns
+	   (driven from JS, in sync with the reel's own growth) so the
+	   padding next to the reel never changes, only columns further out
+	   visibly drift apart. Opacity is NOT set here either: a parent's
+	   opacity caps every descendant's rendered opacity regardless of
+	   what the descendant's own opacity is set to, so that's applied
+	   per-card instead, below. */
+}
+@media (min-width:800px){
+	.masonry{gap:1.6rem;grid-template-columns:repeat(7,1fr)}
+}
+
+.gcol{display:flex;flex-direction:column;gap:inherit}
+
+.card{
+	border-radius:1.2rem;
+	overflow:hidden;
+	cursor:pointer;
+	transition:filter .5s var(--ease), box-shadow .3s var(--ease);
+}
+
+/* every real card fades out as the reel grows (CDP-confirmed against
+   the reference: grid opacity 1->0) — applied per-card rather than on
+   .masonry itself, see the note on .masonry above. .reel-spacer is
+   excluded: it's already invisible and just reserves layout space for
+   the one real video (#reelCard, a sibling of .masonry, unaffected by
+   any of this since it's not a descendant). */
+.masonry .card:not(.reel-spacer){
+	opacity:calc(1 - var(--reel-progress, 0));
+	transition:opacity .1s linear;
+}
+
+.reel-spacer{visibility:hidden}
+.reel-spacer .card-media{aspect-ratio:var(--ar, .75)}
+
+.card-media{position:relative;width:100%;height:100%}
+.card:hover .card-media .ph,
+.card:hover .card-media video{transform:scale(1.035)}
+.ph,.card-media video{transition:transform .6s var(--ease)}
+.card-media video{
+	display:block;width:100%;height:100%;
+	object-fit:cover;
+	aspect-ratio:var(--ar, 3/4);
+}
+
+.ph{
+	display:block;width:100%;height:100%;
+	object-fit:cover;
+	aspect-ratio:var(--ar, 3/4);
+}
+
+/* hover-cycle card (mirrors the reference's card that cross-fades through extra frames) */
+[data-cycle] .card-media{aspect-ratio:var(--ar, 3/4);position:relative}
+[data-cycle] .frame{
+	position:absolute;inset:0;opacity:0;width:100%;height:100%;object-fit:cover;
+	transition:opacity .6s var(--ease);
+}
+[data-cycle] .frame.is-active{opacity:1}
+
+/* reel: ONE real video. left/top/width/height are driven live from JS
+   (updateReelProgress, FLIP-style) starting from the exact rect of
+   .reel-spacer (so at rest it sits precisely inside the grid, looking
+   like a normal column-4 card) and growing/moving to a large centered
+   overlay as the user scrolls — in sync with the grid's own
+   column-gap growth. Visible throughout (no crossfade-in): it only
+   fades on the way OUT, once fully grown, right before the pitch
+   section would otherwise show through underneath it. */
+.reel-fixed{
+	position:fixed;
+	z-index:5;
+	/* interactive (hover shadow, cursor) at every stage, not just once
+	   fully grown — opening the fullscreen video on click is still
+	   separately guarded by .is-ready in main.js, so this is safe */
+	pointer-events:auto;
+	cursor:pointer;
+	opacity:1;
+	transition:width .1s linear, height .1s linear, left .1s linear, top .1s linear, transform .5s var(--ease);
+}
+.reel-fixed .card-media{
+	width:100%;height:100%;
+	border-radius:1.2rem;overflow:hidden;background:#000;
+	box-shadow:0 0 0 rgba(0,0,0,0); /* none by default */
+	transition:box-shadow .3s var(--ease);
+}
+/* plain :hover, not gated on .is-ready — applies whenever hovered,
+   at rest, mid-growth, or docked */
+.reel-fixed:hover .card-media{
+	box-shadow:0 2rem 6rem rgba(0,0,0,.25);
+}
+.reel-fixed .card-media video{width:100%;height:100%;object-fit:cover}
+
+/* hidden (hard toggle, not a fade) until the crossfade finishes.
+   pointer-events:none here (the heading is plain text, not clickable —
+   .reel-fixed's own click-to-open handler would otherwise fire when
+   clicking the text too) with the button opted back in below, since
+   it needs its own click. */
+.reel-expanded-content{
+	position:absolute;bottom:100%;left:0;right:0;
+	text-align:center;margin-bottom:1.6rem;
+	opacity:0;
+	pointer-events:none;
+}
+.reel-fixed.is-ready .reel-expanded-content{opacity:1}
+/* 32px / weight 600 / line-height 1.15 — confirmed via computed styles
+   on the reference's own matching heading ("Deux Huit Huit. A
+   super-digital design studio. Ready when you are."), was 26px/500/1.3 */
+/* no independent max-width — .reel-expanded-content (its parent)
+   already spans left:0/right:0 of .reel-fixed, which is sized by JS
+   to the exact same width as the grown video card below it, so this
+   just uses 100% of that instead of a separate, narrower cap */
+.reel-expanded-content h2{
+	font-size:3.2rem;font-weight:600;line-height:1.15;
+	width:100%;margin:0 0 2rem;
+	color:rgba(0,0,0,.9);
+}
+
+/* skip-intro hint — colors confirmed against the live reference
+   (rgba(0,122,255,.2) background, rgba(0,0,0,.9) icon). It stays at
+   full opacity the whole time on the reference — it doesn't fade, it
+   just gets pushed down (translateY, driven from JS) until it's
+   clipped out of view by .work's own box (overflow:hidden). */
+.scroll-hint{
+	display:flex;align-items:center;justify-content:center;
+	width:100%;height:5.2rem;border-radius:999px; /* 52px, confirmed — was 48px */
+	background:rgba(0,122,255,.2);color:rgba(0,0,0,.9);
+	flex-shrink:0;
+	transition:transform .1s linear;
+}
+.scroll-hint svg{animation:hint-bounce .7s infinite alternate var(--ease)}
+@keyframes hint-bounce{from{transform:translateY(-.2rem)}to{transform:translateY(.2rem)}}
+
+/* empty — width/height/margin-top set from JS (updateReelProgress) to
+   match the reel's grown target box exactly, pulled up by a negative
+   margin-top so its page position lines up with wherever the docked
+   #reelCard freezes to (see the docking comment in main.js). The
+   reel itself (position:fixed, z-index:5) renders on top of this the
+   whole time — this div never shows anything, it only reserves the
+   matching document space so everything after it lands in the right
+   place, with nothing overlapping. */
+.reel-landing{width:min(72vw,900px);margin:0 auto}
+
+/* two-column pitch copy, directly below the docked video card.
+   max-width 48rem (480px) and gap 2.4rem (24px) confirmed via computed
+   styles directly on the reference's own "Allies to local..." grid —
+   same values the formula section already uses below, not the much
+   wider 90rem/4rem this used to have. */
+/* width:min(48rem, 100% - 3.2rem), not max-width+horizontal padding —
+   border-box padding was shrinking the actual content to 44.8rem
+   (448px), short of the reference's true 480px (its own grid has zero
+   padding of its own). This hits exactly 48rem once the viewport is
+   wide enough, same as reference, while still keeping a safe margin
+   on narrow screens instead of running edge to edge. */
+.pitch-grid{
+	background:var(--bg-light);
+	display:grid;gap:2.4rem;
+	width:min(48rem, 100% - 3.2rem);margin:0 auto;
+	padding:4rem 0;
+	position:relative;z-index:1;
+}
+@media (min-width:800px){.pitch-grid{grid-template-columns:1fr 1fr}}
+/* works as a plain <p> (single paragraph) or a <div> wrapping several —
+   font-size/line-height/color are inherited by nested <p> either way,
+   and the flex+gap only matters when there's more than one */
+/* weight 500, line-height 1.15, color .6 — confirmed via computed
+   styles on the reference (same values the formula section below
+   uses, not the heavier/looser defaults this used to have) */
+.pitch-col{
+	font-size:1.6rem;font-weight:500;line-height:1.15;color:rgba(0,0,0,.6);
+	display:flex;flex-direction:column;gap:1.6rem;
+}
+
+/* ===== TEAM RING + HIRE TOGGLE ===== */
+.team{padding:6rem 1.6rem 2rem;text-align:center;background:var(--bg-light);position:relative;z-index:1}
+.team-heading{
+	font-size:3.2rem;font-weight:600;line-height:1.15;
+	color:rgba(0,0,0,.9);
+	white-space:pre-line;
+}
+.team-ring{
+	position:relative;
+	width:min(56rem,92vw);
+	aspect-ratio:1/1;
+	margin:4rem auto 0;
+	display:grid;
+}
+.team-ring>*{grid-area:1/1}
+.team-glow{
+	width:70%;height:44%;
+	margin:auto;
+	filter:blur(4rem);
+	transform:rotate(-45deg);
+	opacity:.85;
+}
+.team-ring-img{width:100%;height:100%;object-fit:contain}
+.team-center{
+	z-index:2;
+	display:flex;flex-direction:column;align-items:center;gap:1.6rem;
+	width:62%;max-width:30rem;margin:auto;
+}
+.team-label{
+	font-size:1.6rem;font-weight:600;line-height:1.15;
+	color:rgba(0,0,0,.6);
+	max-width:20rem;
+}
+.team-toggle{
+	position:relative;
+	display:block;width:100%;height:5.2rem;
+	border-radius:999px;overflow:hidden;
+	background:url(../assets/images/team-glow.png) center/cover;
+	transition:width .6s var(--ease), transform .3s var(--ease);
+}
+.team-toggle:hover{width:75%;transform:scale(1.1)}
+.team-toggle-knob{
+	position:absolute;top:.4rem;left:.4rem;
+	height:calc(100% - .8rem);aspect-ratio:1;
+	border-radius:50%;background:#fff;
+	box-shadow:0 .2rem .6rem rgba(0,0,0,.15);
+	transition:box-shadow .3s var(--ease);
+}
+.team-toggle:hover .team-toggle-knob{box-shadow:0 .4rem 1.2rem rgba(0,0,0,.25)}
+
+.hire-cta{display:flex;justify-content:center;padding:2rem 1.6rem;background:var(--bg-light);position:relative;z-index:1}
+/* real "Hire us" button — every value here confirmed via computed
+   styles directly on the reference, not guessed: .hire-btn is 28px
+   tall, 8px radius, #007AFF bg, white 16px/500 text. .hire-btn-bg is
+   a SEPARATE layer sitting behind it (within the .8rem padded hit
+   area), invisible at rest (opacity 0, scaled to 80%) that scales up
+   to 100% and fades in only on hover — a subtle halo effect, not a
+   color change on the button itself. */
+.hire-btn-wrap{
+	position:relative;display:inline-flex;
+	padding:.8rem;
+	pointer-events:auto; /* needed when nested in .reel-expanded-content, which is pointer-events:none */
+	cursor:pointer;
+}
+.hire-btn-bg{
+	position:absolute;inset:0;
+	border-radius:1.6rem;background:rgba(0,0,0,.05);
+	opacity:0;transform:scale(.8);
+	transition:opacity .3s var(--ease),transform .3s var(--ease);
+}
+.hire-btn-wrap:hover .hire-btn-bg{opacity:1;transform:scale(1)}
+.hire-btn{
+	position:relative;
+	display:flex;align-items:center;justify-content:center;gap:.2rem;
+	height:2.8rem;padding:0 1rem;border-radius:.8rem;
+	background:#007AFF;color:#fff;
+	font-size:1.6rem;font-weight:500;line-height:1;
+	white-space:nowrap;
+}
+.hire-btn svg{width:2rem;height:2rem;flex-shrink:0}
+
+/* ===== "simple and effective formula" ===== */
+/* left-aligned on the reference, not centered — confirmed via computed
+   styles (text-align:start throughout this whole block) */
+/* same width:min() fix as .pitch-grid above — was shrinking to 448px
+   via border-box padding instead of the reference's true 480px */
+.formula{
+	width:min(48rem, 100% - 3.2rem);margin:0 auto;
+	padding:6rem 0;text-align:left;
+	background:var(--bg-light);position:relative;z-index:1;
+}
+.formula-label{font-size:1.6rem;font-weight:600;line-height:1.15;color:rgba(0,0,0,.9)}
+.formula-heading{
+	font-size:3.2rem;font-weight:600;line-height:1.15;
+	color:rgba(0,0,0,.9);
+	white-space:pre-line;
+	padding-top:.8rem;
+}
+.formula-grid{
+	display:grid;gap:2.4rem;
+	padding-top:1.2rem;
+}
+@media (min-width:600px){.formula-grid{grid-template-columns:1fr 1fr}}
+/* tighter and smaller than .pitch-col elsewhere (1.15 line-height vs
+   1.4, weight 500 vs 400, .6 opacity vs .75) — confirmed via computed
+   styles, this section reads noticeably denser than the others */
+.formula-col{
+	display:flex;flex-direction:column;gap:1.2rem;
+	font-size:1.6rem;font-weight:500;line-height:1.15;
+	color:rgba(0,0,0,.6);
+}
+
+/* ===== "Check out our latest projects" ===== */
+/* every value here (484px header, 48px height, #007AFF, 724px grid,
+   4x181px columns, 16px/8px radii, 36px logo, 12px text) confirmed via
+   computed-style inspection directly on the reference */
+.projects{padding:4rem 1.6rem;background:var(--bg-light);position:relative;z-index:1}
+.projects-header{
+	max-width:48.4rem;height:4.8rem;margin:0 auto;
+	display:flex;align-items:center;justify-content:space-between;
+	border-top:1px solid var(--fg-faint);
+}
+.projects-header h2{font-size:1.6rem;font-weight:600;color:rgba(0,0,0,.9)}
+.projects-all{
+	display:flex;align-items:center;gap:.4rem;
+	font-size:1.6rem;font-weight:600;color:#007AFF;
+}
+.projects-all svg{width:1.6rem;height:1.6rem}
+.projects-grid{
+	max-width:72.4rem;margin:2.4rem auto 0;
+	display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;
+}
+@media (min-width:800px){.projects-grid{grid-template-columns:repeat(4,1fr);gap:0}}
+.project-card{display:block;position:relative}
+.project-img{position:relative;aspect-ratio:1/1}
+@media (min-width:800px){.project-img{margin:0 .8rem}}
+.project-img img{width:100%;height:100%;object-fit:cover;border-radius:1.6rem;position:relative}
+.project-meta{display:flex;align-items:center;gap:.8rem;padding-top:1.2rem}
+@media (min-width:800px){.project-meta{padding:1.2rem .8rem 0}}
+.project-logo{width:3.6rem;height:3.6rem;border-radius:.8rem;object-fit:cover;flex-shrink:0}
+.project-text{overflow:hidden}
+.project-title,.project-cat{font-size:1.2rem;font-weight:500;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.project-cat{color:rgba(0,0,0,.6)}
+
+/* ===== service cards ===== */
+/* 225x281 card, bg rgb(255,248,81), h4 26px/600, category label
+   16px/600 below the card (not inside it) — all confirmed via
+   computed-style inspection on the reference's own cards. Reference
+   scrolls these horizontally rather than wrapping to a grid. */
+.services{padding:4rem 0;background:var(--bg-light);position:relative;z-index:1}
+.services-divider{max-width:48.4rem;height:4.8rem;margin:0 auto;border-top:1px solid rgba(0,0,0,.05)}
+/* true 3x3 grid on the reference, confirmed by measuring all 9 card
+   positions directly (3 distinct x values x 3 distinct y values) —
+   not a horizontal scroll row, which is what this used to be */
+.services-row{
+	display:grid;grid-template-columns:repeat(3,22.5rem);gap:1.6rem;
+	width:fit-content;margin:0 auto;
+	padding:0 1.6rem;
+}
+@media (max-width:800px){
+	.services-row{grid-template-columns:1fr;width:100%}
+}
+.service-card{width:100%;position:relative}
+/* 4:5 aspect-ratio (not a guess — 225.3x281.7 measured directly,
+   which is exactly 4:5). Title pinned to the top, category+arrow
+   pinned to the bottom via justify-space-between on the inner
+   wrapper — both confirmed from the reference's actual card markup,
+   not the single bottom-aligned caption this used to be. */
+.service-img{
+	position:relative;
+	width:100%;aspect-ratio:4/5;
+	border-radius:.8rem;overflow:hidden;
+	background-color:rgb(255,248,81);
+	background-size:cover;background-position:center;
+}
+.service-card-inner{
+	position:absolute;inset:0;
+	display:flex;flex-direction:column;justify-content:space-between;gap:.8rem;
+	padding:1.6rem 1.2rem;
+}
+.service-card-inner h4{
+	font-size:1.8rem;font-weight:600;line-height:1.15;
+	color:rgb(13,13,13);
+}
+@media (min-width:800px){.service-card-inner h4{font-size:2.6rem}}
+.service-card-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:.8rem}
+.service-card-foot h3{font-size:1.4rem;font-weight:600;line-height:1.15;color:rgb(13,13,13)}
+@media (min-width:800px){.service-card-foot h3{font-size:1.6rem}}
+.service-card-foot svg{width:1.6rem;height:1.6rem;flex-shrink:0;color:rgb(13,13,13)}
+
+/* ===== "What's it like working with us?" video ===== */
+/* 484px wide, 9:16, 12px radius, object-fit:cover — confirmed via
+   computed styles on the reference's own video (484x860.4, exactly 9:16) */
+.working-video-section{
+	width:min(48.4rem, 100% - 3.2rem);margin:3.2rem auto 0;
+	background:var(--bg-light);position:relative;z-index:1;
+}
+/* scale(1.02) + soft layered shadow on hover — confirmed directly on
+   the reference's own video (was missing entirely) */
+.working-video{
+	width:100%;aspect-ratio:9/16;
+	border-radius:1.2rem;object-fit:cover;
+	transition:transform .3s cubic-bezier(.4,0,.2,1), box-shadow .3s cubic-bezier(.4,0,.2,1);
+}
+.working-video:hover{
+	transform:scale(1.02);
+	box-shadow:0 1px 2px rgba(0,0,0,.06), 0 3.6px 3.6px rgba(0,0,0,.02), 0 6.4px 6.4px rgba(0,0,0,.04), 0 11px 11px rgba(0,0,0,.07), 0 20px 20px rgba(0,0,0,.13), 0 40px 40px rgba(0,0,0,.25);
+}
+
+/* ===== "Deux Huit Huit in a nutshell" footer ===== */
+/* same 480px prose width as every other section; row divider is
+   rgba(0,0,0,.25) (not the faint .05 used elsewhere) with the first
+   row skipping its border — both confirmed via computed styles */
+.nutshell{
+	width:min(48rem, 100% - 3.2rem);margin:6.4rem auto 4rem;
+	background:var(--bg-light);position:relative;z-index:1;
+}
+.nutshell-rows{padding-top:2rem}
+.nutshell-row{
+	display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;
+	align-items:start;padding:1.2rem 0;
+	border-top:1px solid rgba(0,0,0,.25);
+	line-height:1.15;
+}
+.nutshell-row:first-child{border-top:0}
+.nutshell-row h3{
+	display:flex;align-items:center;gap:.4rem;
+	font-size:1.6rem;font-weight:500;color:rgba(0,0,0,.6);
+}
+.nutshell-row h3 svg{width:1.2rem;height:1.3rem;flex-shrink:0;opacity:.3}
+.nutshell-row>div,.nutshell-row>ul{font-size:1.6rem;font-weight:600;color:rgba(0,0,0,.9)}
+
+/* "Online presence" (real links + arrow icon) and "Leadership"
+   (avatar + name/title) sub-lists — confirmed on the reference: each
+   item gets its own 12px vertical padding and divider, nested inside
+   the outer nutshell-row, not plain <br>-separated text */
+.nutshell-list li{border-top:1px solid rgba(0,0,0,.25)}
+.nutshell-list li:first-child{border-top:0}
+.nutshell-list a{
+	display:flex;align-items:center;justify-content:space-between;
+	padding:1.2rem 0;line-height:1.15;
+	transition:color .2s var(--ease);
+}
+.nutshell-list a:hover{color:rgba(0,0,0,.6)}
+.nutshell-list a svg{width:1.6rem;height:1.7rem;flex-shrink:0;opacity:.3}
+.nutshell-person{display:flex;align-items:center;gap:.8rem;padding:.8rem 0;font-size:1.2rem;font-weight:500;color:rgba(0,0,0,.6)}
+.nutshell-person img{width:2.8rem;height:2.8rem;border-radius:999px;object-fit:cover;flex-shrink:0}
+
+/* ===== reel video modal ===== */
+/* every value here confirmed by clicking the real button on the
+   reference and inspecting the dialog: blurred-video backdrop, 80vh
+   video with native controls + 8px radius, 52px close circle at
+   15% white opacity that scales 110% on hover, top-right 24px inset */
+.reel-dialog{position:fixed;inset:0;z-index:100;display:grid}
+.reel-dialog[hidden]{display:none}
+.reel-dialog-overlay{position:relative;grid-area:1/1;width:100%;height:100%;background:#000;overflow:hidden}
+.reel-dialog-bg{width:100%;height:100%;object-fit:cover;filter:blur(10rem);transform:scale(1.2)}
+.reel-dialog-inner{position:relative;grid-area:1/1;display:grid;place-items:center;padding:2.4rem}
+.reel-dialog-close{
+	position:absolute;top:2.4rem;right:2.4rem;
+	width:5.2rem;height:5.2rem;border-radius:999px;
+	display:flex;align-items:center;justify-content:center;
+	color:#fff;
+}
+.reel-dialog-close-bg{position:absolute;inset:0;border-radius:999px;background:rgba(255,255,255,.15);transition:transform .2s var(--ease)}
+.reel-dialog-close:hover .reel-dialog-close-bg{transform:scale(1.1)}
+.reel-dialog-close svg{position:relative;width:2rem;height:2rem}
+.reel-dialog-video{height:80vh;width:auto;max-width:100%;border-radius:.8rem}
+
+/* same scale+fade grey backdrop as .hire-btn-bg / .nav-icon-bg,
+   applied to the project cards and service cards via ::before so no
+   extra markup is needed — a deliberate addition, not something the
+   reference itself has on these specific cards. For project cards
+   the glow hugs only the image (not the logo/title row below it),
+   with equal inset on all four sides. */
+.project-img::before,.service-card::before,.projects-panel-card-img::before{
+	content:'';
+	position:absolute;inset:-.8rem;
+	border-radius:1.6rem;background:#E6E6E6;
+	opacity:0;transform:scale(.8);
+	transition:opacity .3s var(--ease),transform .3s var(--ease);
+	z-index:-1;pointer-events:none;
+}
+.project-img:hover::before,.service-card:hover::before,.projects-panel-card-img:hover::before{opacity:1;transform:scale(1)}
+
+
+/* ===== PROJECTS PANEL ===== */
+/* slide-out panel docked next to the icon sidebar, confirmed against
+   the reference by clicking its real "Projects" nav button: a 400px
+   translucent white card (fixed, 8px inset top/bottom, 16px radius)
+   sitting at left:nav-width, with a sticky tabs pill row and a 2-col
+   project grid, and .main pushed over by the panel's own width
+   rather than being overlaid/dimmed */
+.projects-panel{
+	position:fixed;top:0;bottom:0;left:var(--nav-width);
+	width:40rem;max-width:calc(100vw - var(--nav-width));
+	z-index:40;
+	opacity:0;pointer-events:none;
+	/* no transform here (dropped the translateX slide-in) — a
+	   transform transition on this element, which contains a
+	   backdrop-filter child (.projects-panel-bg) and cards with their
+	   own z-index:-1 hover pseudo-elements several levels down, is a
+	   known troublesome combination for Chrome's/WebKit's compositor:
+	   the descendant hover transitions can get stuck un-painted until
+	   some other layout-triggering mutation forces a fresh paint pass
+	   — which only a tab switch happened to do, hence hover glow never
+	   showing on the default tab until the user switched tabs once.
+	   Opacity-only avoids the transform side of that combination. */
+	transition:opacity .4s var(--ease);
+}
+.projects-panel.is-open{opacity:1;pointer-events:auto}
+/* below the desktop breakpoint the icon nav is a bottom bar, not a
+   left column, so the panel takes the full screen and slides up
+   instead of sliding in from the left — same mechanism, different axis */
+@media (max-width:799px){
+	.projects-panel{
+		left:0;top:0;bottom:0;width:100%;max-width:100%;
+		transform:translateY(2.4rem);
+	}
+	.projects-panel.is-open{transform:translateY(0)}
+	.projects-panel-bg{inset:0;border-radius:0}
+	.projects-panel-close{display:flex}
+}
+
+.projects-panel-bg{
+	position:absolute;inset:.8rem;
+	border-radius:1.6rem;
+	/* .97, not .85 — at .85 the blurred, shifting content behind the
+	   panel (whatever .main scrolled to) bleeds through as a noisy,
+	   unpredictable tint, which is what was swallowing the project
+	   cards' #E6E6E6 hover glow (identical CSS to the homepage, but
+	   unreadable against that noise). Near-opaque gives the glow a
+	   flat, predictable surface to sit on instead. */
+	background:rgba(255,255,255,.97);
+	backdrop-filter:blur(2rem);
+	-webkit-backdrop-filter:blur(2rem);
+}
+/* inset:.8rem + border-radius matches .projects-panel-bg exactly (the
+   visible rounded white card) — without this, scrolling spills content
+   past the card's actual rounded edges, since this is the real
+   scrollable box and .projects-panel-bg is purely decorative/behind it */
+.projects-panel-inner{
+	position:absolute;inset:.8rem;
+	border-radius:1.6rem;
+	padding:2rem 2rem 0;
+	overflow-y:auto;
+	overflow-x:hidden;
+	scrollbar-width:none;
+}
+.projects-panel-inner::-webkit-scrollbar{display:none}
+
+/* "Projects"/"All" and the Branding/Design/Development tabs stick
+   together as one unit — previously only .projects-panel-tabs had its
+   own position:sticky, so on scroll the head (not sticky) scrolled
+   away while the tabs snapped to the top alone, leaving the tabs
+   sitting above where the head used to be instead of staying docked
+   beneath it. A shared background is needed here too, since the cards
+   scrolling underneath would otherwise show through this transparent
+   sticky area once it's pinned to the top. */
+.projects-panel-sticky{
+	position:sticky;top:0;z-index:2;
+	background:rgba(255,255,255,.97);
+	padding-top:2rem;margin-top:-2rem;
+}
+.projects-panel-head{
+	display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+	gap:.8rem;
+	padding-bottom:1.2rem;
+}
+/* explicit grid-column on every child, not just source order — the
+   close button is display:none on desktop, and a display:none item
+   drops out of grid auto-placement entirely, which was shifting h2
+   and .projects-panel-all into columns 1/2 instead of 2/3 (collapsing
+   the "All" link right up against "Projects" instead of the far
+   right) whenever the close button wasn't there to occupy column 1.
+   Outer tracks are both 1fr (not auto) so they stay equal width
+   regardless of the close button's/"All" link's own content width —
+   that's what actually centers "Projects" between the panel's two
+   true edges, rather than just centering within whatever's left over
+   after an "All"-width-sized gap on one side only. */
+.projects-panel-close{grid-column:1;justify-self:start}
+.projects-panel-head h2{grid-column:2;text-align:center}
+.projects-panel-all{grid-column:3;justify-self:end}
+.projects-panel-close{
+	display:none;align-items:center;justify-content:center;
+	width:3.2rem;height:3.2rem;border-radius:999px;
+	background:var(--fg-faint);color:var(--fg-default);
+}
+.projects-panel-close svg{width:1.6rem;height:1.6rem}
+.projects-panel-head h2{font-size:1.6rem;font-weight:500;color:var(--fg-default)}
+.projects-panel-all{
+	display:flex;align-items:center;gap:.8rem;
+	font-size:1.4rem;font-weight:500;color:var(--fg-default);
+}
+.projects-panel-all svg{width:1.6rem;height:1.6rem}
+
+.projects-panel-tabs{
+	display:flex;gap:0;
+	background:var(--fg-faint);
+	border-radius:.9rem;padding:.2rem;
+	margin-bottom:1.6rem;
+}
+.projects-panel-tab{
+	flex:1;height:2.4rem;border-radius:.7rem;
+	font-size:1.2rem;font-weight:500;letter-spacing:.02em;
+	color:var(--fg-default);
+	transition:background .2s var(--ease);
+}
+.projects-panel-tab.is-active{background:rgba(255,255,255,.95)}
+
+.projects-panel-grid{
+	display:grid;grid-template-columns:1fr 1fr;
+	gap:1.6rem 0;
+	padding-bottom:2rem;
+	/* no permanent transition here on purpose — main.js applies one only
+	   for the duration of a tab switch (switchProjectsTab), so there's
+	   zero chance of it competing with anything during the panel's own
+	   opening animation */
+}
+/* min-width:0 overrides the grid item's default min-width:auto — without
+   it, a 1fr track grows to fit its content's intrinsic min-content size
+   (here, the <img>'s own natural width) instead of the fair 180px share,
+   which is exactly what started happening once real downloaded photos
+   (wider than the old placeholder images) replaced the original 4 cards,
+   blowing both columns out to ~233px and overflowing the panel */
+.projects-panel-card{display:block;min-width:0}
+.projects-panel-card[hidden]{display:none}
+.projects-panel-card-img{position:relative;aspect-ratio:1/1;padding:.8rem}
+.projects-panel-card-img img{width:100%;height:100%;object-fit:cover;border-radius:1.6rem;position:relative}
+/* hover glow color/radius/timing are shared with .project-img's rule
+   above, but inset is overridden to 0 here specifically: unlike
+   .project-img (no padding, image fills the wrapper edge-to-edge),
+   .projects-panel-card-img has its own padding:.8rem (needed for the
+   2-column grid's gutter, since the grid's own column-gap is 0 and
+   relies on this per-card padding instead). That padding already
+   insets the image 8px from the wrapper. Keeping the glow's -.8rem on
+   top of that was DOUBLING the visible gap (8px padding + 8px glow
+   inset = 16px) versus the homepage's single 8px — inset:0 puts the
+   glow flush with the wrapper's own edge, so the total gap matches
+   the homepage's 8px exactly. */
+.projects-panel-card-img::before{inset:0}
+.projects-panel-card-meta{display:flex;align-items:center;gap:.8rem;padding:.8rem .8rem 0}
+.projects-panel-card-meta img{width:3.2rem;height:3.2rem;border-radius:.8rem;object-fit:cover;flex-shrink:0}
+.projects-panel-card-text{overflow:hidden;font-size:1.2rem;line-height:1.15}
+.projects-panel-card-title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.projects-panel-card-cat{color:var(--fg-mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}

@@ -1,0 +1,948 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,maximum-scale=1" />
+	<title>Studio — Portfolio</title>
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-home="true" data-intro-done="false" data-theme="dark">
+
+	<!-- ===== SIDEBAR / BOTTOM NAV ===== -->
+	<header class="nav">
+		<a class="nav-top" href="index.html" aria-label="Home">
+			<span class="nav-top-name">SAKET RAUSHAN</span>
+			<span class="nav-top-tagline">DESIGN FOUNDER OFFICE™</span>
+		</a>
+
+		<nav class="nav-items">
+			<a class="nav-item" href="index.html">
+				<span class="nav-icon"><span class="nav-icon-bg"></span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1.5 9.11411C1.5 8.42148 1.85837 7.77815 2.44729 7.41358L10.9473 2.15168C11.5923 1.75238 12.4077 1.75238 13.0527 2.15168L21.5527 7.41358C22.1416 7.77815 22.5 8.42148 22.5 9.11411V20C22.5 21.1046 21.6046 22 20.5 22H3.5C2.39543 22 1.5 21.1046 1.5 20V9.11411Z" fill="currentColor"/>
+					</svg>
+				</span>
+				<span class="nav-label">Home</span>
+			</a>
+			<button class="nav-item" id="navProjects" type="button" aria-expanded="false" aria-controls="projectsPanel">
+				<span class="nav-icon"><span class="nav-icon-bg"></span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M2 12C2 10.3431 3.34315 9 5 9H19C20.6569 9 22 10.3431 22 12V20C22 21.6569 20.6569 23 19 23H5C3.34315 23 2 21.6569 2 20V12Z" fill="currentColor"/>
+						<path d="M4 6C4 5.44772 4.44772 5 5 5H19C19.5523 5 20 5.44772 20 6C20 6.55228 19.5523 7 19 7H5C4.44772 7 4 6.55228 4 6Z" fill="currentColor"/>
+						<path d="M6 2C6 1.44772 6.44772 1 7 1H17C17.5523 1 18 1.44772 18 2C18 2.55228 17.5523 3 17 3H7C6.44772 3 6 2.55228 6 2Z" fill="currentColor"/>
+					</svg>
+				</span>
+				<span class="nav-label">Projects</span>
+			</button>
+			<a class="nav-item" href="#collections">
+				<span class="nav-icon"><span class="nav-icon-bg"></span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M4.54433 15.7603C4.03858 15.5464 3.46536 15.5464 2.95962 15.7603L1.34204 16.4443C0.885985 16.6371 0.885986 17.441 1.34204 17.6339L11.3523 21.8668C11.7723 22.0444 12.2277 22.0444 12.6477 21.8668L22.658 17.6339C23.114 17.441 23.114 16.6371 22.658 16.4443L21.0409 15.7605C20.5351 15.5466 19.9619 15.5466 19.4562 15.7605L12.8859 18.5388C12.3117 18.7816 11.6892 18.7816 11.115 18.5388L4.54433 15.7603Z" fill="currentColor"/>
+						<path d="M4.54425 10.206C4.0385 9.99211 3.46528 9.99211 2.95954 10.206L1.34204 10.8899C0.885985 11.0828 0.885986 11.8867 1.34204 12.0795L11.3523 16.3124C11.7723 16.4901 12.2277 16.4901 12.6477 16.3124L22.658 12.0795C23.114 11.8867 23.114 11.0828 22.658 10.8899L21.0408 10.2061C20.535 9.99225 19.9618 9.99225 19.4561 10.2061L12.8858 12.9844C12.3116 13.2272 11.6891 13.2272 11.1149 12.9844L4.54425 10.206Z" fill="currentColor"/>
+						<path d="M11.1822 1.18588C11.7585 0.938041 12.3833 0.938041 12.9597 1.18588L22.1635 5.14361C22.7893 5.41269 22.7893 6.53431 22.1635 6.80339L12.9597 10.7611C12.3833 11.009 11.7585 11.009 11.1822 10.7611L1.9783 6.80339C1.35255 6.53431 1.35255 5.41269 1.9783 5.14361L11.1822 1.18588Z" fill="currentColor"/>
+					</svg>
+				</span>
+				<span class="nav-label">Collections</span>
+			</a>
+			<a class="nav-item" href="#services">
+				<span class="nav-icon"><span class="nav-icon-bg"></span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M19.4998 7.5H13.7578L15.7183 0.96525C15.7866 0.738 15.7431 0.49275 15.6013 0.30225C15.4603 0.11175 15.2368 0 14.9998 0H7.49981C7.16006 0 6.86231 0.22875 6.77531 0.5565L3.77531 11.8065C3.71531 12.0315 3.76331 12.2722 3.90506 12.4567C4.04681 12.6412 4.26656 12.75 4.49981 12.75H9.64331L8.25656 23.151C8.21081 23.4938 8.40506 23.823 8.72756 23.949C8.81606 23.9835 8.90831 24 8.99981 24C9.23906 24 9.47081 23.8852 9.61481 23.6797L20.1148 8.67975C20.2753 8.451 20.2948 8.15175 20.1658 7.9035C20.0361 7.656 19.7796 7.5 19.4998 7.5Z" fill="currentColor"/>
+					</svg>
+				</span>
+				<span class="nav-label">Services</span>
+			</a>
+			<a class="nav-item" href="#contact">
+				<span class="nav-icon"><span class="nav-icon-bg"></span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path fill-rule="evenodd" clip-rule="evenodd" d="M4.63636 1C2.62805 1 1 2.62805 1 4.63636V7.36364C1 7.86573 1.407 8.27273 1.90909 8.27273H11C11.5021 8.27273 11.9091 7.86573 11.9091 7.36364V1.90909C11.9091 1.407 11.5021 1 11 1H4.63636ZM14.6364 1C14.1343 1 13.7273 1.407 13.7273 1.90909V13C13.7273 13.5021 14.1343 13.9091 14.6364 13.9091H22.0909C22.593 13.9091 23 13.5021 23 13V4.63636C23 2.62805 21.372 1 19.3636 1H14.6364ZM13.7273 16.6364C13.7273 16.1343 14.1343 15.7273 14.6364 15.7273H22.0909C22.593 15.7273 23 16.1343 23 16.6364V19.3636C23 21.372 21.372 23 19.3636 23H14.6364C14.1343 23 13.7273 22.593 13.7273 22.0909V16.6364ZM1.90909 10.0909C1.407 10.0909 1 10.4979 1 11V19.3636C1 21.372 2.62805 23 4.63636 23H11C11.5021 23 11.9091 22.593 11.9091 22.0909V11C11.9091 10.4979 11.5021 10.0909 11 10.0909H1.90909Z" fill="currentColor"/>
+					</svg>
+				</span>
+				<span class="nav-label">Contact</span>
+			</a>
+			<a class="nav-item" href="#hire-us">
+				<span class="nav-icon"><span class="nav-icon-bg"></span>
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M12 1C9.82441 1 7.69767 1.64514 5.88873 2.85383C4.07979 4.06253 2.66989 5.78049 1.83733 7.79048C1.00477 9.80047 0.786929 12.0122 1.21137 14.146C1.6358 16.2798 2.68345 18.2398 4.22183 19.7782C5.76021 21.3165 7.72022 22.3642 9.85401 22.7886C11.9878 23.2131 14.1995 22.9952 16.2095 22.1627C18.2195 21.3301 19.9375 19.9202 21.1462 18.1113C22.3549 16.3023 23 14.1756 23 12C23 9.08262 21.8411 6.28472 19.7782 4.22182C17.7153 2.15892 14.9174 1 12 1ZM5.58334 9.25C5.58334 8.52065 5.87307 7.82118 6.38879 7.30546C6.90452 6.78973 7.60399 6.5 8.33334 6.5C9.06268 6.5 9.76216 6.78973 10.2779 7.30546C10.7936 7.82118 11.0833 8.52065 11.0833 9.25V10.1667H9.25V9.25C9.25 9.00688 9.15343 8.77373 8.98152 8.60182C8.80961 8.42991 8.57645 8.33333 8.33334 8.33333C8.09022 8.33333 7.85706 8.42991 7.68516 8.60182C7.51325 8.77373 7.41667 9.00688 7.41667 9.25V10.1667H5.58334V9.25ZM18.4167 12.9167C18.4167 14.6185 17.7406 16.2506 16.5373 17.4539C15.3339 18.6573 13.7018 19.3333 12 19.3333C10.2982 19.3333 8.66609 18.6573 7.46273 17.4539C6.25938 16.2506 5.58334 14.6185 5.58334 12.9167V12H7.41667V12.9167C7.41667 14.1322 7.89956 15.298 8.7591 16.1576C9.61864 17.0171 10.7844 17.5 12 17.5C13.2156 17.5 14.3814 17.0171 15.2409 16.1576C16.1004 15.298 16.5833 14.1322 16.5833 12.9167V12H18.4167V12.9167ZM18.4167 10.1667H16.5833V9.25C16.5833 9.00688 16.4868 8.77373 16.3148 8.60182C16.1429 8.42991 15.9098 8.33333 15.6667 8.33333C15.4236 8.33333 15.1904 8.42991 15.0185 8.60182C14.8466 8.77373 14.75 9.00688 14.75 9.25V10.1667H12.9167V9.25C12.9167 8.52065 13.2064 7.82118 13.7221 7.30546C14.2379 6.78973 14.9373 6.5 15.6667 6.5C16.396 6.5 17.0955 6.78973 17.6112 7.30546C18.1269 7.82118 18.4167 8.52065 18.4167 9.25V10.1667Z" fill="currentColor"/>
+					</svg>
+				</span>
+				<span class="nav-label">Hire him</span>
+			</a>
+		</nav>
+
+		<div class="nav-foot">
+			<a href="#" class="lang">India</a>
+			<a href="#" class="terms">T&amp;C</a>
+		</div>
+	</header>
+
+	<!-- ===== PROJECTS PANEL (opens from the "Projects" sidebar item) ===== -->
+	<div class="projects-panel" id="projectsPanel" aria-hidden="true">
+		<div class="projects-panel-bg"></div>
+		<div class="projects-panel-inner">
+			<div class="projects-panel-sticky">
+				<div class="projects-panel-head">
+					<button class="projects-panel-close" id="projectsPanelClose" type="button" aria-label="Close">
+						<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M5.52794 12.4715C5.26759 12.2111 5.26759 11.789 5.52794 11.5287L9.05654 8.00008L5.52794 4.47149C5.26759 4.21114 5.26759 3.78903 5.52794 3.52868C5.78829 3.26833 6.2104 3.26833 6.47075 3.52868L10.4708 7.52868C10.7311 7.78903 10.7311 8.21114 10.4708 8.47149L6.47075 12.4715C6.2104 12.7319 5.78829 12.7319 5.52794 12.4715Z" fill="currentColor" transform="rotate(180 8 8)"/></svg>
+					</button>
+					<h2>Projects</h2>
+					<a href="#" class="projects-panel-all">
+						All
+						<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg>
+					</a>
+				</div>
+				<div class="projects-panel-tabs">
+					<button class="projects-panel-tab is-active" type="button" data-filter="Branding">Branding</button>
+					<button class="projects-panel-tab" type="button" data-filter="Web">Design</button>
+					<button class="projects-panel-tab" type="button" data-filter="Content">Development</button>
+				</div>
+			</div>
+			<div class="projects-panel-grid">
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-chialove.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-chialove.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Chialove</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-clef-des-champs-2.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-clef-des-champs-2.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Clef des Champs</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-ditchfield.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-ditchfield.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Ditchfield</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-cinema-cinema.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-cinema-cinema.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Cinéma Cinéma</div><div class="projects-panel-card-cat">Entertainment</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-sovimage.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-sovimage.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Sovimage</div><div class="projects-panel-card-cat">Entertainment</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-quartier-molson.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-quartier-molson.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Quartier Molson</div><div class="projects-panel-card-cat">Construction and Real Estate</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-duceppe-2025-26.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-duceppe-2025-26.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Duceppe 2025-26</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-bonclub.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-bonclub.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Bonclub</div><div class="projects-panel-card-cat">Marketing &amp; Communication</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-modulor.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-modulor.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Modulor</div><div class="projects-panel-card-cat">Construction and Real Estate</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-palomosa.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-palomosa.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Palomosa</div><div class="projects-panel-card-cat">Music</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-grazy.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-grazy.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Grazy</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-potloc.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-potloc.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Potloc</div><div class="projects-panel-card-cat">Tech &amp; Innovation</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-laungani.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-laungani.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Dr Alexis Laungani</div><div class="projects-panel-card-cat">Health &amp; Wellness</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-miett.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-miett.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Miett</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-anais-maison-florale.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-anais-maison-florale.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Anaïs Maison Florale</div><div class="projects-panel-card-cat">Entertainment</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-fierte-montreal.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-fierte-montreal.jpg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Fierté Montréal</div><div class="projects-panel-card-cat">Nonprofit Organizations</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-cegep-marie-victorin.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-cegep-marie-victorin.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Cégep Marie-Victorin</div><div class="projects-panel-card-cat">Education</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-cantine-cotiere-branding.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-cantine-cotiere-branding.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Cantine Côtière</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-chez-saint-pierre-branding.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-chez-saint-pierre-branding.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Chez Saint-Pierre</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-montoni.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-montoni.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Montoni</div><div class="projects-panel-card-cat">Construction and Real Estate</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-jenaco.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-jenaco.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Jenaco</div><div class="projects-panel-card-cat">Construction and Real Estate</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-village-au-pied-du-courant.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-village-au-pied-du-courant.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Village au Pied-du-Courant</div><div class="projects-panel-card-cat">Music</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-piknic-electronik.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-piknic-electronik.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Piknic Électronik</div><div class="projects-panel-card-cat">Music</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-igloofest.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-igloofest.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Igloofest</div><div class="projects-panel-card-cat">Music</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-duceppe-campagne-2023-2024.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-duceppe-campagne-2023-2024.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Duceppe Season Campaign 23-24</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-equiterre.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-equiterre.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Équiterre</div><div class="projects-panel-card-cat">Nonprofit Organizations</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-gestisoft.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-gestisoft.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Gestisoft</div><div class="projects-panel-card-cat">Tech &amp; Innovation</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-duceppe-season-campaign-2022-2023.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-duceppe-season-campaign-2022-2023.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Duceppe Season Campaign 22-23</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-noba-solutions.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-noba-solutions.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Noba</div><div class="projects-panel-card-cat">Marketing &amp; Communication</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-ascension.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-ascension.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Ascension</div><div class="projects-panel-card-cat">Studios &amp; Agencies</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-gaspesien.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-gaspesien.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Gaspésien</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Branding Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-softstart.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-softstart.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Softstart</div><div class="projects-panel-card-cat">Tech &amp; Innovation</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-gusta.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-gusta.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Gusta</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-lndmrk.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-lndmrk.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">LNDMRK</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-on-secoute.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-on-secoute.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">On s'écoute</div><div class="projects-panel-card-cat">Education</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-the-workshop.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-the-workshop.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">The Workshop</div><div class="projects-panel-card-cat">Studios &amp; Agencies</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-miralis.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-miralis.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Miralis</div><div class="projects-panel-card-cat">Industries and Manufacturing</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-gen-v.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-gen-v.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Gen V</div><div class="projects-panel-card-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-musee-des-beaux-arts-de-montreal.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-musee-des-beaux-arts-de-montreal.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Montreal Museum of Fine Arts</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-intelcom.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-intelcom.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Intelcom</div><div class="projects-panel-card-cat">Transportation</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-phi.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-phi.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">PHI</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-23bis.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-23bis.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">23bis</div><div class="projects-panel-card-cat">Studios &amp; Agencies</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-consulat.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-consulat.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Consulat</div><div class="projects-panel-card-cat">Studios &amp; Agencies</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-maguire.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-maguire.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Maguire Shoes</div><div class="projects-panel-card-cat">Fashion and Beauty</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-cinematheque-quebecoise.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-cinematheque-quebecoise.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Cinémathèque québécoise</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-bravo-musique.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-bravo-musique.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Bravo musique</div><div class="projects-panel-card-cat">Music</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-duceppe-web.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-duceppe-web.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Duceppe</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-editions-bonsound.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-editions-bonsound.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Éditions Bonsound</div><div class="projects-panel-card-cat">Music</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-bonsound-label.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-bonsound-label.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Bonsound Label</div><div class="projects-panel-card-cat">Music</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Web Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-oenopole-refonte-2020.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-oenopole-refonte-2020.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Oenopole</div><div class="projects-panel-card-cat">Wines, Beers, and Spirits</div></div>
+					</div>
+				</a>
+				<a href="#" class="projects-panel-card" data-tabs="Content">
+					<div class="projects-panel-card-img"><img src="assets/images/proj-duceppe-2024-25.jpg" alt=""></div>
+					<div class="projects-panel-card-meta">
+						<img src="assets/images/logo-duceppe-2024-25.svg" alt="">
+						<div class="projects-panel-card-text"><div class="projects-panel-card-title">Duceppe 2024-25</div><div class="projects-panel-card-cat">Arts &amp; Culture</div></div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- ===== MAIN ===== -->
+	<main class="main">
+
+		<!-- WORK GRID (the reference site has no separate full-screen hero —
+		     the homepage IS the grid; only a brief ~1s stagger-in plays on load).
+		     Wrapped in .work-pin: .work is position:sticky inside it, so it
+		     stays glued to the viewport for exactly as long as the reel's
+		     grow+fade sequence needs — real scrollY still advances the whole
+		     time (driving the same progress math as before), it's just that
+		     the grid doesn't visibly scroll away until that sequence is
+		     actually done, instead of sliding off early and leaving blank
+		     space before .pitch arrives. -->
+		<!-- the reel: ONE video element, deliberately NOT nested inside
+		     .work. position:sticky on .work makes it its own stacking
+		     context, which was trapping #reelCard's z-index:5 so it only
+		     won comparisons *inside* .work — dragging .work's own opaque
+		     background along with it when compared against later
+		     sections (.pitch-grid etc). As a true top-level sibling here,
+		     its z-index:5 competes directly against them with nothing
+		     riding along. At rest it visually sits inside the grid, in
+		     column 4's slot (its true layout box is the invisible
+		     .reel-spacer inside .work, which reserves that space) — then
+		     on scroll it grows and moves to a centered, larger fixed
+		     overlay via a measured from/to rect (FLIP), so there's never
+		     a second/duplicate video anywhere. -->
+		<div class="reel-fixed" id="reelCard">
+			<div class="reel-expanded-content">
+				<h2>Product, UX &amp; Growth<br>Leader based in the India</h2>
+				<button class="hire-btn-wrap" id="reelTrigger" type="button">
+					<span class="hire-btn-bg"></span>
+					<span class="hire-btn">
+						<svg width="20" height="20" viewBox="0 0 21 20" fill="none"><path d="M5.5 15.2923C5.5 16.2639 6.55996 16.864 7.39312 16.3641L16.2136 11.0719C17.0227 10.5864 17.0227 9.41364 16.2136 8.92814L7.39312 3.63587C6.55996 3.13598 5.5 3.73612 5.5 4.70774V15.2923Z" fill="currentColor"/></svg>
+						Watch the reel 2026
+					</span>
+				</button>
+			</div>
+			<div class="card-media">
+				<video id="reelVideo" autoplay muted loop playsinline preload="auto" src="assets/video/hero.mp4"></video>
+			</div>
+		</div>
+
+		<div class="work-pin">
+		<section class="work" id="top">
+
+			<div class="masonry" id="masonry">
+				<!-- 7 explicit columns. Image choice, order, and aspect ratio
+				     per card are taken directly from the live reference's own
+				     DOM (measured x/y per image, grouped by column, sorted by
+				     y) — not invented placement. -->
+
+				<div class="gcol" style="--distance:3;--side:-1">
+					<div class="card" style="--ar:1" data-cycle="c1,c2"><div class="card-media"><img class="ph frame is-active" src="assets/images/ref-06.jpg" alt=""><img class="ph frame" src="assets/images/ref-08.jpg" alt=""></div></div>
+					<div class="card" style="--ar:0.563"><div class="card-media"><img class="ph" src="assets/images/ref-13.jpg" alt=""></div></div>
+					<div class="card" style="--ar:1"><div class="card-media"><img class="ph" src="assets/images/ref-05.jpg" alt=""></div></div>
+					<div class="card" style="--ar:4.3"><div class="card-media"><img class="ph" src="assets/images/ref-07.jpg" alt=""></div></div>
+				</div>
+
+				<div class="gcol" style="--distance:2;--side:-1">
+					<div class="card" style="--ar:0.565"><div class="card-media"><img class="ph" src="assets/images/ref-03.jpg" alt=""></div></div>
+					<div class="card" style="--ar:0.565"><div class="card-media"><img class="ph" src="assets/images/ref-12.jpg" alt=""></div></div>
+					<div class="card" style="--ar:1.6"><div class="card-media"><img class="ph" src="assets/images/ref-14.jpg" alt=""></div></div>
+				</div>
+
+				<div class="gcol" style="--distance:1;--side:-1">
+					<div class="card" style="--ar:0.926"><div class="card-media"><img class="ph" src="assets/images/ref-04.jpg" alt=""></div></div>
+					<div class="card" style="--ar:0.567"><div class="card-media"><img class="ph" src="assets/images/ref-08.jpg" alt=""></div></div>
+					<div class="card" style="--ar:0.76"><div class="card-media"><img class="ph" src="assets/images/ref-15.jpg" alt=""></div></div>
+				</div>
+
+				<div class="gcol gcol--main" style="--distance:0">
+					<div class="card" style="--ar:20"><div class="card-media"><img class="ph" src="assets/images/ref-19.jpg" alt=""></div></div>
+					<div class="card" style="--ar:0.498"><div class="card-media"><img class="ph" src="assets/images/ref-11.jpg" alt=""></div></div>
+
+					<!-- invisible spacer: reserves the video's rest-state
+					     layout box (size + gap to neighbors) inside the
+					     column flow. #reelCard (fixed, real video) is
+					     positioned to exactly cover this box at rest. -->
+					<div class="card reel-spacer" style="--ar:0.75" aria-hidden="true"><div class="card-media"></div></div>
+
+					<!-- skip-intro hint, in-flow right below the video card -->
+					<button class="scroll-hint" id="scrollHint" aria-label="Skip intro animation">
+						<svg width="24" height="24" viewBox="0 0 25 25" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.52092 5.8629C6.91144 5.47238 7.54461 5.47238 7.93513 5.8629L12.228 10.1558L16.5209 5.8629C16.9114 5.47238 17.5446 5.47238 17.9351 5.8629C18.3257 6.25342 18.3257 6.88659 17.9351 7.27711L12.9351 12.2771C12.5446 12.6676 11.9114 12.6676 11.5209 12.2771L6.52092 7.27711C6.1304 6.88659 6.1304 6.25342 6.52092 5.8629ZM6.52092 12.8629C6.91144 12.4724 7.54461 12.4724 7.93513 12.8629L12.228 17.1558L16.5209 12.8629C16.9114 12.4724 17.5446 12.4724 17.9351 12.8629C18.3257 13.2534 18.3257 13.8866 17.9351 14.2771L12.9351 19.2771C12.5446 19.6676 11.9114 19.6676 11.5209 19.2771L6.52092 14.2771C6.1304 13.8866 6.1304 13.2534 6.52092 12.8629Z" fill="currentColor"/></svg>
+					</button>
+				</div>
+
+				<div class="gcol" style="--distance:1;--side:1">
+					<div class="card" style="--ar:1"><div class="card-media"><img class="ph" src="assets/images/ref-01.jpg" alt=""></div></div>
+					<div class="card" style="--ar:0.565"><div class="card-media"><img class="ph" src="assets/images/ref-10.jpg" alt=""></div></div>
+					<div class="card" style="--ar:0.75"><div class="card-media"><img class="ph" src="assets/images/ref-16.jpg" alt=""></div></div>
+				</div>
+
+				<div class="gcol" style="--distance:2;--side:1">
+					<div class="card" style="--ar:1.333"><div class="card-media"><img class="ph" src="assets/images/ref-09.jpg" alt=""></div></div>
+					<div class="card" style="--ar:0.564"><div class="card-media"><img class="ph" src="assets/images/ref-02.jpg" alt=""></div></div>
+					<div class="card" style="--ar:0.62"><div class="card-media"><img class="ph" src="assets/images/ref-20.jpg" alt=""></div></div>
+				</div>
+
+				<div class="gcol" style="--distance:3;--side:1">
+					<div class="card" style="--ar:0.547"><div class="card-media"><img class="ph" src="assets/images/ref-17.jpg" alt=""></div></div>
+					<div class="card" style="--ar:0.563"><div class="card-media"><img class="ph" src="assets/images/ref-21.jpg" alt=""></div></div>
+					<div class="card" style="--ar:20"><div class="card-media"><img class="ph" src="assets/images/ref-18.jpg" alt=""></div></div>
+				</div>
+
+			</div>
+		</section>
+		</div>
+
+		<!-- Empty spacer, sized/positioned (via JS) to exactly match where
+		     the grown reel "docks" to once the user scrolls past it — see
+		     the docking comment in main.js. Reserves the document space so
+		     everything below (pitch copy, team ring, more sections) lands
+		     right after it with no overlap. -->
+		<div class="reel-landing" id="reelLanding"></div>
+
+		<!-- two-column pitch copy, same reference text as the real site,
+		     sitting directly below the video card -->
+		<section class="pitch-grid">
+			<p class="pitch-col">10+ years of product design experience across Nagarro, Samsung R&amp;D, and early-stage startups. Currently heading product at Y1, designing on the side, and writing—when something’s worth saying.</p>
+			<p class="pitch-col">Our promise? To make your brand sexy and smart—winning over your clients, market, and employees, while no doubt charming even the unconditionally loving eyes of your mom</p>
+		</section>
+
+		<!-- team ring + hire toggle — the "ring" and the colorful toggle
+		     background are each a single real image on the reference
+		     (not individually positioned avatars / not a CSS gradient),
+		     confirmed by inspecting the live DOM. The toggle is just a
+		     plain link styled as a pill; clicking anywhere on it opens
+		     the hire sub-page. -->
+		<section class="team">
+			<h2 class="team-heading">All the experts, one roof.<br>No more telephone games</h2>
+			<div class="team-ring">
+				<img class="team-glow" src="assets/images/team-glow.png" alt="" aria-hidden="true">
+				<img class="team-ring-img" src="assets/images/team-ring.png" alt="Our team">
+				<div class="team-center">
+					<p class="team-label">Save your spot. Let's hash out your next project.</p>
+					<a href="hire.html" class="team-toggle" aria-label="Hire him">
+						<span class="team-toggle-knob"></span>
+					</a>
+					<p class="team-label">We're all ears—no idea's too wild, no judgment here.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="pitch-grid">
+			<div class="pitch-col">
+				<p>Building your brand or website should be exciting—and it should deliver results…</p>
+				<p>Real talk.<br>Coordinating multiple studios or navigating big agencies can distort your vision and drain your time—energy that's better spent growing your business.<br>We get it.</p>
+			</div>
+			<div class="pitch-col">
+				<p>With 15 years of experience, we're the right size— not too big, not too small just right— the prowess of a world-class studio with the flexibility of a boutique agency—minus the headaches.</p>
+				<p>No telephone games. No energy drains. Just great work and good vibes. We make it all click.</p>
+			</div>
+		</section>
+
+		<!-- real "Hire us" button, confirmed via computed styles: 28px
+		     tall, 8px radius, #007AFF bg, white text — not a pill, and
+		     not the same button as the team-ring toggle. The faint
+		     grey backdrop layer only appears on hover (scales/fades in
+		     from 80% to 100%), it's invisible by default. -->
+		<div class="hire-cta">
+			<a href="hire.html" class="hire-btn-wrap">
+				<span class="hire-btn-bg"></span>
+				<span class="hire-btn">Hire him</span>
+			</a>
+		</div>
+
+		<!-- "simple and effective formula" section — exact structure and
+		     copy confirmed via CDP inspection of the live reference -->
+		<section class="formula">
+			<h3 class="formula-label">A simple and effective formula.</h3>
+			<h2 class="formula-heading">Sexy first. Smart always.<br>A strategy 500 million years in the making.</h2>
+			<div class="formula-grid">
+				<div class="formula-col">
+					<p>"Sexy &amp; Smart" is what we call our 100% organic approach, inspired by the ultimate strategist: Mother Nature.</p>
+					<p>From dazzling feathers to hypnotic calls, every species in the animal kingdom uses standout traits to attract attention and ensure survival. Seduction isn't just instinct—it's evolution.</p>
+					<p>For your brand, seduction is the key to success.</p>
+				</div>
+				<div class="formula-col">
+					<p>By making you irresistible at first glance, we captivate your audience. If the moment feels right, they'll take the next step: engaging with your offer.</p>
+					<p>It's how the brain works. First, fast and intuitive decisions (System 1), then deeper, logical reasoning (System 2)—but that's a story for another day.</p>
+					<p>Hook them with "Sexy." Seal the deal with "Smart." It's a winning strategy for your brand—and who knows, maybe your next date too.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- "Check out our latest projects" — content, images, logos all
+		     cloned directly from the reference; sizes/colors confirmed
+		     via computed-style inspection (16px header, #007AFF link,
+		     724px/4-col grid, 16px image radius, 8px logo radius). -->
+		<section class="projects">
+			<div class="projects-header">
+				<h2>Check out our latest projects</h2>
+				<a href="#" class="projects-all">
+					All
+					<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg>
+				</a>
+			</div>
+			<div class="projects-grid">
+				<a href="#" class="project-card">
+					<div class="project-img"><img src="assets/images/proj-chialove.png" alt=""></div>
+					<div class="project-meta">
+						<img class="project-logo" src="assets/images/logo-chialove.svg" alt="">
+						<div class="project-text"><div class="project-title">Chialove</div><div class="project-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="project-card">
+					<div class="project-img"><img src="assets/images/proj-clefdeschamps.png" alt=""></div>
+					<div class="project-meta">
+						<img class="project-logo" src="assets/images/logo-clefdeschamps.svg" alt="">
+						<div class="project-text"><div class="project-title">Clef des Champs</div><div class="project-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="project-card">
+					<div class="project-img"><img src="assets/images/proj-ditchfield.png" alt=""></div>
+					<div class="project-meta">
+						<img class="project-logo" src="assets/images/logo-ditchfield.svg" alt="">
+						<div class="project-text"><div class="project-title">Ditchfield</div><div class="project-cat">Food &amp; Drink</div></div>
+					</div>
+				</a>
+				<a href="#" class="project-card">
+					<div class="project-img"><img src="assets/images/proj-cinemacinema.png" alt=""></div>
+					<div class="project-meta">
+						<img class="project-logo" src="assets/images/logo-cinemacinema.svg" alt="">
+						<div class="project-text"><div class="project-title">Cinéma Cinéma</div><div class="project-cat">Entertainment</div></div>
+					</div>
+				</a>
+			</div>
+		</section>
+
+		<!-- "challenger brands" section — same 480px-wide heading+2-col-text
+		     pattern as the formula section above (confirmed identical
+		     structure on the reference), real copy, no separate label -->
+		<section class="formula">
+			<h2 class="formula-heading" style="padding-top:0">We help challenger brands of all sizes take on—and unseat—market leaders.</h2>
+			<div class="formula-grid">
+				<div class="formula-col">
+					<p>Market leaders, in their bid to protect their turf, often grow cautious—too cautious. They hesitate to innovate, playing it safe until their defensive stance becomes their downfall.</p>
+					<p>That's where challengers come in. Bold, rule-breaking, and unafraid to disrupt the market, challengers know different results require different moves.</p>
+				</div>
+				<div class="formula-col">
+					<p>And here you are.</p>
+					<p>Not browsing a traditional agency's website, but ours. That says a lot about your ambitions.</p>
+					<p>You're a challenger. And, we're the ally who'll help you shake up your competitors—and take their place.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- service cards — real images + copy cloned from the reference;
+		     card size (225x281), bg color (rgb(255,248,81)), h4 style
+		     a true 3x3 grid, not a scroll row (confirmed by measuring all
+		     9 card positions: 3 distinct x values x 3 distinct y values).
+		     Card internals (title pinned to top, category+arrow pinned
+		     to bottom via justify-between, 4:5 aspect-ratio) confirmed
+		     via the reference's full card HTML, not guessed. -->
+		<section class="services">
+			<!-- plain divider bar, no heading text — confirmed on the
+			     reference: same 484px/48px/border style as the projects
+			     header above, but empty -->
+			<div class="services-divider"></div>
+			<div class="services-row">
+				<div class="service-card">
+					<div class="service-img" style="background-image:url(assets/images/svc-brandidentity.png)">
+						<div class="service-card-inner">
+							<h4>Make a bold move by launching your business with a standout identity.</h4>
+							<div class="service-card-foot">
+								<h3>Brand Identity</h3>
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="service-card">
+					<div class="service-img" style="background-image:url(assets/images/svc-creativecontent.png)">
+						<div class="service-card-inner">
+							<h4>Become an Instagram (or anywhere) star with content that catches eyes and hearts.</h4>
+							<div class="service-card-foot">
+								<h3>Creative Brand Content</h3>
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="service-card">
+					<div class="service-img" style="background-image:url(assets/images/svc-creativecontent.png)">
+						<div class="service-card-inner">
+							<h4>Reposition your brand to reflect your new vision.</h4>
+							<div class="service-card-foot">
+								<h3>Brand Strategy</h3>
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="service-card">
+					<div class="service-img" style="background-image:url(assets/images/svc-branding.png)">
+						<div class="service-card-inner">
+							<h4>Refresh your cool with an updated brand image.</h4>
+							<div class="service-card-foot">
+								<h3>Branding</h3>
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="service-card">
+					<div class="service-img" style="background-image:url(assets/images/svc-designsystem.png)">
+						<div class="service-card-inner">
+							<h4>Unite your team around a clear and easy-to-use brand.</h4>
+							<div class="service-card-foot">
+								<h3>Design System and Brand Guide</h3>
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="service-card">
+					<div class="service-img" style="background-image:url(assets/images/svc-brandsystem.png)">
+						<div class="service-card-inner">
+							<h4>Give yourself the freedom to create content without depending on anyone.</h4>
+							<div class="service-card-foot">
+								<h3>Brand System</h3>
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="service-card">
+					<div class="service-img" style="background-image:url(assets/images/svc-brandidentity.png)">
+						<div class="service-card-inner">
+							<h4>Align your vision with your partners' through brand therapy.</h4>
+							<div class="service-card-foot">
+								<h3>Brand Therapy</h3>
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="service-card">
+					<div class="service-img" style="background-image:url(assets/images/svc-website.png)">
+						<div class="service-card-inner">
+							<h4>Elevate your website to a premium level to inspire trust and boost your credibility.</h4>
+							<div class="service-card-foot">
+								<h3>Website</h3>
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="service-card">
+					<div class="service-img" style="background-image:url(assets/images/svc-webplatform.png)">
+						<div class="service-card-inner">
+							<h4>Build a digital platform that grows at the same pace as your business.</h4>
+							<div class="service-card-foot">
+								<h3>Web Platform</h3>
+								<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.52925 2.86195C7.2689 3.1223 7.2689 3.54441 7.52925 3.80476L11.0578 7.33335H3.33398C2.96579 7.33335 2.66732 7.63183 2.66732 8.00002C2.66732 8.36821 2.96579 8.66669 3.33398 8.66669H11.0578L7.52925 12.1953C7.2689 12.4556 7.2689 12.8777 7.52925 13.1381C7.7896 13.3984 8.21171 13.3984 8.47206 13.1381L13.1387 8.47142C13.3991 8.21108 13.3991 7.78896 13.1387 7.52862L8.47206 2.86195C8.21171 2.6016 7.7896 2.6016 7.52925 2.86195Z" fill="currentColor"/></svg>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- "What's it like working with us?" — heading style (480px,
+		     32px/600, left-aligned) confirmed same as the other prose
+		     sections; video is 484px wide, 9:16, 12px radius, object-fit
+		     cover, all confirmed directly on the reference -->
+		<section class="formula">
+			<h2 class="formula-heading" style="padding-top:0">What's it like working<br>with Saket?</h2>
+			<div class="formula-grid">
+				<div class="formula-col">
+					<p>Sure, listening might not sound like the flashiest reason to trust us with your project—but it's the one our clients rave about the most.</p>
+					<p>They'll tell you: it's that attention to detail, that focus on <em>you</em>, that makes all the difference.</p>
+				</div>
+				<div class="formula-col">
+					<p>Pair that with a collaborative, trust-filled vibe, and you've got the secret sauce to unlocking the best from our team.</p>
+					<p>And it's not just about delivering high-performing projects (though we do that too). It's about creating a process that's rewarding, fun, and often opens the door to unexpected opportunities you didn't see coming.</p>
+				</div>
+			</div>
+		</section>
+		<section class="working-video-section">
+			<video class="working-video" autoplay muted loop playsinline src="assets/video/frame.mp4"></video>
+		</section>
+
+		<!-- "Deux Huit Huit in a nutshell" stats footer — heading, all 10
+		     rows (icon+label+value), and every value cloned directly
+		     from the reference's own DOM, not invented -->
+		<footer class="nutshell">
+			<h2 class="formula-heading" style="padding-top:0">Saket Raushan in a nutshell</h2>
+			<div class="nutshell-rows">
+				<div class="nutshell-row">
+					<h3><svg width="12" height="13" viewBox="0 0 12 13" fill="none"><path d="M6 0.588379C4.81331 0.588379 3.65328 0.940273 2.66658 1.59956C1.67989 2.25885 0.910851 3.19592 0.456725 4.29228C0.00259969 5.38863 -0.11622 6.59503 0.115291 7.75892C0.346802 8.92281 0.918247 9.99191 1.75736 10.831C2.59648 11.6701 3.66558 12.2416 4.82946 12.4731C5.99335 12.7046 7.19975 12.5858 8.2961 12.1317C9.39246 11.6775 10.3295 10.9085 10.9888 9.9218C11.6481 8.93511 12 7.77507 12 6.58838C11.9953 4.99854 11.3616 3.47517 10.2374 2.35098C9.11321 1.22679 7.58984 0.593127 6 0.588379ZM9 7.33838H6C5.80109 7.33838 5.61033 7.25936 5.46967 7.11871C5.32902 6.97806 5.25 6.78729 5.25 6.58838V3.58838C5.25 3.38947 5.32902 3.1987 5.46967 3.05805C5.61033 2.9174 5.80109 2.83838 6 2.83838C6.19892 2.83838 6.38968 2.9174 6.53033 3.05805C6.67099 3.1987 6.75 3.38947 6.75 3.58838V5.83838H9C9.19892 5.83838 9.38968 5.9174 9.53033 6.05805C9.67099 6.1987 9.75 6.38947 9.75 6.58838C9.75 6.78729 9.67099 6.97806 9.53033 7.11871C9.38968 7.25936 9.19892 7.33838 9 7.33838Z" fill="currentColor"/></svg>Creation</h3>
+					<div>December 2010</div>
+				</div>
+				<div class="nutshell-row">
+					<h3><svg width="12" height="13" viewBox="0 0 12 13" fill="none"><g clip-path="url(#svc1)"><path d="M6 12.5884C4.81331 12.5884 3.65328 12.2365 2.66658 11.5772C1.67989 10.9179 0.910851 9.98084 0.456726 8.88448C0.00259972 7.78813 -0.11622 6.58173 0.115291 5.41784C0.346802 4.25395 0.918247 3.18486 1.75736 2.34574C2.59648 1.50663 3.66558 0.935181 4.82946 0.70367C5.99335 0.472159 7.19975 0.590979 8.2961 1.0451C9.39246 1.49923 10.3295 2.26827 10.9888 3.25496C11.6481 4.24165 12 5.40169 12 6.58838C11.9984 8.17919 11.3658 9.70439 10.2409 10.8293C9.11602 11.9541 7.59081 12.5868 6 12.5884ZM6 2.58838C5.20888 2.58838 4.43552 2.82298 3.77772 3.2625C3.11993 3.70203 2.60724 4.32674 2.30448 5.05765C2.00173 5.78855 1.92252 6.59282 2.07686 7.36874C2.2312 8.14467 2.61217 8.8574 3.17158 9.41681C3.73099 9.97622 4.44372 10.3572 5.21964 10.5115C5.99557 10.6659 6.79983 10.5867 7.53074 10.2839C8.26164 9.98115 8.88636 9.46846 9.32588 8.81066C9.76541 8.15287 10 7.37951 10 6.58838C10 5.52752 9.57858 4.5101 8.82843 3.75995C8.07828 3.00981 7.06087 2.58838 6 2.58838Z" fill="currentColor"/><path d="M6 8.58838C7.10457 8.58838 8 7.69295 8 6.58838C8 5.48381 7.10457 4.58838 6 4.58838C4.89543 4.58838 4 5.48381 4 6.58838C4 7.69295 4.89543 8.58838 6 8.58838Z" fill="currentColor"/></g><defs><clipPath id="svc1"><rect width="12" height="12" fill="white" transform="translate(0 0.588379)"/></clipPath></defs></svg>Services</h3>
+					<div>Design System and Brand Guide<br>Brand Strategy<br>Branding<br>Website &amp; Platform<br>Creative Content</div>
+				</div>
+				<div class="nutshell-row">
+					<h3><svg width="12" height="13" viewBox="0 0 12 13" fill="none"><g clip-path="url(#svc2)"><path d="M6 6.58838C7.65685 6.58838 9 5.24523 9 3.58838C9 1.93152 7.65685 0.588379 6 0.588379C4.34315 0.588379 3 1.93152 3 3.58838C3 5.24523 4.34315 6.58838 6 6.58838Z" fill="currentColor"/><path d="M6 7.58838C2.625 7.58838 1 9.69438 1 10.9214V11.5884C1 11.8536 1.10536 12.1079 1.29289 12.2955C1.48043 12.483 1.73478 12.5884 2 12.5884H10C10.2652 12.5884 10.5196 12.483 10.7071 12.2955C10.8946 12.1079 11 11.8536 11 11.5884V10.9214C11 9.69438 9.375 7.58838 6 7.58838Z" fill="currentColor"/></g><defs><clipPath id="svc2"><rect width="12" height="12" fill="white" transform="translate(0 0.588379)"/></clipPath></defs></svg>Clients</h3>
+					<div>344</div>
+				</div>
+				<div class="nutshell-row">
+					<h3><svg width="12" height="13" viewBox="0 0 12 13" fill="none"><g clip-path="url(#svc3)"><path d="M6 6.58838C7.65685 6.58838 9 5.24523 9 3.58838C9 1.93152 7.65685 0.588379 6 0.588379C4.34315 0.588379 3 1.93152 3 3.58838C3 5.24523 4.34315 6.58838 6 6.58838Z" fill="currentColor"/><path d="M6 7.58838C2.625 7.58838 1 9.69438 1 10.9214V11.5884C1 11.8536 1.10536 12.1079 1.29289 12.2955C1.48043 12.483 1.73478 12.5884 2 12.5884H10C10.2652 12.5884 10.5196 12.483 10.7071 12.2955C10.8946 12.1079 11 11.8536 11 11.5884V10.9214C11 9.69438 9.375 7.58838 6 7.58838Z" fill="currentColor"/></g><defs><clipPath id="svc3"><rect width="12" height="12" fill="white" transform="translate(0 0.588379)"/></clipPath></defs></svg>Branding projects</h3>
+					<div>107</div>
+				</div>
+				<div class="nutshell-row">
+					<h3><svg width="12" height="13" viewBox="0 0 12 13" fill="none"><g clip-path="url(#svc4)"><path d="M6 6.58838C7.65685 6.58838 9 5.24523 9 3.58838C9 1.93152 7.65685 0.588379 6 0.588379C4.34315 0.588379 3 1.93152 3 3.58838C3 5.24523 4.34315 6.58838 6 6.58838Z" fill="currentColor"/><path d="M6 7.58838C2.625 7.58838 1 9.69438 1 10.9214V11.5884C1 11.8536 1.10536 12.1079 1.29289 12.2955C1.48043 12.483 1.73478 12.5884 2 12.5884H10C10.2652 12.5884 10.5196 12.483 10.7071 12.2955C10.8946 12.1079 11 11.8536 11 11.5884V10.9214C11 9.69438 9.375 7.58838 6 7.58838Z" fill="currentColor"/></g><defs><clipPath id="svc4"><rect width="12" height="12" fill="white" transform="translate(0 0.588379)"/></clipPath></defs></svg>Web projects</h3>
+					<div>279</div>
+				</div>
+				<div class="nutshell-row">
+					<h3><svg width="12" height="13" viewBox="0 0 12 13" fill="none"><g clip-path="url(#svc5)"><path d="M11 3.58858H9.62L9.98 1.78858C10.0063 1.65989 10.0069 1.52728 9.98194 1.39833C9.95695 1.26938 9.90682 1.14661 9.83439 1.03704C9.76196 0.927466 9.66865 0.833232 9.55981 0.759718C9.45096 0.686203 9.3287 0.634847 9.2 0.608583C8.94009 0.55554 8.66975 0.607918 8.44846 0.754197C8.22716 0.900475 8.07304 1.12867 8.02 1.38858L7.58 3.58858H5.62L5.98 1.78858C6.00626 1.65989 6.00692 1.52728 5.98194 1.39833C5.95695 1.26938 5.90682 1.14661 5.83439 1.03704C5.68811 0.815747 5.45991 0.661626 5.2 0.608583C5.0713 0.582318 4.9387 0.58166 4.80975 0.606644C4.6808 0.631629 4.55803 0.681767 4.44846 0.754197C4.22716 0.900475 4.07304 1.12867 4.02 1.38858L3.58 3.58858H2C1.73478 3.58858 1.48043 3.69394 1.29289 3.88148C1.10536 4.06901 1 4.32337 1 4.58858C1 4.8538 1.10536 5.10815 1.29289 5.29569C1.48043 5.48323 1.73478 5.58858 2 5.58858H3.18L2.78 7.58858H1C0.734784 7.58858 0.48043 7.69394 0.292893 7.88148C0.105357 8.06901 0 8.32337 0 8.58858C0 8.8538 0.105357 9.10815 0.292893 9.29569C0.48043 9.48323 0.734784 9.58858 1 9.58858H2.38L2.02 11.3886C1.99371 11.5173 1.99303 11.6499 2.018 11.7789C2.04298 11.9078 2.09311 12.0306 2.16554 12.1402C2.23798 12.2498 2.33129 12.344 2.44015 12.4175C2.54901 12.491 2.67129 12.5423 2.8 12.5686C2.86577 12.5823 2.93281 12.589 3 12.5886C3.23036 12.5884 3.45359 12.5087 3.63197 12.3629C3.81035 12.2172 3.93293 12.0143 3.979 11.7886L4.42 9.58858H6.38L6.02 11.3886C5.99371 11.5173 5.99303 11.6499 6.018 11.7789C6.04298 11.9078 6.09311 12.0306 6.16554 12.1402C6.23798 12.2498 6.33129 12.344 6.44015 12.4175C6.54901 12.491 6.67129 12.5423 6.8 12.5686C6.86577 12.5823 6.93281 12.589 7 12.5886C7.23036 12.5884 7.45359 12.5087 7.63197 12.3629C7.81035 12.2172 7.93293 12.0143 7.979 11.7886L8.42 9.58858H10C10.2652 9.58858 10.5196 9.48323 10.7071 9.29569C10.8946 9.10815 11 8.8538 11 8.58858C11 8.32337 10.8946 8.06901 10.7071 7.88148C10.5196 7.69394 10.2652 7.58858 10 7.58858H8.82L9.22 5.58858H11C11.2652 5.58858 11.5196 5.48323 11.7071 5.29569C11.8946 5.10815 12 4.8538 12 4.58858C12 4.32337 11.8946 4.06901 11.7071 3.88148C11.5196 3.69394 11.2652 3.58858 11 3.58858ZM6.78 7.58858H4.82L5.22 5.58858H7.18L6.78 7.58858Z" fill="currentColor"/></g><defs><clipPath id="svc5"><rect width="12" height="12" fill="white" transform="translate(0 0.588379)"/></clipPath></defs></svg>Industries we serve</h3>
+					<div>All</div>
+				</div>
+				<div class="nutshell-row">
+					<h3><svg width="12" height="13" viewBox="0 0 12 13" fill="none"><g clip-path="url(#svc6)"><path d="M9.956 5.08774H6.731V2.08774C6.75747 1.91722 6.75009 1.74315 6.70928 1.57548C6.66847 1.40782 6.59504 1.24983 6.49317 1.11054C6.39131 0.971247 6.263 0.853387 6.11558 0.763686C5.96817 0.673984 5.80452 0.614199 5.634 0.587742C5.50146 0.567107 5.36654 0.567107 5.234 0.587742C5.12909 0.594984 5.02912 0.635121 4.94834 0.702445C4.86755 0.76977 4.81004 0.860853 4.784 0.962742L3 6.58774V12.5877H9.431C9.9079 12.5785 10.366 12.3999 10.7232 12.0839C11.0805 11.7678 11.3137 11.335 11.381 10.8627L11.981 7.41274C12.0282 7.13327 12.0123 6.84678 11.9344 6.57426C11.8566 6.30173 11.7187 6.05008 11.531 5.83774C11.3484 5.59496 11.1098 5.39995 10.8356 5.26935C10.5613 5.13876 10.2596 5.07645 9.956 5.08774Z" fill="currentColor"/><path d="M0.5 6.58789H2V12.5879H0.5C0.367392 12.5879 0.240215 12.5352 0.146447 12.4414C0.0526784 12.3477 0 12.2205 0 12.0879V7.08789C0 6.95528 0.0526784 6.82811 0.146447 6.73434C0.240215 6.64057 0.367392 6.58789 0.5 6.58789Z" fill="currentColor"/></g><defs><clipPath id="svc6"><rect width="12" height="12" fill="white" transform="translate(0 0.587891)"/></clipPath></defs></svg>Leadership</h3>
+					<ul class="nutshell-list">
+						<li class="nutshell-person"><img src="assets/images/avatar-gabrielle.png" alt=""><span>Gabrielle Normand-Viau<br>Partner — General Manager</span></li>
+						<li class="nutshell-person"><img src="assets/images/avatar-alex.png" alt=""><span>Alex Leduc<br>Partner — Founder, Chief Design Officer</span></li>
+						<li class="nutshell-person"><img src="assets/images/avatar-nicolas.png" alt=""><span>Nicolas Brassard-Ferron<br>Partner — Chief Technical Director</span></li>
+					</ul>
+				</div>
+				<div class="nutshell-row">
+					<h3><svg width="12" height="13" viewBox="0 0 12 13" fill="none"><g clip-path="url(#svc7)"><path d="M9.956 5.08774H6.731V2.08774C6.75747 1.91722 6.75009 1.74315 6.70928 1.57548C6.66847 1.40782 6.59504 1.24983 6.49317 1.11054C6.39131 0.971247 6.263 0.853387 6.11558 0.763686C5.96817 0.673984 5.80452 0.614199 5.634 0.587742C5.50146 0.567107 5.36654 0.567107 5.234 0.587742C5.12909 0.594984 5.02912 0.635121 4.94834 0.702445C4.86755 0.76977 4.81004 0.860853 4.784 0.962742L3 6.58774V12.5877H9.431C9.9079 12.5785 10.366 12.3999 10.7232 12.0839C11.0805 11.7678 11.3137 11.335 11.381 10.8627L11.981 7.41274C12.0282 7.13327 12.0123 6.84678 11.9344 6.57426C11.8566 6.30173 11.7187 6.05008 11.531 5.83774C11.3484 5.59496 11.1098 5.39995 10.8356 5.26935C10.5613 5.13876 10.2596 5.07645 9.956 5.08774Z" fill="currentColor"/><path d="M0.5 6.58789H2V12.5879H0.5C0.367392 12.5879 0.240215 12.5352 0.146447 12.4414C0.0526784 12.3477 0 12.2205 0 12.0879V7.08789C0 6.95528 0.0526784 6.82811 0.146447 6.73434C0.240215 6.64057 0.367392 6.58789 0.5 6.58789Z" fill="currentColor"/></g><defs><clipPath id="svc7"><rect width="12" height="12" fill="white" transform="translate(0 0.587891)"/></clipPath></defs></svg>Creative Director</h3>
+					<div>Anne Sylvestre</div>
+				</div>
+				<div class="nutshell-row">
+					<h3><svg width="12" height="13" viewBox="0 0 12 13" fill="none"><g clip-path="url(#svc8)"><path d="M9.956 5.08774H6.731V2.08774C6.75747 1.91722 6.75009 1.74315 6.70928 1.57548C6.66847 1.40782 6.59504 1.24983 6.49317 1.11054C6.39131 0.971247 6.263 0.853387 6.11558 0.763686C5.96817 0.673984 5.80452 0.614199 5.634 0.587742C5.50146 0.567107 5.36654 0.567107 5.234 0.587742C5.12909 0.594984 5.02912 0.635121 4.94834 0.702445C4.86755 0.76977 4.81004 0.860853 4.784 0.962742L3 6.58774V12.5877H9.431C9.9079 12.5785 10.366 12.3999 10.7232 12.0839C11.0805 11.7678 11.3137 11.335 11.381 10.8627L11.981 7.41274C12.0282 7.13327 12.0123 6.84678 11.9344 6.57426C11.8566 6.30173 11.7187 6.05008 11.531 5.83774C11.3484 5.59496 11.1098 5.39995 10.8356 5.26935C10.5613 5.13876 10.2596 5.07645 9.956 5.08774Z" fill="currentColor"/><path d="M0.5 6.58789H2V12.5879H0.5C0.367392 12.5879 0.240215 12.5352 0.146447 12.4414C0.0526784 12.3477 0 12.2205 0 12.0879V7.08789C0 6.95528 0.0526784 6.82811 0.146447 6.73434C0.240215 6.64057 0.367392 6.58789 0.5 6.58789Z" fill="currentColor"/></g><defs><clipPath id="svc8"><rect width="12" height="12" fill="white" transform="translate(0 0.587891)"/></clipPath></defs></svg>Experts</h3>
+					<div>23</div>
+				</div>
+				<div class="nutshell-row">
+					<h3><svg width="12" height="13" viewBox="0 0 12 13" fill="none"><path d="M1.29279 11.2949C1.48031 11.4824 1.73462 11.5877 1.99979 11.5877C2.26495 11.5877 2.51926 11.4824 2.70679 11.2949L7.85379 6.14889L10.1458 8.44189C10.1923 8.48829 10.2475 8.52507 10.3083 8.55012C10.369 8.57517 10.4341 8.58801 10.4998 8.58789C10.5654 8.58816 10.6303 8.57524 10.6908 8.54989C10.7822 8.5121 10.8604 8.44802 10.9154 8.36578C10.9704 8.28354 10.9998 8.18683 10.9998 8.08789V2.08789C10.9998 1.95528 10.9471 1.82811 10.8533 1.73434C10.7596 1.64057 10.6324 1.58789 10.4998 1.58789H4.49979C4.40077 1.58771 4.30392 1.61694 4.22153 1.67187C4.13914 1.7268 4.07492 1.80495 4.037 1.89643C3.99908 1.9879 3.98918 2.08857 4.00855 2.18568C4.02792 2.28279 4.07568 2.37196 4.14579 2.44189L6.43879 4.73389L1.29279 9.88089C1.10532 10.0684 1 10.3227 1 10.5879C1 10.8531 1.10532 11.1074 1.29279 11.2949Z" fill="currentColor"/></svg>Online presence</h3>
+					<ul class="nutshell-list">
+						<li><a href="https://www.instagram.com/DeuxHuitHuit/" target="_blank" rel="noopener noreferrer">Instagram<svg width="16" height="17" viewBox="0 0 16 17" fill="none"><path d="M2.34155 13.991C0.258753 11.9082 0.258753 8.53129 2.34155 6.44849L2.57725 6.21279C2.96778 5.82226 3.60094 5.82226 3.99146 6.21279C4.38199 6.60331 4.38199 7.23648 3.99146 7.627L3.75576 7.8627C2.45401 9.16445 2.45401 11.275 3.75576 12.5767C5.05751 13.8785 7.16806 13.8785 8.46981 12.5767L8.70551 12.341C9.09603 11.9505 9.7292 11.9505 10.1197 12.341C10.5102 12.7316 10.5102 13.3647 10.1197 13.7553L9.88402 13.991C7.80123 16.0738 4.42434 16.0738 2.34155 13.991Z" fill="currentColor"/><path d="M5.64138 10.6911C5.25086 10.3006 5.25086 9.66744 5.64138 9.27692L8.94121 5.97709C9.33174 5.58656 9.9649 5.58656 10.3554 5.97709C10.746 6.36761 10.7459 7.00078 10.3554 7.3913L7.05559 10.6911C6.66507 11.0817 6.0319 11.0817 5.64138 10.6911Z" fill="currentColor"/><path d="M6.11278 2.67725C8.19558 0.594457 11.5725 0.594457 13.6553 2.67725C15.7381 4.76005 15.7381 8.13693 13.6553 10.2197L13.4196 10.4554C13.029 10.846 12.3959 10.846 12.0053 10.4554C11.6148 10.0649 11.6148 9.43174 12.0053 9.04122L12.241 8.80551C13.5428 7.50377 13.5428 5.39322 12.241 4.09147C10.9393 2.78972 8.82875 2.78972 7.527 4.09147L7.2913 4.32717C6.90077 4.71769 6.26761 4.71769 5.87708 4.32717C5.48656 3.93665 5.48656 3.30348 5.87708 2.91296L6.11278 2.67725Z" fill="currentColor"/></svg></a></li>
+						<li><a href="https://www.behance.net/DeuxHuitHuit" target="_blank" rel="noopener noreferrer">Behance<svg width="16" height="17" viewBox="0 0 16 17" fill="none"><path d="M2.34155 13.991C0.258753 11.9082 0.258753 8.53129 2.34155 6.44849L2.57725 6.21279C2.96778 5.82226 3.60094 5.82226 3.99146 6.21279C4.38199 6.60331 4.38199 7.23648 3.99146 7.627L3.75576 7.8627C2.45401 9.16445 2.45401 11.275 3.75576 12.5767C5.05751 13.8785 7.16806 13.8785 8.46981 12.5767L8.70551 12.341C9.09603 11.9505 9.7292 11.9505 10.1197 12.341C10.5102 12.7316 10.5102 13.3647 10.1197 13.7553L9.88402 13.991C7.80123 16.0738 4.42434 16.0738 2.34155 13.991Z" fill="currentColor"/><path d="M5.64138 10.6911C5.25086 10.3006 5.25086 9.66744 5.64138 9.27692L8.94121 5.97709C9.33174 5.58656 9.9649 5.58656 10.3554 5.97709C10.746 6.36761 10.7459 7.00078 10.3554 7.3913L7.05559 10.6911C6.66507 11.0817 6.0319 11.0817 5.64138 10.6911Z" fill="currentColor"/><path d="M6.11278 2.67725C8.19558 0.594457 11.5725 0.594457 13.6553 2.67725C15.7381 4.76005 15.7381 8.13693 13.6553 10.2197L13.4196 10.4554C13.029 10.846 12.3959 10.846 12.0053 10.4554C11.6148 10.0649 11.6148 9.43174 12.0053 9.04122L12.241 8.80551C13.5428 7.50377 13.5428 5.39322 12.241 4.09147C10.9393 2.78972 8.82875 2.78972 7.527 4.09147L7.2913 4.32717C6.90077 4.71769 6.26761 4.71769 5.87708 4.32717C5.48656 3.93665 5.48656 3.30348 5.87708 2.91296L6.11278 2.67725Z" fill="currentColor"/></svg></a></li>
+						<li><a href="https://github.com/DeuxHuitHuit" target="_blank" rel="noopener noreferrer">Github<svg width="16" height="17" viewBox="0 0 16 17" fill="none"><path d="M2.34155 13.991C0.258753 11.9082 0.258753 8.53129 2.34155 6.44849L2.57725 6.21279C2.96778 5.82226 3.60094 5.82226 3.99146 6.21279C4.38199 6.60331 4.38199 7.23648 3.99146 7.627L3.75576 7.8627C2.45401 9.16445 2.45401 11.275 3.75576 12.5767C5.05751 13.8785 7.16806 13.8785 8.46981 12.5767L8.70551 12.341C9.09603 11.9505 9.7292 11.9505 10.1197 12.341C10.5102 12.7316 10.5102 13.3647 10.1197 13.7553L9.88402 13.991C7.80123 16.0738 4.42434 16.0738 2.34155 13.991Z" fill="currentColor"/><path d="M5.64138 10.6911C5.25086 10.3006 5.25086 9.66744 5.64138 9.27692L8.94121 5.97709C9.33174 5.58656 9.9649 5.58656 10.3554 5.97709C10.746 6.36761 10.7459 7.00078 10.3554 7.3913L7.05559 10.6911C6.66507 11.0817 6.0319 11.0817 5.64138 10.6911Z" fill="currentColor"/><path d="M6.11278 2.67725C8.19558 0.594457 11.5725 0.594457 13.6553 2.67725C15.7381 4.76005 15.7381 8.13693 13.6553 10.2197L13.4196 10.4554C13.029 10.846 12.3959 10.846 12.0053 10.4554C11.6148 10.0649 11.6148 9.43174 12.0053 9.04122L12.241 8.80551C13.5428 7.50377 13.5428 5.39322 12.241 4.09147C10.9393 2.78972 8.82875 2.78972 7.527 4.09147L7.2913 4.32717C6.90077 4.71769 6.26761 4.71769 5.87708 4.32717C5.48656 3.93665 5.48656 3.30348 5.87708 2.91296L6.11278 2.67725Z" fill="currentColor"/></svg></a></li>
+						<li><a href="https://ca.linkedin.com/company/deux-huit-huit" target="_blank" rel="noopener noreferrer">LinkedIn<svg width="16" height="17" viewBox="0 0 16 17" fill="none"><path d="M2.34155 13.991C0.258753 11.9082 0.258753 8.53129 2.34155 6.44849L2.57725 6.21279C2.96778 5.82226 3.60094 5.82226 3.99146 6.21279C4.38199 6.60331 4.38199 7.23648 3.99146 7.627L3.75576 7.8627C2.45401 9.16445 2.45401 11.275 3.75576 12.5767C5.05751 13.8785 7.16806 13.8785 8.46981 12.5767L8.70551 12.341C9.09603 11.9505 9.7292 11.9505 10.1197 12.341C10.5102 12.7316 10.5102 13.3647 10.1197 13.7553L9.88402 13.991C7.80123 16.0738 4.42434 16.0738 2.34155 13.991Z" fill="currentColor"/><path d="M5.64138 10.6911C5.25086 10.3006 5.25086 9.66744 5.64138 9.27692L8.94121 5.97709C9.33174 5.58656 9.9649 5.58656 10.3554 5.97709C10.746 6.36761 10.7459 7.00078 10.3554 7.3913L7.05559 10.6911C6.66507 11.0817 6.0319 11.0817 5.64138 10.6911Z" fill="currentColor"/><path d="M6.11278 2.67725C8.19558 0.594457 11.5725 0.594457 13.6553 2.67725C15.7381 4.76005 15.7381 8.13693 13.6553 10.2197L13.4196 10.4554C13.029 10.846 12.3959 10.846 12.0053 10.4554C11.6148 10.0649 11.6148 9.43174 12.0053 9.04122L12.241 8.80551C13.5428 7.50377 13.5428 5.39322 12.241 4.09147C10.9393 2.78972 8.82875 2.78972 7.527 4.09147L7.2913 4.32717C6.90077 4.71769 6.26761 4.71769 5.87708 4.32717C5.48656 3.93665 5.48656 3.30348 5.87708 2.91296L6.11278 2.67725Z" fill="currentColor"/></svg></a></li>
+						<li><a href="https://open.spotify.com/user/isxtc7m54l8tvg3fs8181zkui" target="_blank" rel="noopener noreferrer">Spotify<svg width="16" height="17" viewBox="0 0 16 17" fill="none"><path d="M2.34155 13.991C0.258753 11.9082 0.258753 8.53129 2.34155 6.44849L2.57725 6.21279C2.96778 5.82226 3.60094 5.82226 3.99146 6.21279C4.38199 6.60331 4.38199 7.23648 3.99146 7.627L3.75576 7.8627C2.45401 9.16445 2.45401 11.275 3.75576 12.5767C5.05751 13.8785 7.16806 13.8785 8.46981 12.5767L8.70551 12.341C9.09603 11.9505 9.7292 11.9505 10.1197 12.341C10.5102 12.7316 10.5102 13.3647 10.1197 13.7553L9.88402 13.991C7.80123 16.0738 4.42434 16.0738 2.34155 13.991Z" fill="currentColor"/><path d="M5.64138 10.6911C5.25086 10.3006 5.25086 9.66744 5.64138 9.27692L8.94121 5.97709C9.33174 5.58656 9.9649 5.58656 10.3554 5.97709C10.746 6.36761 10.7459 7.00078 10.3554 7.3913L7.05559 10.6911C6.66507 11.0817 6.0319 11.0817 5.64138 10.6911Z" fill="currentColor"/><path d="M6.11278 2.67725C8.19558 0.594457 11.5725 0.594457 13.6553 2.67725C15.7381 4.76005 15.7381 8.13693 13.6553 10.2197L13.4196 10.4554C13.029 10.846 12.3959 10.846 12.0053 10.4554C11.6148 10.0649 11.6148 9.43174 12.0053 9.04122L12.241 8.80551C13.5428 7.50377 13.5428 5.39322 12.241 4.09147C10.9393 2.78972 8.82875 2.78972 7.527 4.09147L7.2913 4.32717C6.90077 4.71769 6.26761 4.71769 5.87708 4.32717C5.48656 3.93665 5.48656 3.30348 5.87708 2.91296L6.11278 2.67725Z" fill="currentColor"/></svg></a></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+
+	</main>
+
+	<!-- reel video modal — structure, sizing, and the close button's
+	     exact icon/style confirmed by clicking the real "Watch the
+	     reel" button on the reference and inspecting the dialog it
+	     opens: full-screen, blurred-video backdrop, 80vh video with
+	     native controls, 52px white-on-15%-opacity close circle
+	     top-right that scales on hover. -->
+	<div class="reel-dialog" id="reelDialog" role="dialog" aria-modal="true" aria-label="Reel video" hidden>
+		<div class="reel-dialog-overlay">
+			<video class="reel-dialog-bg" src="assets/video/hero.mp4" muted autoplay loop playsinline></video>
+		</div>
+		<div class="reel-dialog-inner">
+			<button class="reel-dialog-close" id="reelDialogClose" type="button" aria-label="Close">
+				<span class="reel-dialog-close-bg"></span>
+				<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.41107 4.41083C4.73651 4.08539 5.26414 4.08539 5.58958 4.41083L10.0003 8.82157L14.4111 4.41083C14.7365 4.08539 15.2641 4.08539 15.5896 4.41083C15.915 4.73626 15.915 5.2639 15.5896 5.58934L11.1788 10.0001L15.5896 14.4108C15.915 14.7363 15.915 15.2639 15.5896 15.5893C15.2641 15.9148 14.7365 15.9148 14.4111 15.5893L10.0003 11.1786L5.58958 15.5893C5.26414 15.9148 4.73651 15.9148 4.41107 15.5893C4.08563 15.2639 4.08563 14.7363 4.41107 14.4108L8.82181 10.0001L4.41107 5.58934C4.08563 5.2639 4.08563 4.73626 4.41107 4.41083Z" fill="currentColor"/></svg>
+			</button>
+			<div class="reel-dialog-video-wrap">
+				<video class="reel-dialog-video" id="reelDialogVideo" src="assets/video/hero.mp4" controls autoplay playsinline></video>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/main.js"></script>
+	<script>
+	// dev-only: auto-reload this tab whenever index.html, style.css, or
+	// main.js changes on disk (not just index.html — a JS- or CSS-only
+	// edit used to never trigger a reload, leaving the tab running stale
+	// code until a manual hard-refresh)
+	if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+		const watched = [location.pathname, 'css/style.css', 'js/main.js'];
+		const lastModified = {};
+		setInterval(async () => {
+			try {
+				for (const path of watched) {
+					const res = await fetch(path, { method: 'HEAD', cache: 'no-store' });
+					const lm = res.headers.get('last-modified');
+					if (lastModified[path] && lm && lm !== lastModified[path]) { location.reload(); return; }
+					lastModified[path] = lm;
+				}
+			} catch (e) {}
+		}, 1000);
+	}
+	</script>
+</body>
+</html>
