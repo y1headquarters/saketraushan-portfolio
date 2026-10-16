@@ -574,7 +574,13 @@
 	// fixed hero photo stays visible) and migrates upward as the user
 	// scrolls, so the darkening point itself transitions rather than
 	// staying pinned to a fixed percentage.
-	const svcMain = document.querySelector('.svc-main');
+	// .proj-detail-frame (project detail pages only) is the actual
+	// scroll container there now, not .svc-main — .svc-main is
+	// overflow:hidden on those pages since the frame needs to stay a
+	// fixed-size inset "paper on paper" regardless of scroll position,
+	// which a margin on the scrolling content itself can't do. Falls
+	// back to .svc-main on every other proj-page, unchanged.
+	const svcMain = document.querySelector('.proj-detail-frame') || document.querySelector('.svc-main');
 	if (svcMain) {
 		const GRAD_START = 30;
 		const GRAD_END = 10;
@@ -604,6 +610,145 @@
 		};
 		updateProjHeaderScrolled();
 		svcMain.addEventListener('scroll', updateProjHeaderScrolled, { passive: true });
+	}
+
+	/* ===== project detail page: hero fills the frame's own viewport ===== */
+	// reference's hero is h-svh — exactly one viewport tall. Our
+	// equivalent "viewport" is .proj-detail-frame (inset, fixed-size),
+	// not the browser window, so svh/vh units would overshoot it. A
+	// percentage height can't resolve here either (.svc-scroll-inner,
+	// the hero's parent, has no definite height of its own — it grows
+	// to fit its content, same class of issue the gallery media sizing
+	// hit earlier) — so the frame's real pixel height is measured in
+	// JS and written to a custom property instead.
+	const projDetailFrame = document.querySelector('.proj-detail-frame');
+	if (projDetailFrame) {
+		const updateFrameHeight = () => {
+			projDetailFrame.style.setProperty('--frame-vh', `${projDetailFrame.clientHeight}px`);
+		};
+		updateFrameHeight();
+		window.addEventListener('resize', updateFrameHeight);
+	}
+
+	/* ===== project detail page: hero/intro text fades + pinned photo ===== */
+	// Ground truth re-captured from scratch via real mouse-wheel scroll
+	// screenshots of the live reference at 50px steps (0–1400), because
+	// DOM computed-style reads were actively lying: the text nodes
+	// matched by querySelector reported opacity:"1" at every single
+	// scrollTop even though the screenshots clearly show them fading —
+	// the reference renders these through something (likely a canvas or
+	// mask layer) that never surfaces as element.style/computedStyle
+	// opacity. Pixels are the only reliable signal here. What the
+	// screenshots actually show:
+	//  - title block: opacity 1 until scrollTop ≈0.13×frame height,
+	//    linear fade to 0 by ≈0.31×frame height. It also visibly moves
+	//    upward with scroll, but that's just it being normal in-flow
+	//    content — no JS transform needed, only opacity.
+	//  - intro paragraph: invisible at rest, fades 0→1 between ≈0.10
+	//    and 0.31×frame height (overlapping the title's own fade-out,
+	//    not waiting for it), HOLDS at full opacity+static position
+	//    while the background finishes going solid, then fades 1→0
+	//    between ≈0.67 and 0.82×frame height as the gallery takes over.
+	//    Same deal — plain document flow, opacity-only.
+	//  - background: starts as the photo, scrim ramps 0→1 (solid
+	//    near-black) by ≈0.43×frame height. This used to be a constant
+	//    .78 opacity the whole time, which is why "fade to solid color"
+	//    never actually happened for us — now it's scroll-driven.
+	//  - gallery's first slide + thumbnail rail: invisible until
+	//    ≈0.62×frame height, fades in to full brightness by ≈0.80×frame
+	//    height, already sitting in its final framed/inset position the
+	//    entire time (opacity-only reveal, no "traveling into place").
+	const projDetailHero = document.querySelector('.proj-detail-hero');
+	const projDetailHeroContent = document.querySelector('.proj-detail-hero-content');
+	const projDetailHeroBg = document.querySelector('.proj-detail-hero-bg');
+	const projDetailIntroText = document.querySelector('.proj-detail-intro-text');
+	if (projDetailHero && projDetailHeroContent && svcMain) {
+		const frameHeight = () => (projDetailFrame ? projDetailFrame.clientHeight : svcMain.clientHeight) || 974;
+		const fade = (scrollTop, startFrac, endFrac, fh) => {
+			const start = fh * startFrac, end = fh * endFrac;
+			return Math.min(1, Math.max(0, (scrollTop - start) / (end - start)));
+		};
+		const HERO_FADE_START = .154, HERO_FADE_END = .30;
+		const INTRO_IN_START = .148, INTRO_IN_END = .44;
+		const INTRO_OUT_START = .60, INTRO_OUT_END = .84;
+		const SCRIM_END = .45;
+		// reference keeps a visible dark vignette even at rest (scrollTop
+		// 0) — a side-by-side of the two rest-state screenshots showed
+		// ours noticeably brighter/more saturated without it. Scrim isn't
+		// 0→1, it's SCRIM_BASE→1.
+		const SCRIM_BASE = .32;
+		const updateHeroIntroFade = () => {
+			const fh = frameHeight();
+			const y = svcMain.scrollTop;
+			projDetailHeroContent.style.opacity = String(1 - fade(y, HERO_FADE_START, HERO_FADE_END, fh));
+			if (projDetailHeroBg) {
+				projDetailHeroBg.style.setProperty('--scrim', String(SCRIM_BASE + (1 - SCRIM_BASE) * fade(y, 0, SCRIM_END, fh)));
+			}
+			if (projDetailIntroText) {
+				const fadeIn = fade(y, INTRO_IN_START, INTRO_IN_END, fh);
+				const fadeOut = fade(y, INTRO_OUT_START, INTRO_OUT_END, fh);
+				projDetailIntroText.style.opacity = String(fadeIn - fadeOut);
+			}
+		};
+		updateHeroIntroFade();
+		svcMain.addEventListener('scroll', updateHeroIntroFade, { passive: true });
+
+		/* gallery's first slide + rail fade in as intro fades out. */
+		const firstGallerySlide = document.querySelector('#gslide-0 .proj-gallery-media');
+		if (firstGallerySlide) {
+			const GALLERY_FADE_START = .64, GALLERY_FADE_END = .81;
+			const galleryRail = document.querySelector('.proj-gallery-rail');
+			const updateFirstSlideFade = () => {
+				const progress = fade(svcMain.scrollTop, GALLERY_FADE_START, GALLERY_FADE_END, frameHeight());
+				firstGallerySlide.style.opacity = String(progress);
+				if (galleryRail) galleryRail.style.opacity = String(progress);
+			};
+			updateFirstSlideFade();
+			svcMain.addEventListener('scroll', updateFirstSlideFade, { passive: true });
+		}
+	}
+
+	/* ===== project detail page: gallery thumbnail rail sync ===== */
+	// IntersectionObserver watches each sticky-stack row (not the gallery
+	// container itself, which spans ~5.5x viewport height) — whichever
+	// row crosses the vertical center of .svc-main's viewport is "active",
+	// matching which slide actually reads as current while it's pinned
+	const galleryRail = document.querySelector('.proj-gallery-rail');
+	if (galleryRail && svcMain) {
+		const thumbs = Array.from(galleryRail.querySelectorAll('.proj-gallery-thumb'));
+		const rows = Array.from(document.querySelectorAll('.proj-gallery-row'));
+		const progressBar = document.querySelector('.proj-gallery-progress');
+		const setActive = (id) => {
+			thumbs.forEach(t => t.classList.toggle('is-active', t.dataset.slide === id));
+			// crossfades the incoming slide's own media in via CSS
+			// (.proj-gallery-media opacity transition) instead of the
+			// sticky-stack's plain z-order cut — reference does the same
+			// handoff as an opacity cross-fade between slides, not a cut
+			rows.forEach(r => r.classList.toggle('is-active', r.id === id));
+			if (progressBar) {
+				const index = thumbs.findIndex(t => t.dataset.slide === id);
+				if (index >= 0 && thumbs.length > 1) {
+					// (100% - bar height) so the bar's bottom edge never
+					// slides past the rail's own bottom edge, same idea as
+					// the reference's own top:[--scroll-progress] minimap
+					const fraction = index / (thumbs.length - 1);
+					progressBar.style.top = `calc((100% - .2rem) * ${fraction})`;
+				}
+			}
+		};
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) setActive(entry.target.id);
+			});
+		}, { root: svcMain, rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+		rows.forEach(row => observer.observe(row));
+
+		thumbs.forEach(thumb => {
+			thumb.addEventListener('click', () => {
+				const row = document.getElementById(thumb.dataset.slide);
+				row?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			});
+		});
 	}
 
 	/* ===== services page: share/copy widget ===== */
@@ -658,4 +803,165 @@
 			navShare?.setAttribute('aria-expanded', 'false');
 		});
 	});
+
+	/* ===== hire page: conversational intake form ===== */
+	// no backend on this site, so the actual delivery runs through
+	// FormSubmit.co's ajax endpoint — a free, no-signup, frontend-only
+	// POST target that forwards the JSON body as an email. The very
+	// first submission to a new recipient address triggers a one-time
+	// "confirm this form" email FormSubmit sends that address; until
+	// that's clicked, submissions are accepted but not delivered.
+	const hireThread = document.getElementById('hireThread');
+	if (hireThread) {
+		const hireForm = document.getElementById('hireForm');
+		const hireInput = document.getElementById('hireInput');
+		const hireOk = hireForm.querySelector('.hire-ok');
+		const hireSuggestions = document.getElementById('hireSuggestions');
+		const answers = {};
+
+		const addMsg = (text, cls) => {
+			const el = document.createElement('div');
+			el.className = `hire-msg ${cls}`;
+			el.textContent = text;
+			hireThread.appendChild(el);
+			el.scrollIntoView({ block: 'end', behavior: 'smooth' });
+			return el;
+		};
+		const wait = (ms) => new Promise(r => setTimeout(r, ms));
+		const sayBot = async (text) => { await wait(500); addMsg(text, 'hire-msg-bot'); await wait(300); };
+		const sayMe = (text) => addMsg(text, 'hire-msg-me');
+
+		const askInput = ({ placeholder, type = 'text', suggestions = [] }) => {
+			hireInput.value = '';
+			hireInput.type = type;
+			hireInput.placeholder = placeholder;
+			hireSuggestions.innerHTML = '';
+			if (suggestions.length) {
+				hireInput.setAttribute('list', 'hireSuggestions');
+				suggestions.forEach(s => {
+					const opt = document.createElement('option');
+					opt.value = s;
+					hireSuggestions.appendChild(opt);
+				});
+			} else {
+				hireInput.removeAttribute('list');
+			}
+			hireForm.hidden = false;
+			hireInput.focus();
+			return new Promise((resolve) => {
+				const onSubmit = (e) => {
+					e.preventDefault();
+					const val = hireInput.value.trim();
+					if (!val) return;
+					hireForm.removeEventListener('submit', onSubmit);
+					hireForm.hidden = true;
+					resolve(val);
+				};
+				hireForm.addEventListener('submit', onSubmit);
+			});
+		};
+
+		const run = async () => {
+			hireForm.hidden = true;
+			const hour = new Date().getHours();
+			const timeOfDay = hour < 12 ? 'morning' : hour < 18 ? 'afternoon' : 'evening';
+			const emoji = hour < 12 ? '🌤️' : hour < 18 ? '☀️' : '🌝';
+
+			await sayBot(`Good ${timeOfDay}! ${emoji}`);
+			await sayBot("I'm Saket 👋");
+			await wait(300);
+			sayMe('👋');
+			await wait(400);
+			sayMe('Nice to meet you!');
+			await wait(600);
+
+			await sayBot('The pleasure is all mine. What should I call you?');
+			answers.name = await askInput({ placeholder: 'Paul McCartney' });
+			sayMe(answers.name);
+
+			await sayBot(`Nice to meet you, ${answers.name}.`);
+			await sayBot("And what do you do?");
+			answers.role = await askInput({ placeholder: 'Product Designer' });
+			sayMe(answers.role);
+
+			await sayBot("What's the best email to reach you at?");
+			answers.email = await askInput({ placeholder: 'you@email.com', type: 'email' });
+			sayMe(answers.email);
+
+			await sayBot('How may I help you today?');
+			answers.project = await askInput({
+				placeholder: 'Creating a new website',
+				suggestions: ['Building a new brand', 'A rebranding', 'A campaign', 'A website redesign', 'Creating a new website'],
+			});
+			sayMe(answers.project);
+
+			await sayBot('Tell me a little more about it — timeline, budget, anything useful.');
+			answers.details = await askInput({ placeholder: 'A few sentences about your project...' });
+			sayMe(answers.details);
+
+			await sayBot("Perfect — sending this over to Saket now.");
+			await wait(400);
+
+			try {
+				const res = await fetch('https://formsubmit.co/ajax/saketraushan2208@gmail.com', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+					body: JSON.stringify({
+						_subject: `New project inquiry from ${answers.name}`,
+						Name: answers.name,
+						Role: answers.role,
+						Email: answers.email,
+						'Looking for': answers.project,
+						Details: answers.details,
+					}),
+				});
+				if (!res.ok) throw new Error(`status ${res.status}`);
+				await sayBot(`Got it, ${answers.name} — I'll be in touch at ${answers.email} shortly. Thanks for reaching out! 🙌`);
+			} catch (err) {
+				await sayBot(`Hmm, that didn't send (${err.message}). Mind emailing me directly at saketraushan2208@gmail.com instead?`);
+			}
+		};
+
+		run();
+	}
+
+	/* ===== contact page: live Gurugram clock ===== */
+	const contactHour = document.getElementById('contactHour');
+	const contactMinute = document.getElementById('contactMinute');
+	if (contactHour && contactMinute) {
+		const updateClock = () => {
+			const parts = new Intl.DateTimeFormat('en-GB', {
+				timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', hour12: false,
+			}).formatToParts(new Date());
+			contactHour.textContent = parts.find(p => p.type === 'hour').value;
+			contactMinute.textContent = parts.find(p => p.type === 'minute').value;
+		};
+		updateClock();
+		setInterval(updateClock, 10000);
+	}
+
+	/* ===== contact page: "how to say my name" pronunciation ===== */
+	// no recorded audio clip exists for this, so this uses the browser's
+	// own speech synthesis rather than faking a sound file that isn't real
+	const contactSoundBtn = document.getElementById('contactSoundBtn');
+	if (contactSoundBtn && 'speechSynthesis' in window) {
+		// voices load async and are often still an empty list on the very
+		// first speak() call right after page load (a well-known Chrome
+		// quirk) — calling getVoices() once up front, and again on the
+		// voiceschanged event, warms the list so the first click actually
+		// produces audio instead of silently no-op'ing
+		let voices = window.speechSynthesis.getVoices();
+		window.speechSynthesis.addEventListener('voiceschanged', () => {
+			voices = window.speechSynthesis.getVoices();
+		});
+		const speakName = () => {
+			window.speechSynthesis.cancel();
+			const utter = new SpeechSynthesisUtterance('Saket Raushan');
+			utter.rate = .9;
+			const enVoice = voices.find(v => v.lang && v.lang.startsWith('en'));
+			if (enVoice) utter.voice = enVoice;
+			window.speechSynthesis.speak(utter);
+		};
+		contactSoundBtn.addEventListener('click', speakName);
+	}
 })();
